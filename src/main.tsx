@@ -16,8 +16,13 @@ createRoot(document.getElementById('root')!).render(
 
 		<Layout>
 			<Routes>
-				{privateRoutes.map(({ path, component }) => (
-					<Route path={path} Component={component} />
+				{privateRoutes.map(({ path, component, children }) => (
+					<>
+						<Route path={path} Component={component} />
+						{children?.map((child) => (
+							<Route path={child.path} Component={child.component} />
+						))}
+					</>
 				))}
 			</Routes>
 		</Layout>

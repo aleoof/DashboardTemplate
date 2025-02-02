@@ -5,13 +5,13 @@ import Modal from '../../components/Modal';
 import useModalStore from '../../stores/modalStore';
 import { NavLink } from 'react-router';
 
-export default function Orders() {
+export default function Materials() {
 	const listMock = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 13];
 	const { openModal, closeModal } = useModalStore((state) => state);
 	return (
 		<>
 			<div className="container pt-5">
-				<h4>Ordens de Serviço</h4>
+				<h4>Materiais</h4>
 				<hr />
 				<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
 					<button className="btn text-danger" onClick={openModal}>
