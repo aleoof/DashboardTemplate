@@ -1,15 +1,24 @@
 import useModalStore from '../../stores/modalStore';
 
-export default function Modal() {
-	const { modal, openModal, closeModal } = useModalStore((state) => state);
+type IModal = {
+	copy: string;
+	cancelCopy: string;
+	saveCopy: string;
+	toggleCancel: () => void;
+	toggleSave: () => void;
+};
+
+export default function Modal({
+	copy,
+	cancelCopy,
+	saveCopy,
+	toggleCancel,
+	toggleSave,
+}: IModal) {
+	const { modal } = useModalStore((state) => state);
 
 	return (
 		<>
-			<button className="btn btn-primary" onClick={openModal}>
-				Open Modal
-			</button>
-
-			{/* Modal */}
 			<div
 				className={`modal fade ${modal.open ? 'show' : ''}`}
 				tabIndex={-1}
@@ -18,33 +27,31 @@ export default function Modal() {
 			>
 				<div className="modal-dialog">
 					<div className="modal-content">
-						<div className="modal-header">
-							<h5 className="modal-title">Modal Title</h5>
+						<div className="modal-header border-bottom-0">
+							{/* <h5 className="modal-title">Modal Title</h5> */}
 							<button
 								type="button"
 								className="btn-close"
 								data-bs-dismiss="modal"
 								aria-label="Close"
-								onClick={closeModal}
+								onClick={() => toggleCancel()}
 							></button>
 						</div>
-						<div className="modal-body">
-							<p>This is the content of the modal!</p>
-						</div>
-						<div className="modal-footer">
+						<div className="modal-body text-center">{copy}</div>
+						<div className="modal-footer d-flex justify-content-between border-top-0">
 							<button
 								type="button"
 								className="btn btn-secondary"
-								onClick={closeModal}
+								onClick={() => toggleCancel()}
 							>
-								Close
+								{cancelCopy}
 							</button>
 							<button
 								type="button"
-								className="btn btn-primary"
-								onClick={closeModal}
+								className="nav-link text-danger"
+								onClick={() => toggleSave()}
 							>
-								Save Changes
+								{saveCopy}
 							</button>
 						</div>
 					</div>
