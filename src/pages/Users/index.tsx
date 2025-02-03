@@ -1,8 +1,22 @@
 import { BsFillPlusSquareFill, BsFillTrashFill } from 'react-icons/bs';
 import ListItem from '../../components/ListItem';
 import { NavLink } from 'react-router';
+import { api } from '../../api';
+import { useEffect } from 'react';
 
 export default function Users() {
+	const getUsers = async () => {
+		try {
+			const response = await api.get('/users');
+			console.log(response.data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	useEffect(() => {
+		getUsers();
+	});
 	const listMock = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 13];
 	return (
 		<div className="container pt-5">
