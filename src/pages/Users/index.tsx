@@ -2,13 +2,15 @@ import { BsFillPlusSquareFill, BsFillTrashFill } from 'react-icons/bs';
 import ListItem from '../../components/ListItem';
 import { NavLink } from 'react-router';
 import { api } from '../../api';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Users() {
+	const [users, setUsers] = useState<Array<{ name: string }>>([]);
+
 	const getUsers = async () => {
 		try {
 			const response = await api.get('/users');
-			console.log(response.data);
+			setUsers(response.data);
 		} catch (error) {
 			console.error(error);
 		}
@@ -16,8 +18,7 @@ export default function Users() {
 
 	useEffect(() => {
 		getUsers();
-	});
-	const listMock = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 13];
+	}, []);
 	return (
 		<div className="container pt-5">
 			<h4>Usuários</h4>
@@ -31,10 +32,10 @@ export default function Users() {
 				</NavLink>
 			</div>
 			<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">
-				{listMock.map((item, index) => (
+				{users.map((item, index) => (
 					<>
-						<ListItem />
-						{listMock.length - 1 !== index && <hr />}
+						<ListItem key={index} title={item.name} />
+						{users.length - 1 !== index && <hr />}
 					</>
 				))}
 			</div>

@@ -22,7 +22,7 @@ export default function Materials() {
 					</NavLink>
 				</div>
 				<div className="card list-height overflow-y-auto p-3 pb-0 mb-5">
-					{listMock.map((item) => (
+					{listMock.map(() => (
 						<>
 							<ListItem />
 							<hr />

@@ -10,7 +10,7 @@ function Login() {
 		{ login: '', password: '' }
 	);
 
-	const handleLogin = async (e) => {
+	const handleLogin = async (e: any) => {
 		try {
 			e.preventDefault();
 			const { login, password } = formData;

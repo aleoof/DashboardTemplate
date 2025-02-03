@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect } from 'react';
 import Sidebar from '../components/sidebar';
 import { useNavigate } from 'react-router';
 
-export default function Layout({ children }) {
+export default function Layout({ children }: { children: ReactNode }) {
 	const navigate = useNavigate();
 	const token = localStorage.getItem('token');
 
