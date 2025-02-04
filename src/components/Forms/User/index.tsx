@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '../../../api';
+import { useSearchParams } from 'react-router';
 
 export default function UserForm() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
 	const [passwordError, setPasswordError] = useState(false);
+	const [searchParams] = useSearchParams();
+	const id = searchParams.get('id');
 
 	const handleUser = async (e: any) => {
 		setPasswordError(false);
@@ -15,11 +18,33 @@ export default function UserForm() {
 			return;
 		}
 		try {
-			await api.post('/user', { access_level, email, login, password, name });
+			if (id) {
+				await api.put(`/user/${id}`, {
+					access_level,
+					email,
+					login,
+					password,
+					name,
+				});
+			} else {
+				await api.post('/user', { access_level, email, login, password, name });
+			}
 		} catch (error) {
 			console.error(error);
 		}
 	};
+
+	const getUser = async () => {
+		const response = await api.get(`/user/${id}`);
+
+		setFormData(response.data);
+	};
+
+	useEffect(() => {
+		if (id) {
+			getUser();
+		}
+	}, []);
 
 	return (
 		<div>
@@ -34,6 +59,7 @@ export default function UserForm() {
 						type="text"
 						className="form-control"
 						id="name"
+						value={formData.name}
 						onChange={(e) =>
 							setFormData((prev) => ({
 								...prev,
@@ -50,6 +76,7 @@ export default function UserForm() {
 						type="text"
 						className="form-control"
 						id="login"
+						value={formData.login}
 						onChange={(e) =>
 							setFormData((prev) => ({
 								...prev,
@@ -58,39 +85,43 @@ export default function UserForm() {
 						}
 					/>
 				</div>
-				<div className="mb-3">
-					<label htmlFor="password" className="form-label">
-						Senha
-					</label>
-					<input
-						type="password"
-						className="form-control"
-						id="password"
-						onChange={(e) =>
-							setFormData((prev) => ({
-								...prev,
-								[e.target.id]: e.target.value,
-							}))
-						}
-					/>
-				</div>
-				<div className="mb-3">
-					<label htmlFor="password" className="form-label">
-						Confirmar Senha
-					</label>
-					<input
-						type="password"
-						className="form-control"
-						id="confirmPassword"
-						onChange={(e) =>
-							setFormData((prev) => ({
-								...prev,
-								[e.target.id]: e.target.value,
-							}))
-						}
-					/>
-					{passwordError && 'As senhas são diferentes'}
-				</div>
+				{!id && (
+					<>
+						<div className="mb-3">
+							<label htmlFor="password" className="form-label">
+								Senha
+							</label>
+							<input
+								type="password"
+								className="form-control"
+								id="password"
+								onChange={(e) =>
+									setFormData((prev) => ({
+										...prev,
+										[e.target.id]: e.target.value,
+									}))
+								}
+							/>
+						</div>
+						<div className="mb-3">
+							<label htmlFor="password" className="form-label">
+								Confirmar Senha
+							</label>
+							<input
+								type="password"
+								className="form-control"
+								id="confirmPassword"
+								onChange={(e) =>
+									setFormData((prev) => ({
+										...prev,
+										[e.target.id]: e.target.value,
+									}))
+								}
+							/>
+							{passwordError && 'As senhas são diferentes'}
+						</div>
+					</>
+				)}
 				<div className="mb-3">
 					<label htmlFor="email" className="form-label">
 						Email
@@ -99,6 +130,7 @@ export default function UserForm() {
 						type="text"
 						className="form-control"
 						id="email"
+						value={formData.email}
 						onChange={(e) =>
 							setFormData((prev) => ({
 								...prev,
@@ -115,6 +147,7 @@ export default function UserForm() {
 						className="form-select"
 						aria-label="Default select example"
 						id="access_level"
+						value={formData.access_level}
 						onChange={(e) =>
 							setFormData((prev) => ({
 								...prev,

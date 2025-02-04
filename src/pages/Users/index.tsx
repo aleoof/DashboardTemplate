@@ -5,7 +5,7 @@ import { api } from '../../api';
 import { useEffect, useState } from 'react';
 
 export default function Users() {
-	const [users, setUsers] = useState<Array<{ name: string }>>([]);
+	const [users, setUsers] = useState<Array<{ name: string; id: string }>>([]);
 
 	const getUsers = async () => {
 		try {
@@ -34,7 +34,7 @@ export default function Users() {
 			<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">
 				{users.map((item, index) => (
 					<>
-						<ListItem key={index} title={item.name} />
+						<ListItem key={index} title={item.name} id={item.id} />
 						{users.length - 1 !== index && <hr />}
 					</>
 				))}
