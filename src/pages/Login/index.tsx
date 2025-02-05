@@ -1,10 +1,10 @@
-import { NavLink, useNavigate } from 'react-router';
+// import { NavLink, useNavigate } from 'react-router';
 import './styles.css';
 import { api } from '../../api';
 import { useState } from 'react';
 
 function Login() {
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 	const [error, setError] = useState(false);
 	const [formData, setFormData] = useState<{ login: string; password: string }>(
 		{ login: '', password: '' }
@@ -17,7 +17,7 @@ function Login() {
 			const response = await api.post('/login', { login, password });
 			const { token } = response.data;
 			localStorage.setItem('token', token);
-			navigate('/');
+			// navigate('/');
 			setError(false);
 		} catch (error) {
 			setError(true);
@@ -26,24 +26,22 @@ function Login() {
 	};
 
 	return (
-		<div className="container">
-			<div className="login row align-items-center justify-content-center">
-				<div className="col-6 p-0 h-30 card overflow-hidden">
+		<div className="login row align-items-center justify-content-center p-0 m-0">
+			<h2 className="logo"><b>HUB</b>OS</h2>
+			<div className="col-md-3 col-sm-6 p-0 h-30  overflow-hidden">
+				<div className=" p-0 h-30 card overflow-hidden p-5">
+					<h2 className="text-center p-2"><b>Login</b></h2>
+					<p className="m-0 mb-5 text-center">Bem vindo de volta.</p>
+
 					<div className="h-100 w-100 d-flex">
-						<div className="w-50 p-3 bg-primary"></div>
-						<form className="w-50 p-3" onSubmit={handleLogin}>
-							<h2>Login</h2>
+						<form className="w-100" onSubmit={handleLogin}>
+
 							<div className="mb-3">
-								<label
-									htmlFor="exampleFormControlInput1"
-									className="form-label"
-								>
-									Login
-								</label>
 								<input
 									type="text"
 									className="form-control"
 									id="login"
+									placeholder="Seu usuário"
 									onChange={(e) =>
 										setFormData((prev) => ({
 											...prev,
@@ -53,16 +51,12 @@ function Login() {
 								/>
 							</div>
 							<div className="mb-3">
-								<label
-									htmlFor="exampleFormControlInput1"
-									className="form-label"
-								>
-									Senha
-								</label>
+
 								<input
 									type="password"
 									className="form-control"
 									id="password"
+									placeholder="Sua senha"
 									onChange={(e) =>
 										setFormData((prev) => ({
 											...prev,
@@ -73,19 +67,14 @@ function Login() {
 								{error && 'Login ou Senha errado'}
 							</div>
 							<div className="mb-3 d-flex w-100 justify-content-between align-items-center">
-								<button type="submit" className="btn btn-primary">
+								<button type="submit" className="btn w-100">
 									Entrar
 								</button>
-								<NavLink
-									className="nav-link active fs-6 text-decoration-underline"
-									to="/sign-in"
-								>
-									Cadastrar
-								</NavLink>
 							</div>
 						</form>
 					</div>
 				</div>
+				<p className='text-end p-2 company'>Desenvolvido por <strong>Shartech</strong></p>
 			</div>
 		</div>
 	);

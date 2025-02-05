@@ -1,9 +1,81 @@
+p{
+  margin: 0;
+  padding: 0;
+}
+.card{
+  border: 0 !important;
+  border-radius: 15px !important;
+}
+
 .login {
   height: 100vh;
 }
 
-
 .login-card {
   height: 300px;
   padding: 0;
+}
+
+#root{
+  font: inherit;
+  margin:0;
+  padding:0;
+  background: #f2f5fc;
+  color:#0f0f0f;
+  display: block;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+}
+label.form-label{
+  margin: 0;
+  padding: 0;
+}
+
+button.btn{
+  background: #4218fd;
+  color:#ffffff;
+  border-radius: 50px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+}
+
+button.btn:hover{
+  background: #330ce1;
+  color:#ffffff;
+}
+
+.company{
+  font-size: 11px;
+  color: #838383;
+}
+input.form-control{
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+  border-width: 1px;
+  border-image: initial;
+  border-style: solid;
+  border-color: rgb(244, 247, 254);
+  padding: 10px 20px;
+}
+
+input.form-control:focus {
+  box-shadow: none;
+  outline: 0px;
+  border: 1px solid #4218fd;
+}
+
+.logo{
+  font-size: 40px;
+  position: absolute;
+  top:10px;
+  left: 0;
+}
+.logo b{
+  font-weight: bolder;
 }
