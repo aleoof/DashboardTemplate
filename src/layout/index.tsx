@@ -7,13 +7,15 @@ export default function Layout({ children }: { children: ReactNode }) {
 
 	const token = localStorage.getItem('token');
 	useEffect(() => {
+
 		if (!token) {
-			navigate('/login');
+			//navigate('/login');
+			 return;
 		}
 	});
 
 	if (!token) {
-		return;
+		 // return;
 	}
 
 	return (

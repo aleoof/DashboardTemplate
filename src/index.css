@@ -1,7 +1,95 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+#root{
+  font: inherit;
+  margin:0;
+  padding:0;
+  background: #f2f5fc;
+  color:#0f0f0f;
+  display: block;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
   font-weight: 400;
+  line-height: 1.43;
+}
+p, h1, h2,h3,h4, h5, span{
+  margin: 0 !important;
+  padding: 0 !important;
+  color:#0f0f0f;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+}
+label.form-label{
+  margin: 0;
+  padding: 0;
+}
 
-  background-color: #fff;
+button.btn{
+  background: #1837fd;
+  color:#ffffff;
+  border-radius: 50px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+}
+
+button.btn:hover{
+  background: #330ce1;
+  color:#ffffff;
+}
+
+.company{
+  font-size: 11px;
+  color: #838383;
+}
+input.form-control, select.form-control{
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+  border-width: 1px;
+  border-image: initial;
+  border-style: solid;
+  border-color: rgb(244, 247, 254);
+  padding: 10px 20px;
+}
+
+input.form-control:focus {
+  box-shadow: none;
+  outline: 0px;
+  border: 1px solid #4218fd;
+}
+
+.logo{
+  font-size: 40px;
+  position: absolute;
+  top:10px;
+  left: 0;
+  color:#0f0f0f;
+}
+.logo b{
+  font-weight: bolder;
+}
+
+.card.header{
+  background: none;
+  padding: 10px 0;
+}
+
+.icons{
+  width: 3rem;
+  height: 3rem;
+  margin-left: auto;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  opacity: 1;
+  background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
+  color: rgb(255, 255, 255);
+  border-radius: 0.5rem;
+  box-shadow: rgba(20, 20, 20, 0.12) 0rem 0.25rem 0.375rem -0.0625rem, rgba(20, 20, 20, 0.07) 0rem 0.125rem 0.25rem -0.0625rem;
+
 }

@@ -1,0 +1,11 @@
+.sidebar{
+  background:white;
+}
+
+.sidebar a{
+  color:#0f0f0f;
+}
+.nav-item a.nav-link.active{
+  background: #0f0f0f;
+  color:white;
+}
