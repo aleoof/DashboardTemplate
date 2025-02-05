@@ -26,16 +26,17 @@ label.form-label{
 
 button.btn{
   background: #1837fd;
-  color:#ffffff;
-  border-radius: 50px;
+  background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
   font-family: "DM Sans", sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.43;
+  color: white;
+  border: 0px;
 }
 
 button.btn:hover{
-  background: #330ce1;
+  background: linear-gradient(290deg, rgb(33, 82, 255), rgb(33, 212, 253));
   color:#ffffff;
 }
 
@@ -86,10 +87,33 @@ input.form-control:focus {
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
+  float: right;
   opacity: 1;
+  border: 0;
   background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
   color: rgb(255, 255, 255);
   border-radius: 0.5rem;
   box-shadow: rgba(20, 20, 20, 0.12) 0rem 0.25rem 0.375rem -0.0625rem, rgba(20, 20, 20, 0.07) 0rem 0.125rem 0.25rem -0.0625rem;
+}
+.card{
+  background-clip: border-box;
+  box-shadow: rgba(0, 0, 0, 0.05) 0rem 1.25rem 1.6875rem 0rem;
+  transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card .card-title{
+  font-size: 12px;
+  font-weight: bold;
+  color: #555454;
+}
+.card-text{
+  font-size: 11px;
+}
 
+.card.bg-info{
+  background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
+  color: white;
+}
+.card.bg-warning{
+  background: linear-gradient(310deg, rgb(255, 51, 33), rgb(253, 40, 33));
+  color: white;
 }

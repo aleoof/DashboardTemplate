@@ -7,22 +7,24 @@ export default function Kits() {
 	return (
 
 		<div className="container pt-5">
-			<div className="card header d-flex justify-content-between">
-				<div>
+			<div className="header d-flex justify-content-between">
+				<div className="float-start">
 					<p><BsHouseFill /> / Kits / Lista</p>
 					<h4>Kits</h4>
 				</div>
-				<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
-					<button className="btn text-danger">
-						<BsFillTrashFill style={{ height: '20px', width: '20px' }} />
-					</button>
-					<NavLink to="form" className="btn text-success h-10">
-						<BsFillPlusSquareFill style={{ height: '20px', width: '20px' }} />
-					</NavLink>
+				<div className="float-end">
+					<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
+						<button className="btn icons m-1">
+							<BsFillTrashFill />
+						</button>
+						<NavLink to="form" className="btn icons">
+							<BsFillPlusSquareFill  />
+						</NavLink>
+					</div>
 				</div>
 			</div>
 
-			<div className="card list-height overflow-y-auto p-3 pb-0 mb-5">
+			<div className="card list-height overflow-y-auto p-3 pb-0 mb-5 mt-5">
 				{listMock.map(() => (
 					<>
 						<ListItem />
