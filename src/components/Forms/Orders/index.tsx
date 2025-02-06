@@ -2,36 +2,45 @@ export default function OrdersForm() {
 	return (
 		<div>
 			<form>
-				<h4>Ordem de Serviço</h4>
+				<h4>Ordem de serviço</h4>
 				<hr />
 				<div className="mb-3">
 					<label htmlFor="exampleInputEmail1" className="form-label">
-						Email address
+						Endereço
 					</label>
 					<input type="text" className="form-control" />
 				</div>
 				<div className="mb-3">
-					<label htmlFor="exampleInputPassword1" className="form-label">
-						Password
+					<label htmlFor="exampleInputEmail1" className="form-label">
+						Bairro
 					</label>
-					<input
-						type="password"
-						className="form-control"
-						id="exampleInputPassword1"
-					/>
+					<input type="text" className="form-control" />
 				</div>
-				<div className="mb-3 form-check">
-					<input
-						type="checkbox"
-						className="form-check-input"
-						id="exampleCheck1"
-					/>
-					<label className="form-check-label" htmlFor="exampleCheck1">
-						Check me out
+				<div className="mb-3">
+					<label htmlFor="exampleInputEmail1" className="form-label">
+						UF
 					</label>
+					<input type="text" className="form-control" />
+				</div>
+				<div className="mb-3">
+					<label htmlFor="exampleInputEmail1" className="form-label">
+						Município
+					</label>
+					<input type="text" className="form-control" />
+				</div>
+				<div className="mb-3">
+					<label htmlFor="exampleInputEmail1" className="form-label">
+						Materiais
+					</label>
+					<select className="form-select" aria-label="Default select example">
+						<option selected>Open this select menu</option>
+						<option value="1">One</option>
+						<option value="2">Two</option>
+						<option value="3">Three</option>
+					</select>
 				</div>
 				<button type="submit" className="btn btn-primary">
-					Submit
+					Salvar
 				</button>
 			</form>
 		</div>
