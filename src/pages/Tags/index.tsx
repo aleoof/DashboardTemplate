@@ -1,4 +1,4 @@
-import {BsFillPlusSquareFill, BsFillTrashFill, BsHouseFill} from 'react-icons/bs';
+import {BsFillPlusSquareFill, BsFillTrashFill} from 'react-icons/bs';
 import ListItem from '../../components/ListItem';
 import { NavLink } from 'react-router';
 

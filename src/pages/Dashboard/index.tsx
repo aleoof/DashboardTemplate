@@ -2,7 +2,7 @@
 // import {NavLink} from "react-router";
 // import ListItem from "../../components/ListItem";
 
-import {BsClipboardDataFill, BsPersonBadgeFill} from "react-icons/bs";
+import {BsClipboardDataFill, BsPersonBadgeFill, BsTools} from "react-icons/bs";
 // import {NavLink} from "react-router";
 
 export default function Dashboard() {
@@ -39,7 +39,7 @@ export default function Dashboard() {
 								<p className="card-title">Kits Cadastrados</p>
 								<h3 className="fw-bold">12<span className="card-text"> Total</span></h3>
 							</div>
-							<div className="icons"><BsClipboardDataFill /></div>
+							<div className="icons"><BsTools /></div>
 						</div>
 					</div>
 				</div>
