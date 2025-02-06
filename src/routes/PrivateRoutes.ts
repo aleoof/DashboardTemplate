@@ -1,6 +1,7 @@
 import Dashboard from '../pages/Dashboard';
 import Form from '../pages/Form';
 import Kits from '../pages/Kits';
+import Materials from '../pages/Materials';
 import Orders from '../pages/Orders';
 import Tags from '../pages/Tags';
 import Users from '../pages/Users';
@@ -34,7 +35,7 @@ export const privateRoutes = [
 	{
 		name: 'Materiais',
 		path: '/materials',
-		component: Kits,
+		component: Materials,
 		children: [
 			{
 				name: 'Novo Material',
