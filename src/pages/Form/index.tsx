@@ -19,5 +19,5 @@ export default function Form() {
 		}
 	};
 
-	return <div className="container pt-5">{returnForm()}</div>;
+	return <div>{returnForm()}</div>;
 }

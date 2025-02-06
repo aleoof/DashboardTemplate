@@ -1,7 +1,15 @@
+import {BsHouseFill} from "react-icons/bs";
+
 export default function Navbar() {
 	return (
-		<div className="bg-primary p-3 text-white">
-			<h3>Navbar</h3>
+		<div className="header d-flex justify-content-between">
+			<div className="float-start">
+				<p><BsHouseFill /> / Dashboard</p>
+				<h4><strong>Dashboard</strong></h4>
+			</div>
+			<div className="float-end">
+
+			</div>
 		</div>
 	);
 }

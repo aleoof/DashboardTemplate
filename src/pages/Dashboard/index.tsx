@@ -2,22 +2,13 @@
 // import {NavLink} from "react-router";
 // import ListItem from "../../components/ListItem";
 
-import {BsHouseFill, BsClipboardDataFill} from "react-icons/bs";
+import {BsClipboardDataFill, BsPersonBadgeFill} from "react-icons/bs";
 // import {NavLink} from "react-router";
 
 export default function Dashboard() {
 	return (
-		<div className="container pt-5">
-			<div className="header d-flex justify-content-between">
-				<div className="float-start">
-					<p><BsHouseFill /> / Dashboard</p>
-					<h4><strong>Dashboard</strong></h4>
-				</div>
-				<div className="float-end">
 
-				</div>
-			</div>
-
+		<div>
 			<div className="row d-flex pt-5">
 				<div className="col-3">
 					<div className="card">
@@ -59,7 +50,7 @@ export default function Dashboard() {
 								<p className="card-title">Tecnicos</p>
 								<h3 className="fw-bold">12<span className="card-text"> Total</span></h3>
 							</div>
-							<div className="icons"><BsHouseFill /></div>
+							<div className="icons"><BsPersonBadgeFill /></div>
 						</div>
 					</div>
 				</div>

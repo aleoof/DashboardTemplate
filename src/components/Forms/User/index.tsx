@@ -47,127 +47,128 @@ export default function UserForm() {
 	}, []);
 
 	return (
-		<div>
-			<form onSubmit={handleUser}>
-				<h4>Usuário</h4>
-				<hr />
-				<div className="mb-3">
-					<label htmlFor="name" className="form-label">
-						Nome
-					</label>
-					<input
-						type="text"
-						className="form-control"
-						id="name"
-						value={formData.name}
-						onChange={(e) =>
-							setFormData((prev) => ({
-								...prev,
-								[e.target.id]: e.target.value,
-							}))
-						}
-					/>
-				</div>
-				<div className="mb-3">
-					<label htmlFor="login" className="form-label">
-						Login
-					</label>
-					<input
-						type="text"
-						className="form-control"
-						id="login"
-						value={formData.login}
-						onChange={(e) =>
-							setFormData((prev) => ({
-								...prev,
-								[e.target.id]: e.target.value,
-							}))
-						}
-					/>
-				</div>
-				{!id && (
-					<>
-						<div className="mb-3">
-							<label htmlFor="password" className="form-label">
-								Senha
-							</label>
-							<input
-								type="password"
-								className="form-control"
-								id="password"
-								onChange={(e) =>
-									setFormData((prev) => ({
-										...prev,
-										[e.target.id]: e.target.value,
-									}))
-								}
-							/>
-						</div>
-						<div className="mb-3">
-							<label htmlFor="password" className="form-label">
-								Confirmar Senha
-							</label>
-							<input
-								type="password"
-								className="form-control"
-								id="confirmPassword"
-								onChange={(e) =>
-									setFormData((prev) => ({
-										...prev,
-										[e.target.id]: e.target.value,
-									}))
-								}
-							/>
-							{passwordError && 'As senhas são diferentes'}
-						</div>
-					</>
-				)}
-				<div className="mb-3">
-					<label htmlFor="email" className="form-label">
-						Email
-					</label>
-					<input
-						type="text"
-						className="form-control"
-						id="email"
-						value={formData.email}
-						onChange={(e) =>
-							setFormData((prev) => ({
-								...prev,
-								[e.target.id]: e.target.value,
-							}))
-						}
-					/>
-				</div>
-				<div className="mb-3">
-					<label htmlFor="access_level" className="form-label">
-						Tipo de usuário
-					</label>
-					<select
-						className="form-select"
-						aria-label="Default select example"
-						id="access_level"
-						value={formData.access_level}
-						onChange={(e) =>
-							setFormData((prev) => ({
-								...prev,
-								[e.target.id]: e.target.value,
-							}))
-						}
-					>
-						<option selected disabled>
-							Acessos
-						</option>
-						<option value="0">Admin</option>
-						<option value="1">Secretária</option>
-						<option value="2">Funcionário</option>
-						<option value="3">Externo</option>
-					</select>
-				</div>
-				<button type="submit" className="btn btn-primary">
-					Salvar
-				</button>
-			</form>
+		<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">
+			<div className="card-body row">
+				<form onSubmit={handleUser}>
+					<div className="mb-3 col-md-6">
+						<label htmlFor="name" className="form-label">
+							Nome
+						</label>
+						<input
+							type="text"
+							className="form-control"
+							id="name"
+							value={formData.name}
+							onChange={(e) =>
+								setFormData((prev) => ({
+									...prev,
+									[e.target.id]: e.target.value,
+								}))
+							}
+						/>
+					</div>
+					<div className="mb-3">
+						<label htmlFor="login" className="form-label">
+							Login
+						</label>
+						<input
+							type="text"
+							className="form-control"
+							id="login"
+							value={formData.login}
+							onChange={(e) =>
+								setFormData((prev) => ({
+									...prev,
+									[e.target.id]: e.target.value,
+								}))
+							}
+						/>
+					</div>
+					{!id && (
+						<>
+							<div className="mb-3 col-md-2">
+								<label htmlFor="password" className="form-label">
+									Senha
+								</label>
+								<input
+									type="password"
+									className="form-control"
+									id="password"
+									onChange={(e) =>
+										setFormData((prev) => ({
+											...prev,
+											[e.target.id]: e.target.value,
+										}))
+									}
+								/>
+							</div>
+							<div className="mb-3 col-md-2">
+
+									<label htmlFor="password" className="form-label">
+										Confirmar Senha
+									</label>
+									<input
+										type="password"
+										className="form-control"
+										id="confirmPassword"
+										onChange={(e) =>
+											setFormData((prev) => ({
+												...prev,
+												[e.target.id]: e.target.value,
+											}))
+										}
+									/>
+									{passwordError && 'As senhas são diferentes'}
+								</div>
+						</>
+					)}
+					<div className="mb-3">
+						<label htmlFor="email" className="form-label">
+							Email
+						</label>
+						<input
+							type="text"
+							className="form-control"
+							id="email"
+							value={formData.email}
+							onChange={(e) =>
+								setFormData((prev) => ({
+									...prev,
+									[e.target.id]: e.target.value,
+								}))
+							}
+						/>
+					</div>
+					<div className="mb-3">
+						<label htmlFor="access_level" className="form-label">
+							Tipo de usuário
+						</label>
+						<select
+							className="form-select"
+							aria-label="Default select example"
+							id="access_level"
+							value={formData.access_level}
+							onChange={(e) =>
+								setFormData((prev) => ({
+									...prev,
+									[e.target.id]: e.target.value,
+								}))
+							}
+						>
+							<option selected disabled>
+								Acessos
+							</option>
+							<option value="0">Admin</option>
+							<option value="1">Secretária</option>
+							<option value="2">Funcionário</option>
+							<option value="3">Externo</option>
+						</select>
+					</div>
+					<button type="submit" className="btn btn-primary">
+						Salvar
+					</button>
+				</form>
+			</div>
 		</div>
 	);
 }

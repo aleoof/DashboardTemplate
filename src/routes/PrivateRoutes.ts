@@ -5,6 +5,7 @@ import Materials from '../pages/Materials';
 import Orders from '../pages/Orders';
 import Tags from '../pages/Tags';
 import Users from '../pages/Users';
+import Version from "../pages/Version";
 
 export const privateRoutes = [
 	{ name: 'Dashboard', path: '/', component: Dashboard },
@@ -67,6 +68,11 @@ export const privateRoutes = [
 				component: Form,
 			},
 		],
+	},
+	{
+		name: 'Versão',
+		path: '/version',
+		component: Version,
 	},
 	{ name: 'Sair', path: '/', component: Dashboard },
 ];
