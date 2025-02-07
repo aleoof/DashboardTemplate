@@ -14,23 +14,31 @@ export default function OrdersForm() {
 	}, []);
 
 	return (
-		<div>
+		<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">
+			<div className="card-body row">
 			<form>
-				<h4>Ordem de serviço</h4>
-				<hr />
+				<div className="row">
 				<div className="mb-3">
 					<label htmlFor="exampleInputEmail1" className="form-label">
 						Endereço
 					</label>
 					<input type="text" className="form-control" />
 				</div>
-				<div className="mb-3">
+				<div className="mb-3 col-5">
 					<label htmlFor="exampleInputEmail1" className="form-label">
 						Bairro
 					</label>
 					<input type="text" className="form-control" />
 				</div>
-				<div className="mb-3">
+
+				<div className="mb-3 col-5">
+					<label htmlFor="exampleInputEmail1" className="form-label">
+						Município
+					</label>
+					<input type="text" className="form-control" />
+				</div>
+
+				<div className="mb-3 col-2">
 					<label htmlFor="exampleInputEmail1" className="form-label">
 						UF
 					</label>
@@ -38,9 +46,9 @@ export default function OrdersForm() {
 				</div>
 				<div className="mb-3">
 					<label htmlFor="exampleInputEmail1" className="form-label">
-						Município
+						OBS:
 					</label>
-					<input type="text" className="form-control" />
+					<textarea className="form-control"/>
 				</div>
 				<div className="mb-3">
 					<label htmlFor="exampleInputEmail1" className="form-label">
@@ -58,7 +66,9 @@ export default function OrdersForm() {
 				<button type="submit" className="btn btn-primary">
 					Salvar
 				</button>
+				</div>
 			</form>
+			</div>
 		</div>
 	);
 }
