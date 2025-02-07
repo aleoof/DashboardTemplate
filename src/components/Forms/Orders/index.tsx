@@ -1,4 +1,18 @@
+import { useEffect, useState } from 'react';
+import { api } from '../../../api';
+
 export default function OrdersForm() {
+	const [kits, setKits] = useState([]);
+
+	const getKits = async () => {
+		const response = await api.get('kits');
+		setKits(response.data);
+	};
+
+	useEffect(() => {
+		getKits();
+	}, []);
+
 	return (
 		<div>
 			<form>
@@ -30,13 +44,15 @@ export default function OrdersForm() {
 				</div>
 				<div className="mb-3">
 					<label htmlFor="exampleInputEmail1" className="form-label">
-						Materiais
+						Kits
 					</label>
 					<select className="form-select" aria-label="Default select example">
-						<option selected>Open this select menu</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
+						<option selected disabled>
+							Selecione o(s) Kit(s)
+						</option>
+						{kits.map((kit) => (
+							<option value={kit.id}>{kit.description}</option>
+						))}
 					</select>
 				</div>
 				<button type="submit" className="btn btn-primary">
