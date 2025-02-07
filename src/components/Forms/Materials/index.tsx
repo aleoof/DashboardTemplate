@@ -5,9 +5,6 @@ export default function MaterialsForm() {
 			<hr />
 			<form>
 				<div className="mb-3">
-					<label htmlFor="exampleInputEmail1" className="form-label">
-						Código
-					</label>
 					<input type="text" className="form-control" />
 				</div>
 				<div className="mb-3">
