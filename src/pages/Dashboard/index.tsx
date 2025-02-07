@@ -3,9 +3,12 @@
 // import ListItem from "../../components/ListItem";
 
 import {BsClipboardDataFill, BsPersonBadgeFill, BsTools} from "react-icons/bs";
+import ListItemOrders from "../../components/ListItem/Orders";
+import ListItemUsersLog from "../../components/ListItem/UsersLog";
 // import {NavLink} from "react-router";
 
 export default function Dashboard() {
+	const listMock = [1, 2, 3, 4, 5];
 	return (
 
 		<div>
@@ -63,13 +66,13 @@ export default function Dashboard() {
 					</div>
 				</div>
 				<div className="col-4 mt-4">
-						<div className="card bg-info">
-							<div className="card-body">
-								<p className="card-title">Aviso Importante</p>
+						<div className="card">
+							<div className="card-body bg-info">
+								<p className="card-title mb-5">Aviso Importante</p>
 								<h4 className="fw-bold">Sistema em desenvolvimento</h4>
-								<h4 className="fw-bold">Aguarde lançamento</h4>
+								<h4 className="fw-bold mb-5">Aguarde lançamento</h4>
 
-								<p className="card-title mt-5 text-white">Saiba Mais</p>
+								<a className="mt-5 text-white" href="/version">Saiba Mais</a>
 							</div>
 					</div>
 				</div>
@@ -78,6 +81,12 @@ export default function Dashboard() {
 					<div className="card">
 						<div className="card-body">
 							<p className="card-title">OS do dia</p>
+							{listMock.map(() => (
+								<>
+									<ListItemOrders />
+									<hr />
+								</>
+							))}
 						</div>
 					</div>
 				</div>
@@ -85,6 +94,12 @@ export default function Dashboard() {
 					<div className="card">
 						<div className="card-body">
 							<p className="card-title">Ultimos Acessos</p>
+							{listMock.map(() => (
+								<>
+									<ListItemUsersLog />
+									<hr />
+								</>
+							))}
 						</div>
 					</div>
 				</div>
