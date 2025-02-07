@@ -1,5 +1,5 @@
 import { BsFillPlusSquareFill, BsFillTrashFill} from 'react-icons/bs';
-import ListItem from '../../components/ListItem';
+import ListItemOrders from '../../components/ListItem/Orders';
 import './styles.css';
 import Modal from '../../components/Modal';
 import useModalStore from '../../stores/modalStore';
@@ -11,7 +11,6 @@ export default function Orders() {
 	return (
 		<>
 			<div>
-
 				<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
 					<button className="btn m-1" onClick={openModal}>
 						<BsFillTrashFill /> Exlcuir
@@ -19,15 +18,19 @@ export default function Orders() {
 					<NavLink to="form" className="btn">
 						<BsFillPlusSquareFill  /> Novo
 					</NavLink>
+
 				</div>
 
 				<div className="card list-height overflow-y-auto p-3 pb-0 mb-5">
+
+					<div className="card-body">
 					{listMock.map(() => (
 						<>
-							<ListItem />
+							<ListItemOrders />
 							<hr />
 						</>
 					))}
+					</div>
 				</div>
 			</div>
 			<Modal
