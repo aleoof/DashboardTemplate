@@ -1,5 +1,5 @@
 import { BsFillPlusSquareFill, BsFillTrashFill } from 'react-icons/bs';
-import ListItem from '../../components/ListItem';
+import ListItemUsers from '../../components/ListItem/Users';
 import { NavLink } from 'react-router';
 import { api } from '../../api';
 import { useEffect, useState } from 'react';
@@ -32,7 +32,7 @@ export default function Users() {
 			<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">
 				{users.map((item, index) => (
 					<>
-						<ListItem key={index} title={item.name} id={item.id} />
+						<ListItemUsers key={index} title={item.name} id={item.id} />
 						{users.length - 1 !== index && <hr />}
 					</>
 				))}
