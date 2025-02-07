@@ -8,10 +8,11 @@ import Users from '../pages/Users';
 import Version from '../pages/Version';
 
 export const privateRoutes = [
-	{ name: 'Dashboard', path: '/', component: Dashboard },
+	{ name: 'Dashboard', path: '/', icon: 'kits', component: Dashboard },
 	{
 		name: 'Ordem de Serviço',
 		path: '/orders',
+		icon: 'kits',
 		component: Orders,
 		children: [
 			{
@@ -24,6 +25,7 @@ export const privateRoutes = [
 	{
 		name: 'Kits',
 		path: '/kits',
+		icon: 'kits',
 		component: Kits,
 		children: [
 			{
@@ -36,6 +38,7 @@ export const privateRoutes = [
 	{
 		name: 'Materiais',
 		path: '/materials',
+		icon: 'kits',
 		component: Materials,
 		children: [
 			{
@@ -48,6 +51,7 @@ export const privateRoutes = [
 	{
 		name: 'Etiquetas',
 		path: '/tags',
+		icon: 'kits',
 		component: Tags,
 		children: [
 			{
@@ -60,6 +64,7 @@ export const privateRoutes = [
 	{
 		name: 'Usuário',
 		path: '/users',
+		icon: 'kits',
 		component: Users,
 		children: [
 			{
@@ -72,6 +77,7 @@ export const privateRoutes = [
 	{
 		name: 'Versão',
 		path: '/version',
+		icon: 'versao',
 		component: Version,
 	},
 ];

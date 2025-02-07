@@ -1,8 +1,13 @@
-import {BsPersonFillGear, BsHouseFill} from "react-icons/bs";
-import {useLocation} from "react-router";
+import {BsPersonFillGear, BsHouseFill, BsBoxArrowInRight} from "react-icons/bs";
+import {useLocation, useNavigate} from "react-router";
 
 export default function Navbar() {
 	const { pathname } = useLocation();
+	const navigate = useNavigate();
+	const exit = () => {
+		localStorage.clear();
+		navigate('/login');
+	};
 	return (
 		<div className="header d-flex justify-content-between mb-4">
 			<div className="float-start">
@@ -18,6 +23,9 @@ export default function Navbar() {
 					value=""
 				/>
 				<a className="icons_nav"><BsPersonFillGear /></a>
+				<a className="icons_nav" onClick={() => exit()}>
+					<BsBoxArrowInRight />
+				</a>
 			</div>
 		</div>
 	);
