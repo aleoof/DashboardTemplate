@@ -13,12 +13,6 @@ export default function MaterialsForm() {
 					</label>
 					<input type="text" className="form-control" />
 				</div>
-				<div className="mb-3">
-					<label htmlFor="exampleInputEmail1" className="form-label">
-						Quantidade
-					</label>
-					<input type="text" className="form-control" />
-				</div>
 
 				<button type="submit" className="btn btn-primary">
 					Salvar

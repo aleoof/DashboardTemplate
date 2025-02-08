@@ -8,12 +8,13 @@ import Users from '../pages/Users';
 import Version from '../pages/Version';
 
 export const privateRoutes = [
-	{ name: 'Dashboard', path: '/', icon: 'kits', component: Dashboard },
+	{ name: 'Dashboard', path: '/', icon: 'dashboard', component: Dashboard },
 	{
 		name: 'Ordem de Serviço',
 		path: '/orders',
 		icon: 'kits',
 		component: Orders,
+		access: [0, 1, 2],
 		children: [
 			{
 				name: 'Nova Ordem de Serviço',

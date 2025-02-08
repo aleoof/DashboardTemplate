@@ -42,7 +42,7 @@ export default function KitsForm() {
 						+
 					</button>
 				</div>
-				<div className="mb-3">
+				<div className="mb-3 mt-3">
 					<div className="d-flex justify-content-between align-items-end">
 						<div>Nome Material</div>
 						<div className="d-flex align-items-end gap-5">
