@@ -1,4 +1,4 @@
-import { BsBook } from 'react-icons/bs';
+import { BsBook, BsTools, BsFillPersonLinesFill, BsQrCode, BsQrCodeScan, BsReverseListColumnsReverse } from 'react-icons/bs';
 import { NavLink } from 'react-router';
 import { privateRoutes } from '../../routes/PrivateRoutes';
 import './styles.css';
@@ -8,6 +8,16 @@ export default function Sidebar() {
 		switch (icon) {
 			case 'dashboard':
 				return <BsBook />;
+			case 'order':
+				return <BsQrCodeScan />;
+			case 'kits':
+				return <BsTools />;
+			case 'tag':
+				return <BsQrCode />;
+			case 'users':
+				return <BsFillPersonLinesFill />;
+			case 'version':
+				return <BsReverseListColumnsReverse />;
 			default:
 				return <BsBook />;
 		}

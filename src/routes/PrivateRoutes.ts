@@ -12,7 +12,7 @@ export const privateRoutes = [
 	{
 		name: 'Ordem de Serviço',
 		path: '/orders',
-		icon: 'kits',
+		icon: 'order',
 		component: Orders,
 		access: [0, 1, 2],
 		children: [
@@ -39,7 +39,7 @@ export const privateRoutes = [
 	{
 		name: 'Materiais',
 		path: '/materials',
-		icon: 'kits',
+		icon: 'materials',
 		component: Materials,
 		children: [
 			{
@@ -52,7 +52,7 @@ export const privateRoutes = [
 	{
 		name: 'Etiquetas',
 		path: '/tags',
-		icon: 'kits',
+		icon: 'tag',
 		component: Tags,
 		children: [
 			{
@@ -65,7 +65,7 @@ export const privateRoutes = [
 	{
 		name: 'Usuário',
 		path: '/users',
-		icon: 'kits',
+		icon: 'users',
 		component: Users,
 		children: [
 			{
@@ -78,7 +78,7 @@ export const privateRoutes = [
 	{
 		name: 'Versão',
 		path: '/version',
-		icon: 'versao',
+		icon: 'version',
 		component: Version,
 	},
 ];
