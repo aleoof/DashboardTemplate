@@ -109,6 +109,7 @@ export default function OrdersForm() {
 								type="text"
 								className="form-control"
 								id="qr_code"
+								value={formData.qr_code}
 								onChange={(e) =>
 									setFormData((prev) => ({
 										...prev,
@@ -131,6 +132,7 @@ export default function OrdersForm() {
 								type="text"
 								className="form-control"
 								id="address"
+								value={formData.address}
 								onChange={(e) =>
 									setFormData((prev) => ({
 										...prev,
@@ -147,6 +149,7 @@ export default function OrdersForm() {
 								type="text"
 								className="form-control"
 								id="neighborhood"
+								value={formData.neighborhood}
 								onChange={(e) =>
 									setFormData((prev) => ({
 										...prev,
@@ -164,6 +167,7 @@ export default function OrdersForm() {
 								type="text"
 								className="form-control"
 								id="city"
+								value={formData.city}
 								onChange={(e) =>
 									setFormData((prev) => ({
 										...prev,
@@ -181,6 +185,7 @@ export default function OrdersForm() {
 								type="text"
 								className="form-control"
 								id="state"
+								value={formData.state}
 								onChange={(e) =>
 									setFormData((prev) => ({
 										...prev,
@@ -196,6 +201,7 @@ export default function OrdersForm() {
 							<textarea
 								className="form-control"
 								id="observations"
+								value={formData.observations}
 								onChange={(e) =>
 									setFormData((prev) => ({
 										...prev,
