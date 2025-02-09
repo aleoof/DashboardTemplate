@@ -1,13 +1,24 @@
-import { BsFillPlusSquareFill, BsFillTrashFill} from 'react-icons/bs';
+import { BsFillPlusSquareFill, BsFillTrashFill } from 'react-icons/bs';
 import ListItemOrders from '../../components/ListItem/Orders';
 import './styles.css';
 import Modal from '../../components/Modal';
 import useModalStore from '../../stores/modalStore';
 import { NavLink } from 'react-router';
+import { useEffect, useState } from 'react';
+import { api } from '../../api';
 
 export default function Orders() {
-	const listMock = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 13];
+	const [orders, setOrders] = useState([]);
 	const { openModal, closeModal } = useModalStore((state) => state);
+
+	const getOrders = async () => {
+		const response = await api.get('orders');
+		setOrders(response.data);
+	};
+	useEffect(() => {
+		getOrders();
+	}, []);
+
 	return (
 		<>
 			<div>
@@ -16,20 +27,22 @@ export default function Orders() {
 						<BsFillTrashFill /> Exlcuir
 					</button>
 					<NavLink to="form" className="btn">
-						<BsFillPlusSquareFill  /> Novo
+						<BsFillPlusSquareFill /> Novo
 					</NavLink>
-
 				</div>
 
 				<div className="card list-height overflow-y-auto p-3 pb-0 mb-5">
-
 					<div className="card-body">
-					{listMock.map(() => (
-						<>
-							<ListItemOrders />
-							<hr />
-						</>
-					))}
+						{orders.map((order) => (
+							<>
+								<ListItemOrders
+									qrcode={order.qr_code}
+									id={order.id}
+									address={order.address}
+								/>
+								<hr />
+							</>
+						))}
 					</div>
 				</div>
 			</div>

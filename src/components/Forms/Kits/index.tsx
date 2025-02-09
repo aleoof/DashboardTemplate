@@ -3,11 +3,11 @@ import { api } from '../../../api';
 import { BsFillTrashFill } from 'react-icons/bs';
 
 export default function KitsForm() {
-	const [kits, setKits] = useState([]);
+	const [materials, setMaterials] = useState([]);
 
 	const getKits = async () => {
-		const response = await api.get('kits');
-		setKits(response.data);
+		const response = await api.get('materials');
+		setMaterials(response.data);
 	};
 
 	useEffect(() => {
@@ -33,8 +33,8 @@ export default function KitsForm() {
 							<option selected disabled>
 								Selecione o(s) Kit(s)
 							</option>
-							{kits.map((kit) => (
-								<option value={kit.id}>{kit.description}</option>
+							{materials.map((material) => (
+								<option value={material.id}>{material.description}</option>
 							))}
 						</select>
 					</span>
