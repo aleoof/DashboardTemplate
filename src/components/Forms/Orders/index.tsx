@@ -83,17 +83,32 @@ export default function OrdersForm() {
 			long,
 			qr_code,
 		} = formData;
-		api.post('order', {
-			address,
-			neighborhood,
-			city,
-			state,
-			observations,
-			lat: '1234',
-			long: '1234',
-			qr_code,
-			ordersKits: kitAndQuantity,
-		});
+
+		if (id) {
+			api.put(`order/${id}`, {
+				address,
+				neighborhood,
+				city,
+				state,
+				observations,
+				lat: '1234',
+				long: '1234',
+				qr_code,
+				ordersKits: kitAndQuantity,
+			});
+		} else {
+			api.post('order', {
+				address,
+				neighborhood,
+				city,
+				state,
+				observations,
+				lat: '1234',
+				long: '1234',
+				qr_code,
+				ordersKits: kitAndQuantity,
+			});
+		}
 	};
 
 	return (
@@ -255,9 +270,11 @@ export default function OrdersForm() {
 													</label>
 													<input
 														value={
-															kitAndQuantity.filter(
-																(k) => k.kit_id === kit.id
-															)[0].quantity
+															kitAndQuantity.some((kq) => kq.kit_id === kit.id)
+																? kitAndQuantity.filter(
+																		(k) => k.kit_id === kit.id
+																  )[0].quantity
+																: ''
 														}
 														type="text"
 														className="form-control"
