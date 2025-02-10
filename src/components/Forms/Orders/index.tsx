@@ -2,14 +2,17 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { api } from '../../../api';
 import { BsFillTrashFill, BsQrCode } from 'react-icons/bs';
 import { useSearchParams } from 'react-router';
-import { Scanner } from '@yudiel/react-qr-scanner';
 import QRCodeScanner from '../../QRCodeScanner';
 
 export default function OrdersForm() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
 	const [selectedKit, setSelectedKit] = useState('');
-	const [listOfKits, setListOfKits] = useState<Array<{}>>([]);
-	const [kits, setKits] = useState([]);
+	const [listOfKits, setListOfKits] = useState<
+		Array<{ id: number; quantity: string; description: string }>
+	>([]);
+	const [kits, setKits] = useState<
+		Array<{ id: number; quantity: string; description: string }>
+	>([]);
 	const [kitAndQuantity, setKitAndQuantity] = useState<
 		Array<{ kit_id: number; quantity: string }>
 	>([]);
@@ -24,7 +27,7 @@ export default function OrdersForm() {
 
 	const getOrder = async () => {
 		const response = await api.get(`/order/${id}`);
-		response.data.ordersKits.map((ok) => {
+		response.data.ordersKits.map((ok: { kit_id: number; quantity: string }) => {
 			const kitInfo = kits.filter((kit) => kit.id === ok.kit_id);
 			setListOfKits((prev) => [...prev, kitInfo[0]]);
 		});
@@ -56,7 +59,7 @@ export default function OrdersForm() {
 		}
 	}
 
-	const handleKitQuantity = (e: ChangeEvent<HTMLSelectElement>, id: string) => {
+	const handleKitQuantity = (e: ChangeEvent<HTMLInputElement>, id: string) => {
 		const value: string = e.target.value;
 		if (!kitAndQuantity.some((item) => item.kit_id === parseInt(id))) {
 			setKitAndQuantity((prev) => [
@@ -74,7 +77,7 @@ export default function OrdersForm() {
 		}
 	};
 
-	const saveOrder = (e) => {
+	const saveOrder = (e: any) => {
 		e.preventDefault();
 		const {
 			address,
@@ -82,8 +85,8 @@ export default function OrdersForm() {
 			city,
 			state,
 			observations,
-			lat,
-			long,
+			// lat,
+			// long,
 			qr_code,
 		} = formData;
 
@@ -284,7 +287,7 @@ export default function OrdersForm() {
 														}
 														type="text"
 														className="form-control"
-														onChange={(e) => handleKitQuantity(e, kit.id)}
+														onChange={(e) => handleKitQuantity(e, `${kit.id}`)}
 													/>
 												</span>
 												<button className="btn btn-primary" onClick={() => {}}>

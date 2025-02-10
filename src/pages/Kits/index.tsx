@@ -5,7 +5,9 @@ import { api } from '../../api';
 import { useEffect, useState } from 'react';
 
 export default function Kits() {
-	const [kits, setKits] = useState([]);
+	const [kits, setKits] = useState<Array<{ id: number; description: string }>>(
+		[]
+	);
 
 	const getKits = async () => {
 		const response = await api.get('kits');
@@ -29,7 +31,7 @@ export default function Kits() {
 			<div className="card list-height overflow-y-auto p-3 pb-0 mb-5">
 				{kits.map((kit) => (
 					<>
-						<ListItem title={kit.description} id={kit.id} />
+						<ListItem title={kit.description} id={`${kit.id}`} />
 						<hr />
 					</>
 				))}

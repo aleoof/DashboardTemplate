@@ -6,7 +6,7 @@ export default function ListItem({
 	id,
 }: {
 	title?: string;
-	id?: string;
+	id?: number | string;
 }) {
 	return (
 		<div className="w-100 h-20 d-flex align-items-center p-2 justify-content-between">

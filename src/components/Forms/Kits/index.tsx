@@ -3,7 +3,9 @@ import { api } from '../../../api';
 import { BsFillTrashFill } from 'react-icons/bs';
 
 export default function KitsForm() {
-	const [materials, setMaterials] = useState([]);
+	const [materials, setMaterials] = useState<
+		Array<{ id: number; description: string }>
+	>([]);
 
 	const getKits = async () => {
 		const response = await api.get('materials');

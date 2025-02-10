@@ -8,7 +8,7 @@ export default function ListItemOrders({
 }: {
 	qrcode?: string;
 	address?: string;
-	id?: string;
+	id?: string | number;
 }) {
 	return (
 		<div className="w-100 h-20 d-flex align-items-center p-2 justify-content-between">

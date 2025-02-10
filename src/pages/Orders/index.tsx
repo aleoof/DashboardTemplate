@@ -8,7 +8,9 @@ import { useEffect, useState } from 'react';
 import { api } from '../../api';
 
 export default function Orders() {
-	const [orders, setOrders] = useState([]);
+	const [orders, setOrders] = useState<
+		Array<{ id: number; qr_code: string; address: string }>
+	>([]);
 	const { openModal, closeModal } = useModalStore((state) => state);
 
 	const getOrders = async () => {

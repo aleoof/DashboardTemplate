@@ -1,7 +1,13 @@
 import { Scanner } from '@yudiel/react-qr-scanner';
 import { IoMdClose } from 'react-icons/io';
 
-export default function QRCodeScanner({ closeQR }: { closeQR: () => void }) {
+export default function QRCodeScanner({
+	closeQR,
+}: // handleValue,
+{
+	closeQR: () => void;
+	handleValue?: () => string;
+}) {
 	return (
 		<div className="position-fixed h-100 w-100 top-0 start-0 d-flex flex-column align-items-center justify-content-center bg-dark">
 			<button

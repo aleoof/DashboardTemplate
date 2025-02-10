@@ -8,7 +8,9 @@ import { useEffect, useState } from 'react';
 import { api } from '../../api';
 
 export default function Materials() {
-	const [materials, setMaterials] = useState([]);
+	const [materials, setMaterials] = useState<
+		Array<{ id: number; description: string }>
+	>([]);
 
 	const { openModal, closeModal } = useModalStore((state) => state);
 	const getMaterials = async () => {
