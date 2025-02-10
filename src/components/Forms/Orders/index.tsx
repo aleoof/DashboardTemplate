@@ -2,6 +2,8 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { api } from '../../../api';
 import { BsFillTrashFill, BsQrCode } from 'react-icons/bs';
 import { useSearchParams } from 'react-router';
+import { Scanner } from '@yudiel/react-qr-scanner';
+import QRCodeScanner from '../../QRCodeScanner';
 
 export default function OrdersForm() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
@@ -11,6 +13,7 @@ export default function OrdersForm() {
 	const [kitAndQuantity, setKitAndQuantity] = useState<
 		Array<{ kit_id: number; quantity: string }>
 	>([]);
+	const [openQR, setOpenQR] = useState(false);
 	const [searchParams] = useSearchParams();
 	const id = searchParams.get('id');
 
@@ -114,6 +117,7 @@ export default function OrdersForm() {
 	return (
 		<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">
 			<div className="card-body row">
+				{openQR && <QRCodeScanner closeQR={() => setOpenQR(!openQR)} />}
 				<form onSubmit={saveOrder}>
 					<div className="row">
 						<div className="mb-3">
@@ -133,12 +137,14 @@ export default function OrdersForm() {
 								}
 							/>
 						</div>
-						<div
+						<button
+							type="button"
+							onClick={() => setOpenQR(!openQR)}
 							className=" icons"
 							style={{ height: '40px', width: '40px', fontSize: '36px' }}
 						>
 							<BsQrCode />
-						</div>
+						</button>
 						<div className="mb-3">
 							<label htmlFor="exampleInputEmail1" className="form-label">
 								Endereço
