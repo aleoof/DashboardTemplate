@@ -13,7 +13,7 @@ export default function Dashboard() {
 
 		<div>
 			<div className="row d-flex pt-5">
-				<div className="col-3">
+				<div className="col-12 col-md-3 mt-4">
 					<div className="card">
 						<div className="card-body">
 							<div className="float-start">
@@ -24,7 +24,7 @@ export default function Dashboard() {
 						</div>
 					</div>
 				</div>
-				<div className="col-3">
+				<div className="col-12 col-md-3 mt-4">
 					<div className="card">
 						<div className="card-body">
 							<div className="float-start">
@@ -35,7 +35,7 @@ export default function Dashboard() {
 						</div>
 					</div>
 				</div>
-				<div className="col-3">
+				<div className="col-12 col-md-3 mt-4">
 					<div className="card">
 						<div className="card-body">
 							<div className="float-start">
@@ -46,7 +46,7 @@ export default function Dashboard() {
 						</div>
 					</div>
 				</div>
-				<div className="col-3">
+				<div className="col-12 col-md-3 mt-4">
 					<div className="card">
 						<div className="card-body">
 							<div className="float-start">
@@ -58,14 +58,14 @@ export default function Dashboard() {
 					</div>
 				</div>
 
-				<div className="col-8 mt-4">
+				<div className="col-12 col-md-8 mt-4">
 					<div className="card">
 						<div className="card-body">
 							<p className="card-title">Atendimentos realizado hoje</p>
 						</div>
 					</div>
 				</div>
-				<div className="col-4 mt-4">
+				<div className="col-12 col-md-4 mt-4">
 						<div className="card">
 							<div className="card-body bg-info">
 								<p className="card-title mb-5">Aviso Importante</p>
@@ -77,7 +77,7 @@ export default function Dashboard() {
 					</div>
 				</div>
 
-				<div className="col-6 mt-4">
+				<div className="col-12 col-md-6 mt-4">
 					<div className="card">
 						<div className="card-body">
 							<p className="card-title">OS do dia</p>
@@ -90,7 +90,7 @@ export default function Dashboard() {
 						</div>
 					</div>
 				</div>
-				<div className="col-6 mt-4">
+				<div className="col-12 col-md-6 mt-4">
 					<div className="card">
 						<div className="card-body">
 							<p className="card-title">Ultimos Acessos</p>

@@ -80,6 +80,20 @@ input.form-control:focus {
   outline: 0px;
   border: 1px solid #2187fc;
 }
+input[type='checkbox']{
+  margin: 0;
+  position: relative;
+}
+
+.qrcode{
+  padding: .25rem;
+  max-width: 100%;
+  height: auto;
+  font-size: 25px;
+  line-height: 25px;
+  /*padding: 0;*/
+  margin: 0;
+}
 
 .logo{
   font-size: 40px;
@@ -173,6 +187,18 @@ input.form-control:focus {
   border-radius: var(--bs-border-radius);
   width: 35px;
   height: 35px;
+}
+
+.thumbnail{
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  background-color: var(--bs-body-bg);
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  text-align: center;
+  color: #217bfb;
+
 }
 
 hr{

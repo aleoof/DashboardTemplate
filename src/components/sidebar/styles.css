@@ -19,12 +19,22 @@
   color: white;
 }
 
-.nav-item button.nav-link.active {
+.nav-item nav-link.active{
   background: #217cfd;
   color: white;
 }
+.nav-item .nav-link.active span{
+  color: white;
+}
+
 
 .nav .nav-item button.nav-link {
   color: #0f0f0f;
   font-weight: 500;
+}
+
+@media (max-width: 767px) {
+  .nav .nav-item span{
+    display: none;
+  }
 }

@@ -1,8 +1,6 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '../../../api';
-import { BsFillTrashFill, BsQrCode } from 'react-icons/bs';
 import { useSearchParams } from 'react-router';
-import QRCodeScanner from '../../QRCodeScanner';
 
 export default function OrdersView() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
@@ -45,24 +43,6 @@ export default function OrdersView() {
 	useEffect(() => {
 		console.log(formData);
 	}, [formData]);
-
-	const handleKitQuantity = (e: ChangeEvent<HTMLInputElement>, id: string) => {
-		const value: string = e.target.value;
-		if (!kitAndQuantity.some((item) => item.kit_id === parseInt(id))) {
-			setKitAndQuantity((prev) => [
-				...prev,
-				{ kit_id: parseInt(id), quantity: value },
-			]);
-		} else {
-			setKitAndQuantity((prev) =>
-				prev.map((p) => {
-					if (p.kit_id === parseInt(id)) {
-						return { ...p, quantity: value };
-					} else return p;
-				})
-			);
-		}
-	};
 
 	return (
 		<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">

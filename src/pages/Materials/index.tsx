@@ -1,5 +1,5 @@
 import { BsFillPlusSquareFill, BsFillTrashFill } from 'react-icons/bs';
-import ListItem from '../../components/ListItem';
+import ListItem from '../../components/ListItem/Materials';
 import './styles.css';
 import Modal from '../../components/Modal';
 import useModalStore from '../../stores/modalStore';
@@ -34,7 +34,7 @@ export default function Materials() {
 				<div className="card list-height overflow-y-auto p-3 pb-0 mb-5">
 					{materials.map((material) => (
 						<>
-							<ListItem title={material.description} id={material.id} />
+							<ListItem title={material.description} />
 							<hr />
 						</>
 					))}

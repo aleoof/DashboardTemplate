@@ -26,7 +26,7 @@ export default function Orders() {
 			<div>
 				<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
 					<button className="btn m-1" onClick={openModal}>
-						<BsFillTrashFill /> Exlcuir
+						<BsFillTrashFill /> Excluir
 					</button>
 					<NavLink to="form" className="btn">
 						<BsFillPlusSquareFill /> Novo

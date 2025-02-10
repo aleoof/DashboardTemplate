@@ -1,4 +1,12 @@
-import { BsBook, BsTools, BsFillPersonLinesFill, BsQrCode, BsQrCodeScan, BsReverseListColumnsReverse } from 'react-icons/bs';
+import {
+	BsBook,
+	BsTools,
+	BsFillPersonLinesFill,
+	BsQrCode,
+	BsQrCodeScan,
+	BsReverseListColumnsReverse,
+	BsBox2
+} from 'react-icons/bs';
 import { NavLink } from 'react-router';
 import { privateRoutes } from '../../routes/PrivateRoutes';
 import './styles.css';
@@ -14,6 +22,8 @@ export default function Sidebar() {
 				return <BsTools />;
 			case 'tag':
 				return <BsQrCode />;
+			case 'materials':
+				return <BsBox2 />;
 			case 'users':
 				return <BsFillPersonLinesFill />;
 			case 'version':
@@ -43,7 +53,7 @@ export default function Sidebar() {
 							aria-current="page"
 							to={route.path}
 						>
-							<div>{icons(route.icon)}</div> {route.name}
+							<div>{icons(route.icon)}</div> <span>{route.name}</span>
 						</NavLink>
 					</li>
 				))}
