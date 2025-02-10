@@ -3,10 +3,10 @@ import { IoMdClose } from 'react-icons/io';
 
 export default function QRCodeScanner({
 	closeQR,
-}: // handleValue,
-{
+	handleValue,
+}: {
 	closeQR: () => void;
-	handleValue?: () => string;
+	handleValue?: (value: string) => void;
 }) {
 	return (
 		<div className="position-fixed h-100 w-100 top-0 start-0 d-flex flex-column align-items-center justify-content-center bg-dark">
@@ -24,7 +24,7 @@ export default function QRCodeScanner({
 					// video: { height: 20 },
 					finderBorder: 2,
 				}}
-				onScan={(result) => console.log(result)}
+				onScan={(result) => handleValue(result[0].rawValue)}
 			/>
 			;
 		</div>

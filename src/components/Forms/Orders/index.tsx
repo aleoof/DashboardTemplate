@@ -120,7 +120,14 @@ export default function OrdersForm() {
 	return (
 		<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">
 			<div className="card-body row">
-				{openQR && <QRCodeScanner closeQR={() => setOpenQR(!openQR)} />}
+				{openQR && (
+					<QRCodeScanner
+						closeQR={() => setOpenQR(!openQR)}
+						handleValue={(value) =>
+							setFormData((prev) => ({ ...prev, qr_code: value }))
+						}
+					/>
+				)}
 				<form onSubmit={saveOrder}>
 					<div className="row">
 						<div className="mb-3">
