@@ -14,18 +14,20 @@ export default function Layout({ children }: { children: ReactNode }) {
 	});
 
 	if (!token) {
-		 return;
+		return;
 	}
 
 	return (
-		<div className="row vh-100 m-0">
-			<div className="col-2 p-0">
-				<Sidebar />
-			</div>
+		<div className="vh-100">
+			<div className="row m-0">
+				<div className="col-md-2 p-0">
+					<Sidebar />
+				</div>
 
-			<div className="col-10 p-5">
-				<Navbar />
-				{children}</div>
+				<div className="col-md-10 p-md-5">
+					<Navbar />
+					{children}</div>
+			</div>
 		</div>
 	);
 }

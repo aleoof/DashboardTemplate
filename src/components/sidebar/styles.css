@@ -7,6 +7,8 @@
 
 .nav .nav-item {
   padding: 5px;
+  float: none;
+  width: 100%;
 }
 
 .nav .nav-item a.nav-link {
@@ -36,5 +38,14 @@
 @media (max-width: 767px) {
   .nav .nav-item span{
     display: none;
+  }
+  .nav .nav-item {
+    float: left;
+    width: auto;
+  }
+  .nav li.nav-item a.nav-link{
+    padding: 9px 13px 10px 13px!important;
+  }
+  .vh-100 {
   }
 }

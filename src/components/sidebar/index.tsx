@@ -45,7 +45,7 @@ export default function Sidebar() {
 			</a>
 
 			<hr />
-			<ul className="nav nav-pills flex-column mb-auto">
+			<ul className="nav nav-pills mb-auto">
 				{privateRoutes.map((route) => (
 					<li className="nav-item">
 						<NavLink
