@@ -132,12 +132,13 @@ export default function OrdersForm() {
 					<div className="row">
 						<div className="mb-3">
 							<label htmlFor="exampleInputEmail1" className="form-label">
-								Número da OSquantity
+								Número da OS
 							</label>
 							<input
 								type="text"
 								className="form-control"
 								id="qr_code"
+								disabled
 								value={formData.qr_code}
 								onChange={(e) =>
 									setFormData((prev) => ({
