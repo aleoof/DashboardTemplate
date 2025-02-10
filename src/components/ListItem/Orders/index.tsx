@@ -1,4 +1,4 @@
-import { BsPencilSquare, BsQrCode } from 'react-icons/bs';
+import { BsFillPencilFill, BsQrCode, BsEyeFill } from 'react-icons/bs';
 import { Link } from 'react-router';
 
 export default function ListItemOrders({
@@ -19,13 +19,16 @@ export default function ListItemOrders({
 				</p>
 			</div>
 			<div className="d-flex gap-3">
-				<p className="fs-6 mb-0">{id}</p>
+				<p className="fs-6 mb-0">10/02/2025</p>
 			</div>
 			<div className="d-flex gap-3">
 				<p className="fs-6 mb-0">{address}</p>
 			</div>
 			<Link to={`form?id=${id}`}>
-				<BsPencilSquare />
+				<BsFillPencilFill />
+			</Link>
+			<Link to={`view?id=${id}`}>
+				<BsEyeFill />
 			</Link>
 		</div>
 	);

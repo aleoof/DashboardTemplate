@@ -6,6 +6,7 @@ import Orders from '../pages/Orders';
 import Tags from '../pages/Tags';
 import Users from '../pages/Users';
 import Version from '../pages/Version';
+import View from '../pages/View';
 
 export const privateRoutes = [
 	{ name: 'Dashboard', path: '/', icon: 'dashboard', component: Dashboard },
@@ -20,6 +21,11 @@ export const privateRoutes = [
 				name: 'Nova Ordem de Serviço',
 				path: '/orders/form',
 				component: Form,
+			},
+			{
+				name: 'visualizar Ordem de Serviço',
+				path: '/orders/view',
+				component: View,
 			},
 		],
 	},
