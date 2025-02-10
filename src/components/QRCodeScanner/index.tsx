@@ -6,7 +6,7 @@ export default function QRCodeScanner({
 	handleValue,
 }: {
 	closeQR: () => void;
-	handleValue?: (value: string) => void;
+	handleValue: (value: string) => void;
 }) {
 	return (
 		<div className="position-fixed h-100 w-100 top-0 start-0 d-flex flex-column align-items-center justify-content-center bg-dark">
