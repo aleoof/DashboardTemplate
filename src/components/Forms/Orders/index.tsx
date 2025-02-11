@@ -3,6 +3,7 @@ import { api } from '../../../api';
 import { BsFillTrashFill, BsQrCode } from 'react-icons/bs';
 import { useSearchParams } from 'react-router';
 import QRCodeScanner from '../../QRCodeScanner';
+import { useGeolocation } from './useGeolocation';
 
 export default function OrdersForm() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
@@ -20,6 +21,35 @@ export default function OrdersForm() {
 	const [searchParams] = useSearchParams();
 	const id = searchParams.get('id');
 
+	const [userLocation, setUserLocation] = useState<{
+		latitude: number;
+		longitude: number;
+	} | null>(null);
+
+	// define the function that finds the users geolocation
+	const getUserLocation = () => {
+		// if geolocation is supported by the users browser
+		if (navigator.geolocation) {
+			// get the current users location
+			navigator.geolocation.getCurrentPosition(
+				(position) => {
+					// save the geolocation coordinates in two variables
+					const { latitude, longitude } = position.coords;
+					// update the value of userlocation variable
+					setUserLocation({ latitude, longitude });
+				},
+				// if there was an error getting the users location
+				(error) => {
+					console.error('Error getting user location:', error);
+				}
+			);
+		}
+		// if geolocation is not supported by the users browser
+		else {
+			console.error('Geolocation is not supported by this browser.');
+		}
+	};
+
 	const getKits = async () => {
 		const response = await api.get('kits');
 		setKits(response.data);
@@ -36,6 +66,7 @@ export default function OrdersForm() {
 	};
 
 	useEffect(() => {
+		getUserLocation();
 		if (kits.length === 0) {
 			getKits();
 		}
@@ -43,10 +74,6 @@ export default function OrdersForm() {
 			getOrder();
 		}
 	}, [kits]);
-
-	useEffect(() => {
-		console.log(formData);
-	}, [formData]);
 
 	function handleKitList() {
 		const filteredKit = kits.filter((kit) => kit.id === parseInt(selectedKit));
@@ -97,8 +124,8 @@ export default function OrdersForm() {
 				city,
 				state,
 				observations,
-				lat: '1234',
-				long: '1234',
+				lat: `${userLocation?.latitude}`,
+				long: `${userLocation?.longitude}`,
 				qr_code,
 				ordersKits: kitAndQuantity,
 			});
@@ -109,8 +136,8 @@ export default function OrdersForm() {
 				city,
 				state,
 				observations,
-				lat: '1234',
-				long: '1234',
+				lat: `${userLocation?.latitude}`,
+				long: `${userLocation?.longitude}`,
 				qr_code,
 				ordersKits: kitAndQuantity,
 			});
