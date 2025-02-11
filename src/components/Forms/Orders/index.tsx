@@ -4,6 +4,7 @@ import { BsFillTrashFill, BsQrCode } from 'react-icons/bs';
 import { useSearchParams } from 'react-router';
 import QRCodeScanner from '../../QRCodeScanner';
 import { useGeolocation } from './useGeolocation';
+import axios from 'axios';
 
 export default function OrdersForm() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
@@ -144,15 +145,22 @@ export default function OrdersForm() {
 		}
 	};
 
+	const getLocation = async (value: string) => {
+		const response = await axios.get(
+			`https://maps.googleapis.com/maps/api/geocode/json?latlng=${userLocation?.latitude},${userLocation?.longitude}&key=AIzaSyCLYeK1ksPfWhPxgZZ687Vdi-eDFLFRCr0`
+		);
+		console.log(response.data);
+		setFormData((prev) => ({ ...prev, qr_code: value }));
+		// https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=YOUR_API_KEY
+	};
+
 	return (
 		<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">
 			<div className="card-body row">
 				{openQR && (
 					<QRCodeScanner
 						closeQR={() => setOpenQR(!openQR)}
-						handleValue={(value) =>
-							setFormData((prev) => ({ ...prev, qr_code: value }))
-						}
+						handleValue={(value) => getLocation(value)}
 					/>
 				)}
 				<form onSubmit={saveOrder}>
