@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router';
 import './styles.css';
 import { api } from '../../api';
 import { useState } from 'react';
+import useAccessLevelStore from '../../stores/accessLevelStore';
 
 function Login() {
 	const navigate = useNavigate();
@@ -9,6 +10,7 @@ function Login() {
 	const [formData, setFormData] = useState<{ login: string; password: string }>(
 		{ login: '', password: '' }
 	);
+	const { handleAccessLevel } = useAccessLevelStore();
 
 	const handleLogin = async (e: any) => {
 		try {
@@ -17,6 +19,8 @@ function Login() {
 			const response = await api.post('/login', { login, password });
 			const { token } = response.data;
 			localStorage.setItem('token', token);
+			localStorage.setItem('accessLevel', response.data.access_level);
+			handleAccessLevel(response.data.access_level);
 			navigate('/');
 			setError(false);
 		} catch (error) {

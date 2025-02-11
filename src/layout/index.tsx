@@ -1,17 +1,22 @@
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import Sidebar from '../components/sidebar';
 import Navbar from '../components/navbar';
 import { useNavigate } from 'react-router';
+import useAccessLevelStore from '../stores/accessLevelStore';
 
 export default function Layout({ children }: { children: ReactNode }) {
 	const navigate = useNavigate();
+	const { handleAccessLevel } = useAccessLevelStore();
+	const [token, setToken] = useState(localStorage.getItem('token') || '');
+	const [level, setLevel] = useState(localStorage.getItem('accessLevel') || '');
 
-	const token = localStorage.getItem('token');
 	useEffect(() => {
 		if (!token) {
 			navigate('/login');
 		}
-	});
+
+		handleAccessLevel(parseInt(level || ''));
+	}, []);
 
 	if (!token) {
 		return;
@@ -26,7 +31,8 @@ export default function Layout({ children }: { children: ReactNode }) {
 
 				<div className="col-md-10 p-md-5">
 					<Navbar />
-					{children}</div>
+					{children}
+				</div>
 			</div>
 		</div>
 	);

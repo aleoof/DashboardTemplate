@@ -1,8 +1,7 @@
 import { BsFillPlusSquareFill, BsFillTrashFill } from 'react-icons/bs';
 import ListItemOrders from '../../components/ListItem/Orders';
 import './styles.css';
-import Modal from '../../components/Modal';
-import useModalStore from '../../stores/modalStore';
+
 import { NavLink } from 'react-router';
 import { useEffect, useState } from 'react';
 import { api } from '../../api';
@@ -11,7 +10,6 @@ export default function Orders() {
 	const [orders, setOrders] = useState<
 		Array<{ id: number; qr_code: string; address: string }>
 	>([]);
-	const { openModal, closeModal } = useModalStore((state) => state);
 
 	const getOrders = async () => {
 		const response = await api.get('orders');
@@ -25,9 +23,6 @@ export default function Orders() {
 		<>
 			<div>
 				<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
-					<button className="btn m-1" onClick={openModal}>
-						<BsFillTrashFill /> Excluir
-					</button>
 					<NavLink to="form" className="btn">
 						<BsFillPlusSquareFill /> Novo
 					</NavLink>
@@ -48,13 +43,6 @@ export default function Orders() {
 					</div>
 				</div>
 			</div>
-			<Modal
-				cancelCopy="Cancelar"
-				copy="Deseja apagar os itens selecionados ?"
-				saveCopy="Apagar"
-				toggleCancel={closeModal}
-				toggleSave={closeModal}
-			/>
 		</>
 	);
 }

@@ -1,12 +1,20 @@
-import { BsFillPencilFill, BsQrCode, BsEyeFill } from 'react-icons/bs';
+import {
+	BsFillPencilFill,
+	BsQrCode,
+	BsEyeFill,
+	BsFillTrashFill,
+} from 'react-icons/bs';
 import { Link } from 'react-router';
+import Modal from '../../Modal';
+import useModalStore from '../../../stores/modalStore';
+import useAccessLevelStore from '../../../stores/accessLevelStore';
 
 export default function ListItemOrders({
 	address,
 	id,
 	qrcode,
-   	neighborhood,
-   	city,
+	neighborhood,
+	city,
 	state,
 }: {
 	qrcode?: string;
@@ -16,17 +24,19 @@ export default function ListItemOrders({
 	state?: string;
 	id?: string | number;
 }) {
+	const { openModal, closeModal } = useModalStore((state) => state);
+	const { accessLevel } = useAccessLevelStore();
+
 	return (
 		<div className="w-100 h-20 d-flex align-items-center p-2 justify-content-between">
-			<div className="d-flex gap-3">
-				<input type="checkbox"/>
-				<div className="thumbnail">
+			<div className="d-flex align-items-center gap-3">
+				<div className="thumbnail d-none d-lg-block">
 					<BsQrCode />
 				</div>
-				<p className="fs-6 mb-0">{qrcode}</p>
-			</div>
-			<div className="d-flex gap-3">
-				<p className="fs-6 mb-0">10/02/2025</p>
+				<span>
+					<p className="fs-6 mb-0">{qrcode}</p>
+					<p className="fs-6 mb-0">10/02/2025</p>
+				</span>
 			</div>
 			<div className="d-flex gap-3">
 				<p className="fs-6 mb-0">{address}</p>
@@ -40,12 +50,30 @@ export default function ListItemOrders({
 			<div className="d-flex gap-3">
 				<p className="fs-6 mb-0">{state}</p>
 			</div>
-			<Link to={`form?id=${id}`}>
-				<BsFillPencilFill />
-			</Link>
-			<Link to={`view?id=${id}`}>
-				<BsEyeFill />
-			</Link>
+			<span className="d-flex gap-4">
+				{accessLevel === 0 && (
+					<Link to={`form?id=${id}`}>
+						<BsFillPencilFill />
+					</Link>
+				)}
+				{accessLevel === 2 && (
+					<Link to={`view?id=${id}`}>
+						<BsEyeFill />
+					</Link>
+				)}
+				{accessLevel === 0 && (
+					<a className="" onClick={openModal}>
+						<BsFillTrashFill />
+					</a>
+				)}
+			</span>
+			<Modal
+				cancelCopy="Cancelar"
+				copy="Deseja apagar os itens selecionados ?"
+				saveCopy="Apagar"
+				toggleCancel={closeModal}
+				toggleSave={closeModal}
+			/>
 		</div>
 	);
 }
