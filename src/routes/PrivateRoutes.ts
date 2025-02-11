@@ -9,7 +9,13 @@ import Version from '../pages/Version';
 import View from '../pages/View';
 
 export const privateRoutes = [
-	{ name: 'Dashboard', path: '/', icon: 'dashboard', component: Dashboard },
+	{
+		name: 'Dashboard',
+		path: '/',
+		icon: 'dashboard',
+		component: Dashboard,
+		access: [0, 1, 2],
+	},
 	{
 		name: 'Ordem de Serviço',
 		path: '/orders',
@@ -21,11 +27,13 @@ export const privateRoutes = [
 				name: 'Nova Ordem de Serviço',
 				path: '/orders/form',
 				component: Form,
+				access: [0, 1, 2],
 			},
 			{
 				name: 'visualizar Ordem de Serviço',
 				path: '/orders/view',
 				component: View,
+				access: [0, 1, 2],
 			},
 		],
 	},
@@ -33,12 +41,14 @@ export const privateRoutes = [
 		name: 'Kits',
 		path: '/kits',
 		icon: 'kits',
+		access: [0],
 		component: Kits,
 		children: [
 			{
 				name: 'Novo Kit',
 				path: '/kits/form',
 				component: Form,
+				access: [0],
 			},
 		],
 	},
@@ -47,11 +57,13 @@ export const privateRoutes = [
 		path: '/materials',
 		icon: 'materials',
 		component: Materials,
+		access: [0, 1, 2],
 		children: [
 			{
 				name: 'Novo Material',
 				path: '/materials/form',
 				component: Form,
+				access: [0, 1, 2],
 			},
 		],
 	},
@@ -60,11 +72,13 @@ export const privateRoutes = [
 		path: '/tags',
 		icon: 'tag',
 		component: Tags,
+		access: [0, 1, 2],
 		children: [
 			{
 				name: 'Novo QR code',
 				path: '/tags/form',
 				component: Form,
+				access: [0, 1, 2],
 			},
 		],
 	},
@@ -73,11 +87,13 @@ export const privateRoutes = [
 		path: '/users',
 		icon: 'users',
 		component: Users,
+		access: [0, 1],
 		children: [
 			{
 				name: 'Novo usuário',
 				path: '/users/form',
 				component: Form,
+				access: [0, 1],
 			},
 		],
 	},
@@ -86,5 +102,6 @@ export const privateRoutes = [
 		path: '/version',
 		icon: 'version',
 		component: Version,
+		access: [0, 1, 2],
 	},
 ];

@@ -5,13 +5,15 @@ import {
 	BsQrCode,
 	BsQrCodeScan,
 	BsReverseListColumnsReverse,
-	BsBox2
+	BsBox2,
 } from 'react-icons/bs';
 import { NavLink } from 'react-router';
 import { privateRoutes } from '../../routes/PrivateRoutes';
 import './styles.css';
+import useAccessLevelStore from '../../stores/accessLevelStore';
 
 export default function Sidebar() {
+	const { accessLevel } = useAccessLevelStore();
 	function icons(icon: string) {
 		switch (icon) {
 			case 'dashboard':
@@ -47,15 +49,19 @@ export default function Sidebar() {
 			<hr />
 			<ul className="nav nav-pills mb-auto">
 				{privateRoutes.map((route) => (
-					<li className="nav-item">
-						<NavLink
-							className="nav-link d-flex gap-2"
-							aria-current="page"
-							to={route.path}
-						>
-							<div>{icons(route.icon)}</div> <span>{route.name}</span>
-						</NavLink>
-					</li>
+					<>
+						{route?.access?.some((ac) => ac === accessLevel) && (
+							<li className="nav-item">
+								<NavLink
+									className="nav-link d-flex gap-2"
+									aria-current="page"
+									to={route.path}
+								>
+									<div>{icons(route.icon)}</div> <span>{route.name}</span>
+								</NavLink>
+							</li>
+						)}
+					</>
 				))}
 			</ul>
 		</div>
