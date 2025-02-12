@@ -145,7 +145,13 @@ export default function OrdersForm() {
 		}
 	};
 
-	const getLocation = async (value: string) => {
+	useEffect(() => {
+		if (formData.qr_code === '') {
+			getLocation();
+		}
+	}, [formData.qr_code]);
+
+	const getLocation = async (value?: string) => {
 		const response = await axios.get(
 			`https://maps.googleapis.com/maps/api/geocode/json?latlng=${userLocation?.latitude},${userLocation?.longitude}&key=AIzaSyCLYeK1ksPfWhPxgZZ687Vdi-eDFLFRCr0`
 		);
@@ -155,7 +161,7 @@ export default function OrdersForm() {
 		setFormData((prev) => ({
 			...prev,
 			qr_code: value,
-			address: addressResult.address_components[1].short_name,
+			address: `${addressResult.address_components[1].short_name} n.º:  ${addressResult.address_components[0].short_name}`,
 			neighborhood: addressResult.address_components[2].short_name,
 			city: addressResult.address_components[3].short_name,
 			state: addressResult.address_components[4].short_name,
@@ -174,7 +180,7 @@ export default function OrdersForm() {
 				)}
 				<form onSubmit={saveOrder}>
 					<div className="row">
-						<div className="mb-3">
+						<div className="mb-3 col-11">
 							<label htmlFor="exampleInputEmail1" className="form-label">
 								Número da OS
 							</label>
@@ -182,7 +188,6 @@ export default function OrdersForm() {
 								type="text"
 								className="form-control"
 								id="qr_code"
-								disabled
 								value={formData.qr_code}
 								onChange={(e) =>
 									setFormData((prev) => ({
@@ -195,7 +200,7 @@ export default function OrdersForm() {
 						<button
 							type="button"
 							onClick={() => setOpenQR(!openQR)}
-							className=" icons"
+							className=" icons align-self-center"
 							style={{ height: '40px', width: '40px', fontSize: '36px' }}
 						>
 							<BsQrCode />
