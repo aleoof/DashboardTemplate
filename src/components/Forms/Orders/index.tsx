@@ -149,8 +149,17 @@ export default function OrdersForm() {
 		const response = await axios.get(
 			`https://maps.googleapis.com/maps/api/geocode/json?latlng=${userLocation?.latitude},${userLocation?.longitude}&key=AIzaSyCLYeK1ksPfWhPxgZZ687Vdi-eDFLFRCr0`
 		);
-		console.log(response.data);
-		setFormData((prev) => ({ ...prev, qr_code: value }));
+		const addressResult = response.data.results[0];
+
+		console.log(response.data.results[0]);
+		setFormData((prev) => ({
+			...prev,
+			qr_code: value,
+			address: addressResult.address_components[1].short_name,
+			neighborhood: addressResult.address_components[2].short_name,
+			city: addressResult.address_components[3].short_name,
+			state: addressResult.address_components[4].short_name,
+		}));
 		// https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=YOUR_API_KEY
 	};
 
