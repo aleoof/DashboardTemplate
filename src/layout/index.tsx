@@ -11,6 +11,8 @@ export default function Layout({ children }: { children: ReactNode }) {
 	const [level, setLevel] = useState(localStorage.getItem('accessLevel') || '');
 
 	useEffect(() => {
+		setToken (localStorage.getItem('token') || '')
+		setLevel (localStorage.getItem('accessLevel') || '')
 		if (!token) {
 			navigate('/login');
 		}

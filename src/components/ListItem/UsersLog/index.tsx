@@ -1,14 +1,4 @@
-// import { BsPencilSquare } from 'react-icons/bs';
-// import { Link } from 'react-router';
-
-export default function ListItemOrders({}: // title,
-// phone,
-// id,
-{
-	title?: string;
-	phone?: string;
-	id?: string;
-}) {
+export default function ListItemUsers() {
 	return (
 		<div className="w-100 h-20 d-flex align-items-center p-2 justify-content-between">
 			<div className="d-flex gap-3">

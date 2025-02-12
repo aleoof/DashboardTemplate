@@ -3,7 +3,7 @@ import { api } from '../../../api';
 import { BsFillTrashFill, BsQrCode } from 'react-icons/bs';
 import { useSearchParams } from 'react-router';
 import QRCodeScanner from '../../QRCodeScanner';
-import { useGeolocation } from './useGeolocation';
+// import { useGeolocation } from './useGeolocation';
 import axios from 'axios';
 
 export default function OrdersForm() {

@@ -1,4 +1,4 @@
-import { BsFillPlusSquareFill, BsFillTrashFill } from 'react-icons/bs';
+import { BsFillPlusSquareFill } from 'react-icons/bs';
 import ListItemOrders from '../../components/ListItem/Orders';
 import './styles.css';
 
