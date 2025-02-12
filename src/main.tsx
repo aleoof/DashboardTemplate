@@ -8,23 +8,28 @@ import Layout from './layout/index.tsx';
 
 createRoot(document.getElementById('root')!).render(
 	<BrowserRouter>
+		{/* <Routes>
+		</Routes> */}
+
 		<Routes>
 			{publicRoutes.map(({ path, component }) => (
-				<Route path={path} Component={component} />
+				<Route key={path} path={path} Component={component} />
 			))}
-		</Routes>
-
-		<Layout>
-			<Routes>
+			<Route element={<Layout />}>
 				{privateRoutes.map(({ path, component, children }) => (
 					<>
-						<Route path={path} Component={component} />
+						<Route key={path} path={path} Component={component} />
 						{children?.map((child) => (
-							<Route path={child.path} Component={child.component} />
+							<Route
+								path={child.path}
+								key={child.path}
+								Component={child.component}
+							/>
 						))}
 					</>
 				))}
-			</Routes>
-		</Layout>
+			</Route>
+		</Routes>
+		{/* </Layout> */}
 	</BrowserRouter>
 );
