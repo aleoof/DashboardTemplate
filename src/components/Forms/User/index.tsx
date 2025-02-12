@@ -158,8 +158,8 @@ export default function UserForm() {
 							<option selected disabled>
 								Acessos
 							</option>
-							<option value="0">Admin</option>
-							<option value="1">Secretária</option>
+							<option value="0">Administrador</option>
+							<option value="1">Administrativo</option>
 							<option value="2">Funcionário</option>
 							<option value="3">Externo</option>
 						</select>
