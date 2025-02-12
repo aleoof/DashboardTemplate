@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { api } from '../../../api';
 import { BsFillTrashFill, BsQrCode } from 'react-icons/bs';
-import { useSearchParams } from 'react-router';
+import { useNavigate, useRoutes, useSearchParams } from 'react-router';
 import QRCodeScanner from '../../QRCodeScanner';
 // import { useGeolocation } from './useGeolocation';
 import axios from 'axios';
@@ -26,6 +26,8 @@ export default function OrdersForm() {
 		latitude: number;
 		longitude: number;
 	} | null>(null);
+
+	const route = useNavigate();
 
 	// define the function that finds the users geolocation
 	const getUserLocation = () => {
@@ -105,7 +107,7 @@ export default function OrdersForm() {
 		}
 	};
 
-	const saveOrder = (e: any) => {
+	const saveOrder = async (e: any) => {
 		e.preventDefault();
 		const {
 			address,
@@ -119,7 +121,7 @@ export default function OrdersForm() {
 		} = formData;
 
 		if (id) {
-			api.put(`order/${id}`, {
+			await api.put(`order/${id}`, {
 				address,
 				neighborhood,
 				city,
@@ -131,7 +133,7 @@ export default function OrdersForm() {
 				ordersKits: kitAndQuantity,
 			});
 		} else {
-			api.post('order', {
+			await api.post('order', {
 				address,
 				neighborhood,
 				city,
@@ -143,10 +145,12 @@ export default function OrdersForm() {
 				ordersKits: kitAndQuantity,
 			});
 		}
+
+		route('/orders');
 	};
 
 	useEffect(() => {
-		if (formData.qr_code === '') {
+		if (formData.qr_code?.length > 0 && formData.qr_code?.length < 2) {
 			getLocation();
 		}
 	}, [formData.qr_code]);
