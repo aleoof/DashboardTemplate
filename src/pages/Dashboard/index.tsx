@@ -50,7 +50,7 @@ export default function Dashboard() {
 					<div className="card">
 						<div className="card-body">
 							<div className="float-start">
-								<p className="card-title">Tecnicos</p>
+								<p className="card-title">Usuários</p>
 								<h3 className="fw-bold">12<span className="card-text"> Total</span></h3>
 							</div>
 							<div className="icons"><BsPersonBadgeFill /></div>
