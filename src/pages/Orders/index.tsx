@@ -36,13 +36,13 @@ export default function Orders() {
 	return (
 		<>
 			<div>
-				<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
+				<div className="d-flex p-2 pt-0 justify-content-end">
 					<NavLink to="form" className="btn">
 						<BsFillPlusSquareFill /> Novo
 					</NavLink>
 				</div>
 
-				<div className="card list-height overflow-y-auto p-3 pb-0 mb-5">
+				<div className="card list-height overflow-y-auto p-md-3 pb-0 mb-5">
 					<div className="card-body">
 						{orders.map((order) => (
 							<>

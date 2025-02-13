@@ -26,29 +26,30 @@ export default function ListItemOrders({
 }) {
 	const { accessLevel } = useAccessLevelStore();
 	return (
-		<div className="w-100 h-20 d-flex align-items-center p-2 justify-content-between">
+		<div className="w-100 h-20 d-flex align-items-center p-md-2 justify-content-between">
 			<div className="d-flex align-items-center gap-3">
-				<div className="thumbnail d-none d-lg-block">
+				<div className="thumbnail">
 					<BsQrCode />
 				</div>
-				<span>
-					<p className="fs-6 mb-0">{qrcode}</p>
-					<p className="fs-6 mb-0">10/02/2025</p>
-				</span>
+				<div className="d-sm-flex align-items-center gap-sm-3">
+					<h3 className="card-title mb-0">{qrcode}</h3>
+					<p className="card-title mb-0">10/02/2025</p>
+				</div>
 			</div>
-			<div className="d-flex gap-3">
-				<p className="fs-6 mb-0">{address}</p>
+
+			<div className="d-sm-flex align-items-center gap-sm-3">
+				<p className="card-title mb-0">{address}</p>
+				<p className="card-title mb-0">Xaxim{neighborhood} Curitiba{city}/PR{state}</p>
 			</div>
-			<div className="d-flex gap-3">
-				<p className="fs-6 mb-0">{neighborhood}</p>
-			</div>
-			<div className="d-flex gap-3">
-				<p className="fs-6 mb-0">{city}</p>
-			</div>
-			<div className="d-flex gap-3">
-				<p className="fs-6 mb-0">{state}</p>
-			</div>
+
 			<span className="d-flex gap-4">
+
+				{accessLevel === 2 || accessLevel === 0 &&(
+					<Link to={`view?id=${id}`}>
+						<BsEyeFill />
+					</Link>
+				)}
+
 				{accessLevel === 0 && (
 					<Link to={`form?id=${id}`}>
 						<BsFillPencilFill />

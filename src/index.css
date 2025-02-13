@@ -210,3 +210,16 @@ hr{
   opacity: .15 !important;
 
 }
+
+table thead tr th {
+  position: relative;
+  text-align: left;
+  opacity: 0.7;
+  background: transparent;
+  color: rgb(131, 146, 171);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+}
