@@ -20,8 +20,10 @@ export default function ListItemOrders({
 					src="https://themewagon.github.io/soft-ui-dashboard-react/static/media/team-2.e725aef8c892cb21f262.jpg"
 					className="img-fluid img-thumbnail"
 				/>
-				<p className="fs-6 mb-0">{title}</p>
-				<p className="fs-6 mb-0">(41) 999541 9995</p>
+				<div className="d-sm-flex gap-sm-3">
+				<p className="card-title mb-0">{title}</p>
+				<p className="card-text mb-0">(41) 999541 9995</p>
+				</div>
 			</div>
 			<Link to={`form?id=${id}`}>
 				<BsPencilSquare />

@@ -1,4 +1,4 @@
-import {BsFillPlusSquareFill, BsFillTrashFill} from 'react-icons/bs';
+import {BsFillPlusSquareFill} from 'react-icons/bs';
 import ListItem from '../../components/ListItem';
 import { NavLink } from 'react-router';
 
@@ -8,9 +8,6 @@ export default function Tags() {
 		<div>
 
 					<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
-						<button className="btn m-1">
-							<BsFillTrashFill /> Exlcuir
-						</button>
 						<NavLink to="form" className="btn">
 							<BsFillPlusSquareFill  /> Novo
 						</NavLink>

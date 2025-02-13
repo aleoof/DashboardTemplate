@@ -14,11 +14,10 @@ export default function ListItemOrders({
 	return (
 		<div className="w-100 h-20 d-flex align-items-center p-2 justify-content-between">
 			<div className="d-flex gap-3">
-				<input type="checkbox" />
 				<div className="thumbnail">
 					<BsBox2Fill />
 				</div>
-				<p className="fs-6 mb-0">{title}</p>
+				<p className="card-title mb-0">{title}</p>
 			</div>
 			<Link to={`form?id=${id}`}>
 				<BsPencilSquare />
