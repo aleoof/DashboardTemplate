@@ -1,4 +1,4 @@
-import { BsFillPlusSquareFill, BsFillTrashFill } from 'react-icons/bs';
+import { BsFillPlusSquareFill} from 'react-icons/bs';
 import ListItem from '../../components/ListItem/Kits';
 import { NavLink } from 'react-router';
 import { api } from '../../api';
@@ -20,9 +20,6 @@ export default function Kits() {
 	return (
 		<div>
 			<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
-				<button className="btn m-1">
-					<BsFillTrashFill /> Exlcuir
-				</button>
 				<NavLink to="form" className="btn">
 					<BsFillPlusSquareFill /> Novo
 				</NavLink>

@@ -1,8 +1,6 @@
-import { BsFillPlusSquareFill, BsFillTrashFill } from 'react-icons/bs';
+import { BsFillPlusSquareFill} from 'react-icons/bs';
 import ListItem from '../../components/ListItem/Materials';
 import './styles.css';
-import Modal from '../../components/Modal';
-import useModalStore from '../../stores/modalStore';
 import { NavLink } from 'react-router';
 import { useEffect, useState } from 'react';
 import { api } from '../../api';
@@ -12,7 +10,6 @@ export default function Materials() {
 		Array<{ id: number; description: string }>
 	>([]);
 
-	const { openModal, closeModal } = useModalStore((state) => state);
 	const getMaterials = async () => {
 		const response = await api.get('materials');
 		setMaterials(response.data);
@@ -24,9 +21,6 @@ export default function Materials() {
 		<>
 			<div>
 				<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
-					<button className="btn m-1" onClick={openModal}>
-						<BsFillTrashFill /> Exlcuir
-					</button>
 					<NavLink to="form" className="btn">
 						<BsFillPlusSquareFill /> Novo
 					</NavLink>
@@ -40,13 +34,6 @@ export default function Materials() {
 					))}
 				</div>
 			</div>
-			<Modal
-				cancelCopy="Cancelar"
-				copy="Deseja apagar os itens selecionados ?"
-				saveCopy="Apagar"
-				toggleCancel={closeModal}
-				toggleSave={closeModal}
-			/>
 		</>
 	);
 }
