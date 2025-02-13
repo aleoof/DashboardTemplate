@@ -190,17 +190,23 @@ input[type='checkbox']{
 }
 
 .thumbnail{
-  width: 50px;
-  height: 50px;
-  font-size: 25px;
+  /*width: 50px;*/
+  /*height: 50px;*/
+  font-size: 20px;
   background-color: var(--bs-body-bg);
   border: var(--bs-border-width) solid var(--bs-border-color);
   border-radius: var(--bs-border-radius);
   text-align: center;
   color: #217bfb;
+  padding: 0px 5px 3px 6px;
 
 }
 
 hr{
-  margin: 0;
+  margin: 0 !important;
+  color: inherit;
+  border: 0;
+  border-top: var(--bs-border-width) solid;
+  opacity: .15 !important;
+
 }

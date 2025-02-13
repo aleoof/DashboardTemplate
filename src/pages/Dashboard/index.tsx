@@ -3,7 +3,7 @@
 // import ListItem from "../../components/ListItem";
 
 import {BsClipboardDataFill, BsPersonBadgeFill, BsTools} from "react-icons/bs";
-import ListItemOrders from "../../components/ListItem/Orders";
+import ListItemOrdersDash from "../../components/ListItem/OrdersDash";
 import ListItemUsersLog from "../../components/ListItem/UsersLog";
 // import {NavLink} from "react-router";
 
@@ -12,7 +12,7 @@ export default function Dashboard() {
 	return (
 
 		<div>
-			<div className="row d-flex pt-5">
+			<div className="row d-flex pt-3">
 				<div className="col-12 col-md-3 mt-4">
 					<div className="card">
 						<div className="card-body">
@@ -24,7 +24,7 @@ export default function Dashboard() {
 						</div>
 					</div>
 				</div>
-				<div className="col-12 col-md-3 mt-4">
+				<div className="col-12 col-md-3 mt-4 d-none d-md-block">
 					<div className="card">
 						<div className="card-body">
 							<div className="float-start">
@@ -35,7 +35,7 @@ export default function Dashboard() {
 						</div>
 					</div>
 				</div>
-				<div className="col-12 col-md-3 mt-4">
+				<div className="col-12 col-md-3 mt-4  d-none d-md-block">
 					<div className="card">
 						<div className="card-body">
 							<div className="float-start">
@@ -46,7 +46,7 @@ export default function Dashboard() {
 						</div>
 					</div>
 				</div>
-				<div className="col-12 col-md-3 mt-4">
+				<div className="col-12 col-md-3 mt-4 d-none d-md-block">
 					<div className="card">
 						<div className="card-body">
 							<div className="float-start">
@@ -58,14 +58,14 @@ export default function Dashboard() {
 					</div>
 				</div>
 
-				<div className="col-12 col-md-8 mt-4">
+				<div className="col-12 col-md-8 mt-4 d-none d-md-block">
 					<div className="card">
 						<div className="card-body">
 							<p className="card-title">Atendimentos realizado hoje</p>
 						</div>
 					</div>
 				</div>
-				<div className="col-12 col-md-4 mt-4">
+				<div className="col-12 col-md-4 mt-4  d-none d-md-block">
 						<div className="card">
 							<div className="card-body bg-info">
 								<p className="card-title mb-5">Aviso Importante</p>
@@ -83,14 +83,14 @@ export default function Dashboard() {
 							<p className="card-title">OS do dia</p>
 							{listMock.map(() => (
 								<>
-									<ListItemOrders />
+									<ListItemOrdersDash />
 									<hr />
 								</>
 							))}
 						</div>
 					</div>
 				</div>
-				<div className="col-12 col-md-6 mt-4">
+				<div className="col-12 col-md-6 mt-4  d-none d-sm-none d-md-block">
 					<div className="card">
 						<div className="card-body">
 							<p className="card-title">Ultimos Acessos</p>

@@ -16,7 +16,7 @@ export default function Navbar() {
 	};
 
 	return (
-		<div className="header d-flex justify-content-between mb-4">
+		<div className="header d-flex justify-content-between mb-md-4 ">
 			<div className="float-start">
 				<p>
 					<BsHouseFill /> {pathname}
@@ -25,10 +25,10 @@ export default function Navbar() {
 					<strong>Dashboard</strong>
 				</h4>
 			</div>
-			<div className="float-end d-flex search">
+			<div className="float-end d-flex search ">
 				<input
 					type="text"
-					className="form-control nav"
+					className="form-control nav d-none d-md-block"
 					id="name"
 					placeholder="Pesquisar"
 					value=""
