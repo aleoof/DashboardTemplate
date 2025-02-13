@@ -30,12 +30,15 @@ function Login() {
 	};
 
 	return (
-		<div className="login row align-items-center justify-content-center">
-			<h2 className="logo">
+		<div className="login flex row align-items-center justify-content-center">
+			<h2 className="logo d-none d-md-block">
 				<b>HUB</b>OS
 			</h2>
-			<div className="col-md-3 col-sm-6 h-30 box">
+			<div className="col-md-6 col-lg-4 col-xl-3 col-sm-6 h-30 box">
 				<div className="m-3 h-30 card overflow-hidden p-5">
+					<h2 className="text-center p-2 d-block d-md-none">
+						<b>HUB</b>OS
+					</h2>
 					<h2 className="text-center p-2">
 						<b>Login</b>
 					</h2>

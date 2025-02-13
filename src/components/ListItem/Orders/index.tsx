@@ -5,8 +5,6 @@ import {
 	BsFillTrashFill,
 } from 'react-icons/bs';
 import { Link } from 'react-router';
-import Modal from '../../Modal';
-import useModalStore from '../../../stores/modalStore';
 import useAccessLevelStore from '../../../stores/accessLevelStore';
 
 export default function ListItemOrders({
@@ -16,6 +14,7 @@ export default function ListItemOrders({
 	neighborhood,
 	city,
 	state,
+	deleteListItem,
 }: {
 	qrcode?: string;
 	address?: string;
@@ -23,10 +22,9 @@ export default function ListItemOrders({
 	city?: string;
 	state?: string;
 	id?: string | number;
+	deleteListItem?: () => void;
 }) {
-	const { openModal, closeModal } = useModalStore((state) => state);
 	const { accessLevel } = useAccessLevelStore();
-
 	return (
 		<div className="w-100 h-20 d-flex align-items-center p-2 justify-content-between">
 			<div className="d-flex align-items-center gap-3">
@@ -62,18 +60,11 @@ export default function ListItemOrders({
 					</Link>
 				)}
 				{accessLevel === 0 && (
-					<a className="" onClick={openModal}>
+					<a className="" onClick={deleteListItem}>
 						<BsFillTrashFill />
 					</a>
 				)}
 			</span>
-			<Modal
-				cancelCopy="Cancelar"
-				copy="Deseja apagar os itens selecionados ?"
-				saveCopy="Apagar"
-				toggleCancel={closeModal}
-				toggleSave={closeModal}
-			/>
 		</div>
 	);
 }

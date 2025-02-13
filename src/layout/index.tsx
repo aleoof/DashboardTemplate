@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Sidebar from '../components/sidebar';
 import Navbar from '../components/navbar';
 import { Outlet, useNavigate } from 'react-router';
@@ -24,7 +24,7 @@ export default function Layout() {
 	return (
 		<>
 			{token && (
-				<div className="vh-100">
+				<div className="min-vh-100">
 					<div className="row m-0">
 						<div className="col-md-2 p-0">
 							<Sidebar />

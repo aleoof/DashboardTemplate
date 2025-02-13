@@ -9,14 +9,15 @@
 
 @media only screen and (max-width: 600px) {
   .login {
-    background:white;
+    background: white;
   }
-  .logo{
+
+  .logo {
     text-align: center;
     top: 120px;
   }
 
-  .card{
+  .card {
     height: 100%;
     box-shadow: none;
     transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
