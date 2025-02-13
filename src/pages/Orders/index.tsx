@@ -26,6 +26,7 @@ export default function Orders() {
 	const deleteItem = async (delItem: unknown) => {
 		console.log(deleteId);
 		await api.delete(`/order/${delItem}`);
+		getOrders();
 		closeModal();
 	};
 
