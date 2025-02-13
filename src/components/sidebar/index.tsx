@@ -3,9 +3,9 @@ import {
 	BsTools,
 	BsFillPersonLinesFill,
 	BsQrCode,
-	BsQrCodeScan,
 	BsReverseListColumnsReverse,
 	BsBox2,
+	BsPencilSquare,
 } from 'react-icons/bs';
 import { NavLink } from 'react-router';
 import { privateRoutes } from '../../routes/PrivateRoutes';
@@ -19,7 +19,7 @@ export default function Sidebar() {
 			case 'dashboard':
 				return <BsBook />;
 			case 'order':
-				return <BsQrCodeScan />;
+				return <BsPencilSquare />;
 			case 'kits':
 				return <BsTools />;
 			case 'tag':
@@ -36,7 +36,7 @@ export default function Sidebar() {
 	}
 
 	return (
-		<div className="d-flex flex-column flex-shrink-0 p-3 bg-light h-100">
+		<div className="sidebar d-flex flex-column flex-shrink-0 p-3 bg-light h-100">
 			<a
 				href="/"
 				className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"

@@ -3,8 +3,9 @@ import { api } from '../../../api';
 import { BsFillTrashFill, BsQrCode } from 'react-icons/bs';
 import { useNavigate, useSearchParams } from 'react-router';
 import QRCodeScanner from '../../QRCodeScanner';
-// import { useGeolocation } from './useGeolocation';
 import axios from 'axios';
+
+import './styles.css';
 
 export default function OrdersForm() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
@@ -174,7 +175,7 @@ export default function OrdersForm() {
 	};
 
 	return (
-		<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">
+		<div className="card list-height form-container p-3 pb-3 mb-5">
 			<div className="card-body row">
 				{openQR && (
 					<QRCodeScanner
