@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { api } from '../../../api';
 import { BsFillTrashFill, BsQrCode } from 'react-icons/bs';
-import { useNavigate, useRoutes, useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
 import QRCodeScanner from '../../QRCodeScanner';
 // import { useGeolocation } from './useGeolocation';
 import axios from 'axios';
