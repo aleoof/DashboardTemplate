@@ -1,4 +1,4 @@
-import { BsFillPlusSquareFill} from 'react-icons/bs';
+import { BsFillPlusSquareFill } from 'react-icons/bs';
 import ListItem from '../../components/ListItem/Materials';
 import './styles.css';
 import { NavLink } from 'react-router';
@@ -28,7 +28,7 @@ export default function Materials() {
 				<div className="card list-height overflow-y-auto p-3 pb-0 mb-5">
 					{materials.map((material) => (
 						<>
-							<ListItem title={material.description} />
+							<ListItem id={material.id} title={material.description} />
 							<hr />
 						</>
 					))}
