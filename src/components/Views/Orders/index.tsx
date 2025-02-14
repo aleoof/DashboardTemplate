@@ -46,75 +46,81 @@ export default function OrdersView() {
 
 	return (
 		<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">
-			<div className="card-body row">
+			<div className="card-body">
+					<div className="m-3 row">
+						<h1 className="mb-3">Ordem de Serviço #{formData.qr_code}</h1>
+						<h4 className="mt-5">Informações Gerais</h4>
+						<hr/>
+						<div className="col-md-12 mt-2">
+							<strong>Empresa:</strong> Prefeitura da cidade de Almirante Tamandaré{formData.data}
+						</div>
+						<div className="col-md-4 mt-2">
+							<strong>Data:</strong> {formData.data}
+						</div>
+						<div className="col-md-4 mt-2">
+							<strong>Hora:</strong> {formData.hora}
+						</div>
+						<div className="col-md-4 mt-2">
+							<strong>Usuário:</strong> {formData.usuario}
+						</div>
 
-					<div className="row">
-						<h1>Ordem de Serviço</h1>
+						<h4 className="mt-5">Endereço</h4>
+						<hr/>
+						<div className="col-md-6 mt-2">
+							<strong>Rua:</strong> {formData.address}
+						</div>
+						<div className="col-md-6 mt-2">
+							<strong>Bairro:</strong> {formData.neighborhood}
+						</div>
+						<div className="col-md-6 mt-2">
+							<strong>Município:</strong> {formData.city}
+						</div>
+						<div className="col-md-6 mt-2">
+							<strong>UF:</strong> {formData.state}
+						</div>
+
+						<div className="col-md-6 mt-2">
+							<strong>Latitude:</strong> {formData.lat}
+						</div>
+						<div className="col-md-6 mt-2">
+							<strong>Longitude:</strong> {formData.long}
+						</div>
+
+						<h4  className="mt-5">Obs</h4>
+						<hr/>
 						<div className="mb-3">
-							<label htmlFor="exampleInputEmail1" className="form-label">
-								Número:{formData.qr_code}
-							</label>
-						</div>
-						<div className="mb-3">
-							<label htmlFor="exampleInputEmail1" className="form-label">
-								Endereço: {formData.address}
-							</label>
-						</div>
-						<div className="mb-3 col-5">
-							<label htmlFor="exampleInputEmail1" className="form-label">
-								Bairro: {formData.neighborhood}
-							</label>
+							{formData.observations}
 						</div>
 
-						<div className="mb-3 col-5">
-							<label htmlFor="exampleInputEmail1" className="form-label">
-								Município: {formData.city}
-							</label>
-						</div>
-
-						<div className="mb-3 col-2">
-							<label htmlFor="exampleInputEmail1" className="form-label">
-								UF: {formData.state}
-							</label>
-						</div>
-						<div className="mb-3">
-							<label htmlFor="exampleInputEmail1" className="form-label">
-								OBS: {formData.observations}
-							</label>
-
-						</div>
+						<h4 className="mt-5">Kit(s)</h4>
+						<hr/>
+						<table className="mt-2">
+							<tr>
+								<th>Descrição</th>
+								<th>Materiais</th>
+								<th className="text-center">Quantidade</th>
+							</tr>
 
 						{listOfKits.length > 0 && (
 							<>
 								{listOfKits.map((kit) => (
-									<div className="mb-3 mt-3">
-										<div className="d-flex justify-content-between align-items-end">
-											<div>{kit.description}</div>
-											<div className="d-flex align-items-end gap-5">
-												<span>
-													<label
-														htmlFor="exampleInputEmail1"
-														className="form-label"
-													>
-														{
-														kitAndQuantity.some((kq) => kq.kit_id === kit.id)
-															? kitAndQuantity.filter(
-																(k) => k.kit_id === kit.id
-															)[0].quantity
-															: ''
-														}
-													</label>
-
-												</span>
-											</div>
-										</div>
-									</div>
+									<tr>
+										<td>{kit.description}</td>
+										<td></td>
+										<td className="text-center">{
+											kitAndQuantity.some((kq) => kq.kit_id === kit.id)
+												? kitAndQuantity.filter(
+													(k) => k.kit_id === kit.id
+												)[0].quantity
+												: ''
+										}</td>
+									</tr>
 								))}
 							</>
 						)}
-
+						</table>
 					</div>
-			</div>
+				</div>
 		</div>
 	);
 }
