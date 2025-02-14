@@ -1,14 +1,26 @@
-// import {BsFillPlusSquareFill, BsFillTrashFill} from "react-icons/bs";
-// import {NavLink} from "react-router";
-// import ListItem from "../../components/ListItem";
-
 import {BsClipboardDataFill, BsPersonBadgeFill, BsTools} from "react-icons/bs";
+// import ListItemUsersLog from "../../components/ListItem/UsersLog";
+
+import { useEffect, useState } from 'react';
+import { api } from '../../api';
 import ListItemOrdersDash from "../../components/ListItem/OrdersDash";
-import ListItemUsersLog from "../../components/ListItem/UsersLog";
-// import {NavLink} from "react-router";
 
 export default function Dashboard() {
-	const listMock = [1, 2, 3, 4, 5];
+
+	const [orders, setOrders] = useState<
+		Array<{ id: number; qr_code: string; address: string; registerDay: string }>
+	>([]);
+
+
+	const getOrders = async () => {
+		const response = await api.get('orders');
+		setOrders(response.data);
+	};
+	useEffect(() => {
+		getOrders();
+	}, []);
+
+
 	return (
 
 		<div>
@@ -81,12 +93,19 @@ export default function Dashboard() {
 					<div className="card">
 						<div className="card-body">
 							<p className="card-title">OS do dia</p>
-							{listMock.map(() => (
+							{orders.map((order) => (
 								<>
-									<ListItemOrdersDash />
+									<ListItemOrdersDash
+										key={order.id}
+										qrcode={order.qr_code}
+										register={order.registerDay}
+										id={order.id}
+										address={order.address}
+									/>
 									<hr />
 								</>
 							))}
+
 						</div>
 					</div>
 				</div>
@@ -94,12 +113,6 @@ export default function Dashboard() {
 					<div className="card">
 						<div className="card-body">
 							<p className="card-title">Ultimos Acessos</p>
-							{listMock.map(() => (
-								<>
-									<ListItemUsersLog />
-									<hr />
-								</>
-							))}
 						</div>
 					</div>
 				</div>
