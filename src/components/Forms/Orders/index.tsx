@@ -134,7 +134,7 @@ export default function OrdersForm() {
 				ordersKits: kitAndQuantity,
 			});
 		} else {
-			await api.post('order', {
+			const response = await api.post('order', {
 				address,
 				neighborhood,
 				city,
@@ -145,9 +145,9 @@ export default function OrdersForm() {
 				qr_code,
 				ordersKits: kitAndQuantity,
 			});
+			const orderId = response.data.id;
+			route(`?id=${orderId}`);
 		}
-
-		route('/orders');
 	};
 
 	useEffect(() => {
@@ -161,8 +161,6 @@ export default function OrdersForm() {
 			`https://maps.googleapis.com/maps/api/geocode/json?latlng=${userLocation?.latitude},${userLocation?.longitude}&key=AIzaSyCLYeK1ksPfWhPxgZZ687Vdi-eDFLFRCr0`
 		);
 		const addressResult = response.data.results[0];
-
-		console.log(response.data.results[0]);
 		setFormData((prev) => ({
 			...prev,
 			qr_code: value,
