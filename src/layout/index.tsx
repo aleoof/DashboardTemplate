@@ -4,6 +4,7 @@ import Navbar from '../components/navbar';
 import { Outlet, useNavigate } from 'react-router';
 
 import useAccessLevelStore from '../stores/accessLevelStore';
+import Toast from '../components/Toast';
 
 export default function Layout() {
 	const navigate = useNavigate();

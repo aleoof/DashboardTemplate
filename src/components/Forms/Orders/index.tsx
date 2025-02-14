@@ -6,6 +6,7 @@ import QRCodeScanner from '../../QRCodeScanner';
 import axios from 'axios';
 
 import './styles.css';
+import Toast from '../../Toast';
 
 export default function OrdersForm() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
@@ -20,6 +21,8 @@ export default function OrdersForm() {
 		Array<{ kit_id: number; quantity: string }>
 	>([]);
 	const [openQR, setOpenQR] = useState(false);
+	const [success, setSuccess] = useState(true);
+	const [openToast, setOpenToast] = useState(false);
 	const [searchParams] = useSearchParams();
 	const id = searchParams.get('id');
 
@@ -121,32 +124,49 @@ export default function OrdersForm() {
 			qr_code,
 		} = formData;
 
-		if (id) {
-			await api.put(`order/${id}`, {
-				address,
-				neighborhood,
-				city,
-				state,
-				observations,
-				lat: `${userLocation?.latitude}`,
-				long: `${userLocation?.longitude}`,
-				qr_code,
-				ordersKits: kitAndQuantity,
-			});
-		} else {
-			const response = await api.post('order', {
-				address,
-				neighborhood,
-				city,
-				state,
-				observations,
-				lat: `${userLocation?.latitude}`,
-				long: `${userLocation?.longitude}`,
-				qr_code,
-				ordersKits: kitAndQuantity,
-			});
-			const orderId = response.data.id;
-			route(`?id=${orderId}`);
+		try {
+			if (id) {
+				await api.put(`order/${id}`, {
+					address,
+					neighborhood,
+					city,
+					state,
+					observations,
+					lat: `${userLocation?.latitude}`,
+					long: `${userLocation?.longitude}`,
+					qr_code,
+					ordersKits: kitAndQuantity,
+				});
+				setSuccess(true);
+				setOpenToast(true);
+				setTimeout(() => {
+					setOpenToast(false);
+				}, 1300);
+			} else {
+				const response = await api.post('order', {
+					address,
+					neighborhood,
+					city,
+					state,
+					observations,
+					lat: `${userLocation?.latitude}`,
+					long: `${userLocation?.longitude}`,
+					qr_code,
+					ordersKits: kitAndQuantity,
+				});
+				const orderId = response.data.id;
+				setSuccess(true);
+				setOpenToast(true);
+				setTimeout(() => {
+					setOpenToast(false);
+					route(`?id=${orderId}`);
+				}, 1300);
+			}
+		} catch (e) {
+			console.error(e);
+			setOpenToast(true);
+			setSuccess(false);
+			setTimeout(() => setOpenToast(false), 1000);
 		}
 	};
 
@@ -174,6 +194,7 @@ export default function OrdersForm() {
 
 	return (
 		<div className="card list-height form-container p-3 pb-3 mb-5">
+			{openToast && <Toast success={success} />}
 			<div className="card-body row">
 				{openQR && (
 					<QRCodeScanner

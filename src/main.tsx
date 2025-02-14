@@ -5,6 +5,7 @@ import { publicRoutes } from './routes/PublicRoutes.ts';
 import { privateRoutes } from './routes/PrivateRoutes.ts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './layout/index.tsx';
+import Toast from './components/Toast/index.tsx';
 
 createRoot(document.getElementById('root')!).render(
 	<BrowserRouter>
@@ -30,6 +31,5 @@ createRoot(document.getElementById('root')!).render(
 				))}
 			</Route>
 		</Routes>
-		{/* </Layout> */}
 	</BrowserRouter>
 );
