@@ -52,6 +52,9 @@ export default function Orders() {
 									qrcode={order.qr_code}
 									id={order.id}
 									address={order.address}
+									city={order.city}
+									neighborhood={order.neighborhood}
+									state={order.state}
 									deleteListItem={() => {
 										setDeleteId(order.id);
 										openModal();
