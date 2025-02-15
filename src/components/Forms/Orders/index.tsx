@@ -170,6 +170,16 @@ export default function OrdersForm() {
 		}
 	};
 
+	const deleteKitOrder = async (id) => {
+		listOfKits.splice(
+			listOfKits.findIndex((kit) => kit.id === id),
+			1
+		);
+
+		setListOfKits([...listOfKits]);
+		await api.delete(`/kit-order/${id}`);
+	};
+
 	useEffect(() => {
 		if (formData.qr_code?.length > 0 && formData.qr_code?.length < 2) {
 			getLocation();
@@ -371,7 +381,11 @@ export default function OrdersForm() {
 														onChange={(e) => handleKitQuantity(e, `${kit.id}`)}
 													/>
 												</span>
-												<button className="btn btn-primary" onClick={() => {}}>
+												<button
+													type="button"
+													className="btn btn-primary"
+													onClick={() => deleteKitOrder(kit.id)}
+												>
 													<BsFillTrashFill />
 												</button>
 											</div>
