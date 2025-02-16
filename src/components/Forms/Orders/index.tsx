@@ -12,7 +12,12 @@ export default function OrdersForm() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
 	const [selectedKit, setSelectedKit] = useState('');
 	const [listOfKits, setListOfKits] = useState<
-		Array<{ id: number; quantity: string; description: string }>
+		Array<{
+			id: number;
+			quantity: string;
+			description: string;
+			materials: { material: { description: string } }[];
+		}>
 	>([]);
 	const [kits, setKits] = useState<
 		Array<{ id: number; quantity: string; description: string }>
@@ -60,6 +65,7 @@ export default function OrdersForm() {
 	const getKits = async () => {
 		const response = await api.get('kits');
 		setKits(response.data);
+		console.log(response.data);
 	};
 
 	const getOrder = async () => {
@@ -84,6 +90,7 @@ export default function OrdersForm() {
 
 	function handleKitList() {
 		const filteredKit = kits.filter((kit) => kit.id === parseInt(selectedKit));
+		console.log(filteredKit);
 		if (
 			selectedKit &&
 			listOfKits.every((kit) => kit.id !== parseInt(selectedKit))
@@ -389,6 +396,13 @@ export default function OrdersForm() {
 													<BsFillTrashFill />
 												</button>
 											</div>
+										</div>
+										<div className="flex-fill">
+											{kit.materials.map((material) => (
+												<div className="ms-3 my-2">
+													{material.material.description} ss
+												</div>
+											))}
 										</div>
 									</div>
 								))}
