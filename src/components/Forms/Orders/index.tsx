@@ -129,6 +129,7 @@ export default function OrdersForm() {
 			// lat,
 			// long,
 			qr_code,
+			protocol,
 		} = formData;
 
 		try {
@@ -143,6 +144,7 @@ export default function OrdersForm() {
 					long: `${userLocation?.longitude}`,
 					qr_code,
 					ordersKits: kitAndQuantity,
+					protocol,
 				});
 				setSuccess(true);
 				setOpenToast(true);
@@ -160,6 +162,7 @@ export default function OrdersForm() {
 					long: `${userLocation?.longitude}`,
 					qr_code,
 					ordersKits: kitAndQuantity,
+					protocol,
 				});
 				const orderId = response.data.id;
 				setSuccess(true);
@@ -246,6 +249,23 @@ export default function OrdersForm() {
 						>
 							<BsQrCode />
 						</button>
+						<div className="mb-3 col-11">
+							<label htmlFor="exampleInputEmail1" className="form-label">
+								Número do Protocolo
+							</label>
+							<input
+								type="text"
+								className="form-control"
+								id="protocol"
+								value={formData.protocol}
+								onChange={(e) =>
+									setFormData((prev) => ({
+										...prev,
+										[e.target.id]: e.target.value,
+									}))
+								}
+							/>
+						</div>
 						<div className="mb-3">
 							<label htmlFor="exampleInputEmail1" className="form-label">
 								Endereço
