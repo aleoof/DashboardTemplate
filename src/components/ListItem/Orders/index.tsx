@@ -39,16 +39,18 @@ export default function ListItemOrders({
 
 			<div className="d-sm-flex align-items-center gap-sm-3">
 				<p className="card-title mb-0">{address}</p>
-				<p className="card-title mb-0">Xaxim{neighborhood} Curitiba{city}/PR{state}</p>
+				<p className="card-title mb-0">
+					{neighborhood} {city}/{state}
+				</p>
 			</div>
 
 			<span className="d-flex gap-4">
-
-				{accessLevel === 2 || accessLevel === 0 &&(
-					<Link to={`view?id=${id}`}>
-						<BsEyeFill />
-					</Link>
-				)}
+				{accessLevel === 2 ||
+					(accessLevel === 0 && (
+						<Link to={`view?id=${id}`}>
+							<BsEyeFill />
+						</Link>
+					))}
 
 				{accessLevel === 0 && (
 					<Link to={`form?id=${id}`}>

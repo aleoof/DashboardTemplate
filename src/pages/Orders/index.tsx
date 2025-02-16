@@ -2,22 +2,49 @@ import { BsFillPlusSquareFill } from 'react-icons/bs';
 import ListItemOrders from '../../components/ListItem/Orders';
 import './styles.css';
 
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
 import { api } from '../../api';
 import Modal from '../../components/Modal';
 import useModalStore from '../../stores/modalStore';
+import DatePicker from 'react-datepicker';
+import { format } from 'date-fns';
 
 export default function Orders() {
 	const { openModal, closeModal } = useModalStore((state) => state);
 	const [orders, setOrders] = useState<
-		Array<{ id: number; qr_code: string; address: string }>
+		Array<{
+			id: number;
+			qr_code: string;
+			address: string;
+			city: string;
+			neighborhood: string;
+			state: string;
+		}>
 	>([]);
 	const [deleteId, setDeleteId] = useState<unknown>(null);
+	const [date, setDate] = useState<{ start: Date | null; end: Date | null }>({
+		start: new Date(),
+		end: new Date(),
+	});
+	const route = useNavigate();
 
+	useEffect(() => {
+		const newDate = format(date.start, 'yyyy-MM-dd');
+		console.log(newDate);
+	}, [date]);
 	const getOrders = async () => {
 		const response = await api.get('orders');
 		setOrders(response.data);
+	};
+
+	const toReportPage = () => {
+		route(
+			`report?start=${format(date.start, 'yyyy-MM-dd')}&end=${format(
+				date.end,
+				'yyyy-MM-dd'
+			)}`
+		);
 	};
 	useEffect(() => {
 		getOrders();
@@ -30,14 +57,23 @@ export default function Orders() {
 		closeModal();
 	};
 
-	useEffect(() => {
-		console.log(deleteId);
-	}, [deleteId]);
-
 	return (
 		<>
 			<div>
-				<div className="d-flex p-2 pt-0 justify-content-end">
+				<div className="d-flex p-2 pt-0 justify-content-end gap-3">
+					<DatePicker
+						locale="pt-BR"
+						selected={date.start}
+						onSelect={(value) => setDate((prev) => ({ ...prev, start: value }))} //when day is clicked
+					/>
+					<DatePicker
+						selected={date.end}
+						onSelect={(value) => setDate((prev) => ({ ...prev, end: value }))} //when day is clicked
+					/>
+
+					<a onClick={toReportPage} className="btn">
+						Relatório
+					</a>
 					<NavLink to="form" className="btn">
 						<BsFillPlusSquareFill /> Novo
 					</NavLink>

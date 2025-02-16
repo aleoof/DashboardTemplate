@@ -3,6 +3,7 @@ import Form from '../pages/Form';
 import Kits from '../pages/Kits';
 import Materials from '../pages/Materials';
 import Orders from '../pages/Orders';
+import Report from '../pages/Reports';
 import Tags from '../pages/Tags';
 import Users from '../pages/Users';
 import Version from '../pages/Version';
@@ -30,10 +31,16 @@ export const privateRoutes = [
 				access: [0, 1, 2],
 			},
 			{
-				name: 'visualizar Ordem de Serviço',
+				name: 'Visualizar Ordem de Serviço',
 				path: '/orders/view',
 				component: View,
 				access: [0, 1, 2],
+			},
+			{
+				name: 'Relatório Ordens de Serviço do dia',
+				path: '/orders/report',
+				component: Report,
+				access: [0, 1],
 			},
 		],
 	},

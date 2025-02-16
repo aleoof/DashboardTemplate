@@ -1,0 +1,31 @@
+table {
+  border: none;
+}
+
+td,
+th {
+  /* width: 10%; */
+  padding: 10px;
+  text-align: center !important;
+}
+
+.row-os {
+  background-color: rgb(222, 222, 222);
+  border-top: 1px solid black;
+}
+
+
+.row-os td {
+  border: none
+}
+
+.row-kits tr:nth-child(2n) {
+  background-color: rgb(222, 222, 222);
+}
+
+
+.kit-table {
+  padding: 0;
+  padding-left: 2em;
+  padding-top: 5px
+}

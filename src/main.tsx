@@ -5,7 +5,7 @@ import { publicRoutes } from './routes/PublicRoutes.ts';
 import { privateRoutes } from './routes/PrivateRoutes.ts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './layout/index.tsx';
-import Toast from './components/Toast/index.tsx';
+import 'react-datepicker/dist/react-datepicker.css';
 
 createRoot(document.getElementById('root')!).render(
 	<BrowserRouter>
