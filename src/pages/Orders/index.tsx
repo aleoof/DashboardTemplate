@@ -51,10 +51,14 @@ export default function Orders() {
 	}, []);
 
 	const deleteItem = async (delItem: unknown) => {
-		console.log(deleteId);
 		await api.delete(`/order/${delItem}`);
 		getOrders();
 		closeModal();
+	};
+
+	const duplicateItem = async (itemId: unknown) => {
+		await api.post(`/order/duplicate/${itemId}`);
+		getOrders();
 	};
 
 	return (
@@ -109,6 +113,7 @@ export default function Orders() {
 										setDeleteId(order.id);
 										openModal();
 									}}
+									duplicateItem={() => duplicateItem(order.id)}
 								/>
 								<hr />
 							</>

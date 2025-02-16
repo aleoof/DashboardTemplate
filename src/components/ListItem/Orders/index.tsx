@@ -3,6 +3,7 @@ import {
 	BsQrCode,
 	BsEyeFill,
 	BsFillTrashFill,
+	BsCopy,
 } from 'react-icons/bs';
 import { Link } from 'react-router';
 import useAccessLevelStore from '../../../stores/accessLevelStore';
@@ -15,6 +16,7 @@ export default function ListItemOrders({
 	city,
 	state,
 	deleteListItem,
+	duplicateItem,
 }: {
 	qrcode?: string;
 	address?: string;
@@ -23,6 +25,7 @@ export default function ListItemOrders({
 	state?: string;
 	id?: string | number;
 	deleteListItem?: () => void;
+	duplicateItem?: () => void;
 }) {
 	const { accessLevel } = useAccessLevelStore();
 	return (
@@ -65,6 +68,11 @@ export default function ListItemOrders({
 				{accessLevel === 0 && (
 					<a className="" onClick={deleteListItem}>
 						<BsFillTrashFill />
+					</a>
+				)}
+				{accessLevel === 0 && (
+					<a className="" onClick={duplicateItem}>
+						<BsCopy />
 					</a>
 				)}
 			</span>
