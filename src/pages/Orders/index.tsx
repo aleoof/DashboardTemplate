@@ -20,6 +20,7 @@ export default function Orders() {
 			city: string;
 			neighborhood: string;
 			state: string;
+			registerDay: Date;
 		}>
 	>([]);
 	const [deleteId, setDeleteId] = useState<unknown>(null);
@@ -109,6 +110,7 @@ export default function Orders() {
 									city={order.city}
 									neighborhood={order.neighborhood}
 									state={order.state}
+									date={order.registerDay}
 									deleteListItem={() => {
 										setDeleteId(order.id);
 										openModal();

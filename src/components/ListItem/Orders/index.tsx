@@ -7,6 +7,8 @@ import {
 } from 'react-icons/bs';
 import { Link } from 'react-router';
 import useAccessLevelStore from '../../../stores/accessLevelStore';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 export default function ListItemOrders({
 	address,
@@ -15,6 +17,7 @@ export default function ListItemOrders({
 	neighborhood,
 	city,
 	state,
+	date,
 	deleteListItem,
 	duplicateItem,
 }: {
@@ -24,10 +27,14 @@ export default function ListItemOrders({
 	city?: string;
 	state?: string;
 	id?: string | number;
+	date: Date;
 	deleteListItem?: () => void;
 	duplicateItem?: () => void;
 }) {
 	const { accessLevel } = useAccessLevelStore();
+	const formattedDate = date
+		? format(date, 'dd/MM/yy hh:mm', { locale: ptBR })
+		: '';
 	return (
 		<div className="w-100 h-20 d-flex align-items-center p-md-2 justify-content-between">
 			<div className="d-flex align-items-center gap-3">
@@ -36,7 +43,7 @@ export default function ListItemOrders({
 				</div>
 				<div className="d-sm-flex align-items-center gap-sm-3">
 					<h3 className="card-title mb-0">{qrcode}</h3>
-					<p className="card-title mb-0">10/02/2025</p>
+					<p className="card-title mb-0">{formattedDate}</p>
 				</div>
 			</div>
 
