@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import './styles.css';
 import { useReactToPrint } from 'react-to-print';
+import { BsFileEarmarkPdf } from 'react-icons/bs';
 
 export default function Report() {
 	const [searchParams] = useSearchParams();
@@ -57,7 +58,7 @@ export default function Report() {
 		<>
 			<div className="d-flex p-2 pt-0 justify-content-end gap-3">
 				<button type="button" onClick={() => reactToPrintFn()} className="btn">
-					Baixar PDF
+					<BsFileEarmarkPdf /> Baixar PDF
 				</button>
 			</div>
 			<div className="card ">
