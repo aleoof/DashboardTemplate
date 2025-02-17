@@ -9,6 +9,7 @@ import Modal from '../../components/Modal';
 import useModalStore from '../../stores/modalStore';
 import DatePicker from 'react-datepicker';
 import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 export default function Orders() {
 	const { openModal, closeModal } = useModalStore((state) => state);
@@ -41,10 +42,9 @@ export default function Orders() {
 
 	const toReportPage = () => {
 		route(
-			`report?start=${format(date.start, 'yyyy-MM-dd')}&end=${format(
-				date.end,
-				'yyyy-MM-dd'
-			)}`
+			`report?start=${format(date.start, 'yyyy-MM-dd', {
+				locale: ptBR,
+			})}&end=${format(date.end, 'yyyy-MM-dd', { locale: ptBR })}`
 		);
 	};
 	useEffect(() => {
@@ -71,6 +71,7 @@ export default function Orders() {
 						<DatePicker
 							className="form-control"
 							locale="pt-BR"
+							dateFormat="dd/MM/yyyy"
 							selected={date.start}
 							onSelect={(value) =>
 								setDate((prev) => ({
@@ -85,6 +86,7 @@ export default function Orders() {
 						<DatePicker
 							className="form-control"
 							selected={date.end}
+							dateFormat="dd/MM/yyyy"
 							onSelect={(value) =>
 								setDate((prev) => ({
 									...prev,

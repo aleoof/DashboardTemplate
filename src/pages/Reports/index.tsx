@@ -37,11 +37,16 @@ export default function Report() {
 	const contentRef = useRef<HTMLDivElement>(null);
 	const reactToPrintFn = useReactToPrint({ contentRef });
 
-	const formatDate = (date: string | number | Date, hasTime?: boolean) => {
+	const formatDate = (date: string | Date, hasTime?: boolean) => {
+		// const date = parse(`${date}`, 'yyyy-MM-dd', new Date(), {
+		// 	locale: ptBR,
+		// });
+		console.log(format(date, 'dd/MM/yyyy', { locale: ptBR }));
+		const newDate = format(date, 'dd/MM/yyyy', { locale: ptBR });
 		if (!hasTime) {
-			return format(date, 'dd/MM/yy', { locale: ptBR });
+			return newDate;
 		}
-		return format(date, 'dd/MM/yy hh:mm', { locale: ptBR });
+		return newDate;
 	};
 
 	const getOrders = async () => {
@@ -74,10 +79,10 @@ export default function Report() {
 						/>
 						<span className="flex-fill text-center">
 							<h2 className="mb-3 fw-bolder">Serviços Realizados</h2>
-							<p>
+							{/* <p>
 								Data de: {formatDate(start || '')} Data Até:{' '}
 								{formatDate(end || '')}
-							</p>
+							</p> */}
 						</span>
 						<p>{`${formatDate(currentDate, true)}`}</p>
 					</div>

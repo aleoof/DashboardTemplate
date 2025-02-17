@@ -180,14 +180,14 @@ export default function OrdersForm() {
 		}
 	};
 
-	const deleteKitOrder = async (id: number) => {
+	const deleteKitOrder = async (kitId: number, orderId: number) => {
 		listOfKits.splice(
-			listOfKits.findIndex((kit) => kit.id === id),
+			listOfKits.findIndex((kit) => kit.id === kitId),
 			1
 		);
 
 		setListOfKits([...listOfKits]);
-		await api.delete(`/kit-order/${id}`);
+		await api.delete(`/kit-order/${kitId}/${orderId} `);
 	};
 
 	useEffect(() => {
@@ -411,7 +411,9 @@ export default function OrdersForm() {
 												<button
 													type="button"
 													className="btn btn-primary"
-													onClick={() => deleteKitOrder(kit.id)}
+													onClick={() =>
+														deleteKitOrder(kit.id, parseInt(id || ''))
+													}
 												>
 													<BsFillTrashFill />
 												</button>
@@ -420,7 +422,7 @@ export default function OrdersForm() {
 										<div className="flex-fill">
 											{kit?.materials?.map((material) => (
 												<div className="ms-3 my-2">
-													{material.material.description} ss
+													{material.material.description}
 												</div>
 											))}
 										</div>
