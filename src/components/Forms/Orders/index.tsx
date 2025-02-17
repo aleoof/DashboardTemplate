@@ -16,7 +16,7 @@ export default function OrdersForm() {
 			id: number;
 			quantity: string;
 			description: string;
-			materials: { material: { description: string } }[];
+			materials?: { material: { description: string } }[];
 		}>
 	>([]);
 	const [kits, setKits] = useState<
@@ -180,7 +180,7 @@ export default function OrdersForm() {
 		}
 	};
 
-	const deleteKitOrder = async (id) => {
+	const deleteKitOrder = async (id: number) => {
 		listOfKits.splice(
 			listOfKits.findIndex((kit) => kit.id === id),
 			1
@@ -418,7 +418,7 @@ export default function OrdersForm() {
 											</div>
 										</div>
 										<div className="flex-fill">
-											{kit.materials.map((material) => (
+											{kit?.materials?.map((material) => (
 												<div className="ms-3 my-2">
 													{material.material.description} ss
 												</div>

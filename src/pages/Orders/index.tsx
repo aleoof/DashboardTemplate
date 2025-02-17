@@ -24,7 +24,7 @@ export default function Orders() {
 		}>
 	>([]);
 	const [deleteId, setDeleteId] = useState<unknown>(null);
-	const [date, setDate] = useState<{ start: Date | null; end: Date | null }>({
+	const [date, setDate] = useState<{ start: Date; end: Date }>({
 		start: new Date(),
 		end: new Date(),
 	});
@@ -73,7 +73,10 @@ export default function Orders() {
 							locale="pt-BR"
 							selected={date.start}
 							onSelect={(value) =>
-								setDate((prev) => ({ ...prev, start: value }))
+								setDate((prev) => ({
+									...prev,
+									start: value ? value : new Date(),
+								}))
 							} //when day is clicked
 						/>
 					</div>
@@ -82,7 +85,12 @@ export default function Orders() {
 						<DatePicker
 							className="form-control"
 							selected={date.end}
-							onSelect={(value) => setDate((prev) => ({ ...prev, end: value }))} //when day is clicked
+							onSelect={(value) =>
+								setDate((prev) => ({
+									...prev,
+									end: value ? value : new Date(),
+								}))
+							} //when day is clicked
 						/>
 					</div>
 

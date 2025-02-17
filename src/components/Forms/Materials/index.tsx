@@ -8,7 +8,7 @@ export default function MaterialsForm() {
 	const [searchParams] = useSearchParams();
 	const id = searchParams.get('id');
 
-	const saveMaterial = async (e) => {
+	const saveMaterial = async (e: any) => {
 		e.preventDefault();
 		if (id) {
 			await api.put(`material/${id}`, formData);

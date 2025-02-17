@@ -51,6 +51,8 @@ export default function Report() {
 	};
 
 	useEffect(() => {
+		const date = new Date();
+		setCurrentDate(date);
 		getOrders();
 	}, []);
 
