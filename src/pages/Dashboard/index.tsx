@@ -20,16 +20,14 @@ export default function Dashboard() {
 		getOrders();
 	}, []);
 
-
 	return (
-
 		<div>
 			<div className="row d-flex pt-3">
 				<div className="col-12 col-md-3 mt-4">
 					<div className="card">
 						<div className="card-body">
 							<div className="float-start">
-								<p className="card-title">Ordens de Serviço</p>
+								<p className="card-title">teste Ordens de Serviço</p>
 								<h3 className="fw-bold">55<span className="card-text"> Hoje</span></h3>
 							</div>
 							<div className="icons"><BsClipboardDataFill /></div>
