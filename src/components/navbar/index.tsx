@@ -22,6 +22,12 @@ export default function Navbar() {
 				return 'Dashboard';
 			case '/orders':
 				return 'Ordem de serviço';
+			case '/orders/form':
+				return 'Ordem de serviço';
+			case '/orders/view':
+				return 'Ordem de serviço';
+			case '/orders/report':
+				return 'Relatório ordem de serviço';
 			case '/kits':
 				return 'Kits';
 			case '/tags':
@@ -33,7 +39,7 @@ export default function Navbar() {
 			case '/version':
 				return 'Versão do Sistema';
 			default:
-				return 'Não identificada';
+				return '';
 		}
 	}
 
