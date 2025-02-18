@@ -396,6 +396,7 @@ export default function OrdersForm() {
 														Quantidade
 													</label>
 													<input
+														required
 														value={
 															kitAndQuantity.some((kq) => kq.kit_id === kit.id)
 																? kitAndQuantity.filter(
