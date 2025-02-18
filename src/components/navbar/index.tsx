@@ -1,7 +1,7 @@
 import {
 	BsPersonFillGear,
 	BsHouseFill,
-	BsBoxArrowInRight,
+	BsBoxArrowInRight
 } from 'react-icons/bs';
 import { useLocation, useNavigate } from 'react-router';
 
@@ -15,6 +15,28 @@ export default function Navbar() {
 		navigate('/login');
 	};
 
+	function paths(path: string) {
+		console.log(pathname)
+		switch (path) {
+			case '/':
+				return 'Dashboard';
+			case '/orders':
+				return 'Ordem de serviço';
+			case '/kits':
+				return 'Kits';
+			case '/tags':
+				return 'Etiquetas';
+			case '/materials':
+				return 'Materiais';
+			case '/users':
+				return 'Usuários';
+			case '/version':
+				return 'Versão do Sistema';
+			default:
+				return 'Não identificada';
+		}
+	}
+
 	return (
 		<div className="header d-flex justify-content-between mb-md-4 ">
 			<div className="float-start">
@@ -22,7 +44,7 @@ export default function Navbar() {
 					<BsHouseFill /> {pathname}
 				</p>
 				<h4>
-					<strong>Dashboard</strong>
+					<strong>{paths(pathname)}</strong>
 				</h4>
 			</div>
 			<div className="float-end d-flex search ">

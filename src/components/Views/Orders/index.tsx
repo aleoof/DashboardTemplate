@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect,useRef, useState } from 'react';
 import { api } from '../../../api';
 import { useSearchParams } from 'react-router';
 import {format} from "date-fns";
 import {ptBR} from "date-fns/locale";
+import {BsFileEarmarkPdf} from "react-icons/bs";
+import { useReactToPrint } from 'react-to-print';
 
 export default function OrdersView() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
@@ -10,10 +12,10 @@ export default function OrdersView() {
 		Array<{
 			id: number;
 			quantity:
-			string;
+				string;
 			description: string;
 			materials?: { material: { description: string;  quantity: string;} }[];
-	}>
+		}>
 	>([]);
 	const [kits, setKits] = useState<
 		Array<{ id: number; quantity: string; description: string }>
@@ -57,9 +59,19 @@ export default function OrdersView() {
 	const registerDay  = formData.registerDay ? format(formData.registerDay, "dd/MM/yyyy", {locale:ptBR} ): '';
 	const registerTime  = formData.registerDay ? format(formData.registerDay, "hh:mm", {locale:ptBR} ): '';
 
+	const contentRef = useRef<HTMLDivElement>(null);
+	const reactToPrintFn = useReactToPrint({ contentRef });
+
 	return (
-		<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">
-			<div className="card-body">
+		<>
+			<div className="d-flex p-2 pt-0 justify-content-end gap-3">
+				<button type="button" onClick={() => reactToPrintFn()} className="btn">
+					<BsFileEarmarkPdf /> Baixar PDF
+				</button>
+			</div>
+			<div className="card list-height overflow-y-auto p-3 pb-3 mb-5"  ref={contentRef}>
+
+				<div className="card-body">
 					<div className="m-3 row">
 						<h1 className="mb-3">Ordem de Serviço #{formData.qr_code}</h1>
 						<h4 className="mt-5">Informações Gerais</h4>
@@ -111,32 +123,33 @@ export default function OrdersView() {
 								<th className="text-center">Quantidade</th>
 							</tr>
 
-						{listOfKits.length > 0 && (
-							<>
-								{listOfKits.map((kit) => (
-									<tr>
-										<td>{kit.description}</td>
-										<td>
-											{kit?.materials?.map((material) => (
-											<div className="ms-3 my-2">
-												({material.material.quantity}) {material.material.description}
-											</div>
-										))}
-										</td>
-										<td className="text-center">{
-											kitAndQuantity.some((kq) => kq.kit_id === kit.id)
-												? kitAndQuantity.filter(
-													(k) => k.kit_id === kit.id
-												)[0].quantity
-												: ''
-										}</td>
-									</tr>
-								))}
-							</>
-						)}
+							{listOfKits.length > 0 && (
+								<>
+									{listOfKits.map((kit) => (
+										<tr>
+											<td>{kit.description}</td>
+											<td>
+												{kit?.materials?.map((material) => (
+													<div className="ms-3 my-2">
+														({material.material.quantity}) {material.material.description}
+													</div>
+												))}
+											</td>
+											<td className="text-center">{
+												kitAndQuantity.some((kq) => kq.kit_id === kit.id)
+													? kitAndQuantity.filter(
+														(k) => k.kit_id === kit.id
+													)[0].quantity
+													: ''
+											}</td>
+										</tr>
+									))}
+								</>
+							)}
 						</table>
 					</div>
 				</div>
-		</div>
+			</div>
+		</>
 	);
 }
