@@ -57,7 +57,6 @@ export default function OrdersView() {
 	const registerDay  = formData.registerDay ? format(formData.registerDay, "dd/MM/yyyy", {locale:ptBR} ): '';
 	const registerTime  = formData.registerDay ? format(formData.registerDay, "hh:mm", {locale:ptBR} ): '';
 
-
 	return (
 		<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">
 			<div className="card-body">
