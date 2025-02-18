@@ -1,11 +1,19 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../../api';
 import { useSearchParams } from 'react-router';
+import {format} from "date-fns";
+import {ptBR} from "date-fns/locale";
 
 export default function OrdersView() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
 	const [listOfKits, setListOfKits] = useState<
-		Array<{ id: number; quantity: string; description: string }>
+		Array<{
+			id: number;
+			quantity:
+			string;
+			description: string;
+			materials?: { material: { description: string;  quantity: string;} }[];
+	}>
 	>([]);
 	const [kits, setKits] = useState<
 		Array<{ id: number; quantity: string; description: string }>
@@ -31,6 +39,8 @@ export default function OrdersView() {
 		setFormData(response.data);
 	};
 
+
+
 	useEffect(() => {
 		if (kits.length === 0) {
 			getKits();
@@ -44,6 +54,10 @@ export default function OrdersView() {
 		console.log(formData);
 	}, [formData]);
 
+	const registerDay  = formData.registerDay ? format(formData.registerDay, "dd/MM/yyyy", {locale:ptBR} ): '';
+	const registerTime  = formData.registerDay ? format(formData.registerDay, "hh:mm", {locale:ptBR} ): '';
+
+
 	return (
 		<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">
 			<div className="card-body">
@@ -55,13 +69,10 @@ export default function OrdersView() {
 							<strong>Empresa:</strong> Prefeitura da cidade de Almirante Tamandaré{formData.data}
 						</div>
 						<div className="col-md-4 mt-2">
-							<strong>Data:</strong> {formData.data}
+							<strong>Data:</strong> {registerDay}
 						</div>
 						<div className="col-md-4 mt-2">
-							<strong>Hora:</strong> {formData.hora}
-						</div>
-						<div className="col-md-4 mt-2">
-							<strong>Usuário:</strong> {formData.usuario}
+							<strong>Hora:</strong> {registerTime}
 						</div>
 
 						<h4 className="mt-5">Endereço</h4>
@@ -106,7 +117,13 @@ export default function OrdersView() {
 								{listOfKits.map((kit) => (
 									<tr>
 										<td>{kit.description}</td>
-										<td></td>
+										<td>
+											{kit?.materials?.map((material) => (
+											<div className="ms-3 my-2">
+												({material.material.quantity}) {material.material.description}
+											</div>
+										))}
+										</td>
 										<td className="text-center">{
 											kitAndQuantity.some((kq) => kq.kit_id === kit.id)
 												? kitAndQuantity.filter(
