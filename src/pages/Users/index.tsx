@@ -23,17 +23,35 @@ export default function Users() {
 		<div>
 			<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
 				<NavLink to="form" className="btn">
-					<BsFillPlusSquareFill  /> Novo
+					<BsFillPlusSquareFill /> Novo
 				</NavLink>
 			</div>
-			<div className="card list-height overflow-y-auto p-3 pb-3 mb-5">
-				{users.map((item, index) => (
-					<>
-						<ListItemUsers key={index} title={item.name} id={item.id} />
-						{users.length - 1 !== index && <hr />}
-					</>
-				))}
+			<div className="card list-height overflow-y-auto pb-0 mb-5">
+				<div className="card-header">
+					<p className="card-title">Lista de usuários</p>
+				</div>
+				<table className="w-100">
+					<thead>
+					<tr>
+						<th className="text-start">Usuário</th>
+						<th className="align-content-center text-start">User</th>
+						<th>Tipo</th>
+						<th className="align-content-center text-start">Email</th>
+						<th className="align-content-center text-center">Status</th>
+						<th>Ações</th>
+					</tr>
+					</thead>
+					<tbody>
+					{users.map((item, index) => (
+						<>
+							<ListItemUsers key={index} title={item.name} id={item.id}  />
+							{users.length - 1 !== index && <hr />}
+						</>
+					))}
+					</tbody>
+				</table>
 			</div>
 		</div>
+
 	);
 }

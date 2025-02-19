@@ -107,9 +107,25 @@ export default function Orders() {
 						<BsFillPlusSquareFill /> Novo
 					</NavLink>
 				</div>
-
-				<div className="card list-height overflow-y-auto p-md-3 pb-0 mb-5">
-					<div className="card-body">
+				<div className="card list-height overflow-y-auto pb-0 mb-5">
+					<div className="card-header">
+						<p className="card-title">Lista de OS</p>
+					</div>
+					<table className="w-100">
+						<thead>
+						<tr>
+							<th className="text-start">Numero OS</th>
+							<th>Data</th>
+							<th>Hora</th>
+							<th className="text-start">Usuário</th>
+							<th className="text-start">Endereço</th>
+							<th className="text-start">Bairro</th>
+							<th className="text-start">Cidade/UF</th>
+							<th>Status</th>
+							<th>Ações</th>
+						</tr>
+						</thead>
+						<tbody>
 						{orders.map((order) => (
 							<>
 								<ListItemOrders
@@ -130,8 +146,12 @@ export default function Orders() {
 								<hr />
 							</>
 						))}
-					</div>
+						</tbody>
+					</table>
 				</div>
+			</div>
+
+			<div>
 				<Modal
 					cancelCopy="Cancelar"
 					copy="Deseja remover o item selecionado ?"

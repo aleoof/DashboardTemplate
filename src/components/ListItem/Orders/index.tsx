@@ -1,6 +1,5 @@
 import {
 	BsFillPencilFill,
-	BsQrCode,
 	BsEyeFill,
 	BsFillTrashFill,
 	BsCopy,
@@ -11,9 +10,9 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
 export default function ListItemOrders({
-	address,
 	id,
 	qrcode,
+    address,
 	neighborhood,
 	city,
 	state,
@@ -33,28 +32,32 @@ export default function ListItemOrders({
 }) {
 	const { accessLevel } = useAccessLevelStore();
 	const formattedDate = date
-		? format(date, 'dd/MM/yy hh:mm', { locale: ptBR })
+		? format(date, 'dd/MM/yy', { locale: ptBR })
+		: '';
+	const formattedTime = date
+		? format(date, 'hh:mm', { locale: ptBR })
 		: '';
 	return (
-		<div className="w-100 h-20 d-flex align-items-center p-md-2 justify-content-between">
-			<div className="d-flex align-items-center gap-3">
-				<div className="thumbnail">
-					<BsQrCode />
-				</div>
-				<div className="d-sm-flex align-items-center gap-sm-3">
-					<h3 className="card-title mb-0">{qrcode}</h3>
-					<p className="card-title mb-0">{formattedDate}</p>
-				</div>
-			</div>
+		<tr>
+			<td className="text-start align-content-center">
+				<div className="d-flex gap-3 ">
 
-			<div className="d-sm-flex align-items-center gap-sm-3">
-				<p className="card-title mb-0">{address}</p>
-				<p className="card-title mb-0">
-					{neighborhood} {city}/{state}
-				</p>
-			</div>
+					<div className="align-content-center" >
+						<p className="title">#{qrcode}</p>
+					</div>
+				</div>
+			</td>
+			<td className="align-content-center">{formattedDate}</td>
+			<td className="align-content-center">{formattedTime}</td>
+			<td className="align-content-center text-start">?Usuário</td>
+			<td className="align-content-center text-start">{address}</td>
+			<td className="align-content-center text-start">{neighborhood}</td>
+			<td className="align-content-center text-start">{city}/{state}</td>
+			<td className="align-content-center">
+				<i className="status active"></i>Ativo
+			</td>
+			<td className="align-content-center">
 
-			<span className="d-flex gap-4">
 				{accessLevel === 2 ||
 					(accessLevel === 0 && (
 						<Link to={`view?id=${id}`}>
@@ -82,7 +85,7 @@ export default function ListItemOrders({
 						<BsCopy />
 					</a>
 				)}
-			</span>
-		</div>
+			</td>
+		</tr>
 	);
 }

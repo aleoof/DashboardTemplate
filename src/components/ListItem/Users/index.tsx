@@ -1,6 +1,7 @@
-import { BsPencilSquare } from 'react-icons/bs';
+import {BsEyeFill, BsFillPencilFill} from 'react-icons/bs';
 import { Link } from 'react-router';
 import './index.css';
+import useAccessLevelStore from "../../../stores/accessLevelStore.ts";
 
 export default function ListItemOrders({
 	title,
@@ -11,23 +12,43 @@ export default function ListItemOrders({
 	phone?: string;
 	id?: string;
 }) {
+	const { accessLevel } = useAccessLevelStore();
 	return (
-		<div className="w-100 h-20 d-flex align-items-center p-2 justify-content-between">
-			<div className="d-flex gap-3">
-				<input type="checkbox" />
-				<img
-					alt="John Michael"
-					src="https://themewagon.github.io/soft-ui-dashboard-react/static/media/team-2.e725aef8c892cb21f262.jpg"
-					className="img-fluid img-thumbnail"
-				/>
-				<div className="d-sm-flex gap-sm-3">
-				<p className="card-title mb-0">{title}</p>
-				<p className="card-text mb-0">(41) 999541 9995</p>
+
+		<tr>
+			<td className="text-start title align-content-center">
+				<div className="d-flex gap-3 ">
+					<img
+						alt="John Michael"
+						src="https://themewagon.github.io/soft-ui-dashboard-react/static/media/team-2.e725aef8c892cb21f262.jpg"
+						className="img-fluid img-thumbnail"
+					/>
+					<div className="align-content-center" >
+						<p className="title">{title}</p>
+					</div>
 				</div>
-			</div>
-			<Link to={`form?id=${id}`}>
-				<BsPencilSquare />
-			</Link>
-		</div>
+			</td>
+			<td className="align-content-center text-start">?username</td>
+			<td className="align-content-center">?type</td>
+			<td className="align-content-center text-start">?email</td>
+			<td className="align-content-center text-center">
+				<i className="status active"></i>Ativo
+			</td>
+			<td className="align-content-center">
+
+				{accessLevel === 2 ||
+					(accessLevel === 0 && (
+						<Link to={`view?id=${id}`}>
+							<BsEyeFill />
+						</Link>
+					))}
+				{accessLevel === 0 && (
+					<Link to={`form?id=${id}`}>
+						<BsFillPencilFill />
+					</Link>
+				)}
+
+			</td>
+		</tr>
 	);
 }

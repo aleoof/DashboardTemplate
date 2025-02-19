@@ -29,27 +29,71 @@ export default function MaterialsForm() {
 	}, []);
 
 	return (
-		<div>
-			<h4>Material</h4>
-			<hr />
-			<form onSubmit={saveMaterial}>
-				<div className="mb-3">
-					<label htmlFor="exampleInputEmail1" className="form-label">
-						Descrição
-					</label>
-					<input
-						value={formData.description}
-						type="text"
-						className="form-control"
-						id="description"
-						onChange={(e) => setFormData({ [e.target.id]: e.target.value })}
-					/>
-				</div>
+		<div className="row">
+			<div className="col-md-3">
+				<div className="card list-height overflow-y-auto pb-0 mb-5">
+					<div className="card-header">
+						<p className="card-title">Materiais</p>
+					</div>
+					<div className="card-body p-3">
 
-				<button type="submit" className="btn btn-primary">
-					Salvar
-				</button>
-			</form>
+					</div>
+				</div>
+			</div>
+			<div className="col-md-9">
+			<div className="card list-height overflow-y-auto pb-0 mb-5">
+				<div className="card-header">
+					<p className="card-title">Editar</p>
+					<button type="submit" className="btn btn-primary">
+						Salvar
+					</button>
+				</div>
+				<hr/>
+				<div className="card-body p-3">
+					<form onSubmit={saveMaterial}>
+						<div className="row">
+						<div className="mb-3 col-12">
+							<label htmlFor="exampleInputEmail1" className="form-label">
+								Descrição
+							</label>
+							<input
+								value={formData.description}
+								type="text"
+								className="form-control"
+								id="description"
+								onChange={(e) => setFormData({ [e.target.id]: e.target.value })}
+							/>
+						</div>
+
+						<div className="mb-3 col-6">
+							<label htmlFor="exampleInputEmail1" className="form-label">
+								Tipo
+							</label>
+							<input
+								value={formData.description}
+								type="text"
+								className="form-control"
+								id="description"
+								onChange={(e) => setFormData({ [e.target.id]: e.target.value })}
+							/>
+						</div>
+						<div className="mb-3 col-6">
+							<label htmlFor="exampleInputEmail1" className="form-label">
+								Status
+							</label>
+							<input
+								value={formData.description}
+								type="text"
+								className="form-control"
+								id="description"
+								onChange={(e) => setFormData({ [e.target.id]: e.target.value })}
+							/>
+						</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			</div>
 		</div>
 	);
 }

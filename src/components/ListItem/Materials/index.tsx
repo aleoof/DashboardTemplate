@@ -1,26 +1,54 @@
-import { BsPencilSquare, BsBox2Fill } from 'react-icons/bs';
+import {BsEyeFill, BsFillPencilFill, BsFillTrashFill} from 'react-icons/bs';
 import { Link } from 'react-router';
 import './index.css';
+import useAccessLevelStore from "../../../stores/accessLevelStore.ts";
 
 export default function ListItemOrders({
-	title,
-	id,
-}: {
+										   title,
+										   id,
+									   }: {
 	title?: string;
 	phone?: string;
 	id?: number;
 }) {
+	const { accessLevel } = useAccessLevelStore();
+
 	return (
-		<div className="w-100 h-20 d-flex align-items-center p-2 justify-content-between">
-			<div className="d-flex gap-3">
-				<div className="thumbnail">
-					<BsBox2Fill />
+		<tr>
+			<td className="text-start title">
+				<div className="d-flex gap-3 ">
+					<img
+						alt="John Michael"
+						src="https://themewagon.github.io/soft-ui-dashboard-react/static/media/team-2.e725aef8c892cb21f262.jpg"
+						className="img-fluid img-thumbnail-small"
+					/>
+					<div className="align-content-center" >
+						<p className="title">{title}</p>
+					</div>
 				</div>
-				<p className="card-title mb-0">{title}</p>
-			</div>
-			<Link to={`form?id=${id}`}>
-				<BsPencilSquare />
-			</Link>
-		</div>
+			</td>
+			<td className="align-content-center">type</td>
+			<td className="align-content-center">
+				<i className="status active"></i>Ativo
+			</td>
+			<td className="align-content-center">
+
+				{accessLevel === 0 && (
+					<Link to={`form?id=${id}`}>
+						<BsFillPencilFill />
+					</Link>
+				)}
+				{accessLevel === 2 && (
+					<Link to={`view?id=${id}`}>
+						<BsEyeFill />
+					</Link>
+				)}
+				{accessLevel === 0 && (
+					<a className="">
+						<BsFillTrashFill />
+					</a>
+				)}
+			</td>
+		</tr>
 	);
 }

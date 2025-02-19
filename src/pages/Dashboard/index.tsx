@@ -44,7 +44,7 @@ export default function Dashboard() {
 	return (
 
 		<div>
-			<div className="row d-flex pt-3">
+			<div className="row pt-3">
 				<div className="col-12 col-md-3 mt-4">
 					<div className="card">
 						<div className="card-body">
@@ -109,30 +109,43 @@ export default function Dashboard() {
 					</div>
 				</div>
 
-				<div className="col-12 col-md-6 mt-4">
-					<div className="card">
-						<div className="card-body">
+				<div className="col-12 col-md-12 mt-4">
+					<div className="card list-height overflow-y-auto pb-0 mb-5">
+						<div className="card-header pb-0">
 							<p className="card-title">OS do dia</p>
-							{orders.map((order) => (
-								<>
-									<ListItemOrdersDash
-										key={order.order.id}
-										qrcode={order.order.qr_code}
-										register={order.order.registerDay}
-										id={order.order.id}
-										address={order.order.address}
-									/>
-									<hr />
-								</>
-							))}
-
 						</div>
-					</div>
-				</div>
-				<div className="col-12 col-md-6 mt-4  d-none d-sm-none d-md-block">
-					<div className="card">
 						<div className="card-body">
-							<p className="card-title">Ultimos Acessos</p>
+							<table className="w-100">
+								<thead>
+								<tr>
+									<th className="text-start">Numero OS</th>
+									<th className="text-center">Hora</th>
+									<th className="text-start">Endereço</th>
+									<th className="text-start">Bairro</th>
+									<th className="text-start">Cidade</th>
+									<th className="text-start">Status</th>
+									<th>Ver</th>
+								</tr>
+								</thead>
+								<tbody>
+								{orders.map((order) => (
+									<>
+										<ListItemOrdersDash
+											key={order.order.id}
+											qrcode={order.order.qr_code}
+											register={order.order.registerDay}
+											id={order.order.id}
+											address={order.order.address}
+											neighborhood={order.order.neighborhood}
+											city={order.order.city}
+										/>
+										<hr />
+									</>
+								))}
+								</tbody>
+							</table>
+
+
 						</div>
 					</div>
 				</div>

@@ -1,6 +1,5 @@
 import {
-	BsQrCode,
-	BsEyeFill,
+	BsEyeFill, BsFillPencilFill,
 } from 'react-icons/bs';
 import { Link } from 'react-router';
 import {format} from "date-fns";
@@ -14,7 +13,6 @@ export default function ListItemOrders({
    neighborhood,
    city,
    register,
-   state,
 }: {
 	qrcode?: string;
 	address?: string;
@@ -25,35 +23,39 @@ export default function ListItemOrders({
 	id?: string | number;
 }) {
 	const { accessLevel } = useAccessLevelStore();
-	const date  = register ? format(register, "dd-MM hh:mm", {locale:ptBR} ): '';
+	const date  = register ? format(register, "hh:mm", {locale:ptBR} ): '';
 
 	return (
-		<div className="w-100 h-20 d-flex align-items-center p-2 justify-content-between">
-			<div className="d-flex align-items-center gap-3">
-				<div className="thumbnail">
-					<BsQrCode />
+		<tr>
+			<td className="text-start title align-content-center">
+				<div className="d-flex gap-3 ">
+					<div className="align-content-center" >
+						<p className="title">#{qrcode}</p>
+					</div>
 				</div>
-				<div className="d-sm-flex align-items-center gap-sm-3">
-					<h3 className="card-title mb-0">{qrcode}</h3>
-					<p className="card-title mb-0">{date}</p>
-				</div>
+			</td>
+			<td className="align-content-center">{date}</td>
+			<td className="align-content-center text-start">{address}</td>
+			<td className="align-content-center text-start">{neighborhood}</td>
+			<td className="align-content-center text-start">{city}</td>
+			<td className="align-content-center text-start">
+				<i className="status active"></i>Ativo
+			</td>
+			<td className="align-content-center">
 
-			</div>
-			<div className="d-sm-flex align-items-center gap-sm-3">
-				<p className="card-title mb-0">{address}</p>
-				<p className="card-title mb-0">
-					{neighborhood}
-					{city}{state}
-					Xaxim Curitiba/PR </p>
-			</div>
-			<span className="d-flex gap-4">
-				{accessLevel === 2 || accessLevel === 0 &&(
-					<Link to={`orders/view?id=${id}`}>
-						<BsEyeFill />
+				{accessLevel === 2 ||
+					(accessLevel === 0 && (
+						<Link to={`view?id=${id}`}>
+							<BsEyeFill />
+						</Link>
+					))}
+				{accessLevel === 0 && (
+					<Link to={`form?id=${id}`}>
+						<BsFillPencilFill />
 					</Link>
 				)}
-			</span>
 
-		</div>
+			</td>
+		</tr>
 	);
 }

@@ -25,15 +25,30 @@ export default function Materials() {
 						<BsFillPlusSquareFill /> Novo
 					</NavLink>
 				</div>
-				<div className="card list-height overflow-y-auto p-3 pb-0 mb-5">
-					{materials.map((material) => (
-						<>
-							<ListItem id={material.id} title={material.description} />
-							<hr />
-						</>
-					))}
+				<div className="card list-height overflow-y-auto pb-0 mb-5">
+					<div className="card-header">
+						<p className="card-title">Lista de Materiais</p>
+					</div>
+					<table className="w-100">
+						<thead>
+						<tr>
+							<th className="text-start">Material</th>
+							<th>Tipo</th>
+							<th>Status</th>
+							<th>Ações</th>
+						</tr>
+						</thead>
+						<tbody>
+						{materials.map((material) => (
+							<>
+								<ListItem id={material.id} title={material.description} />
+							</>
+						))}
+						</tbody>
+					</table>
 				</div>
 			</div>
+
 		</>
 	);
 }
