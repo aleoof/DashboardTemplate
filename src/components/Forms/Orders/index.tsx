@@ -236,7 +236,7 @@ export default function OrdersForm() {
 								onChange={(e) =>
 									setFormData((prev) => ({
 										...prev,
-										[e.target.id]: e.target.value,
+										[e.target.id]: `${e.target.value}`,
 									}))
 								}
 							/>

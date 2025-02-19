@@ -4,50 +4,18 @@ import {BsClipboardDataFill, BsPersonBadgeFill, BsTools} from "react-icons/bs";
 import { useEffect, useState } from 'react';
 import { api } from '../../api';
 import ListItemOrdersDash from "../../components/ListItem/OrdersDash";
-import {format} from "date-fns";
 
 export default function Dashboard() {
 
-	// const [orders, setOrders] = useState<
-	// 	Array<{ id: number; qr_code: string; address: string; registerDay: string}>
-	// >([]);
 	const [orders, setOrders] = useState<
-		Array<{
-			order: {
-				active: boolean;
-				address: string;
-				city: string;
-				id: number;
-				lat: string;
-				long: string;
-				neighborhood: string;
-				observations: string;
-				qr_code: string;
-				registerDay: string;
-				state: string;
-			};
-			ordersKits: {
-				kit_id: number;
-				quantity: string;
-				kit: { description: string };
-			}[];
-		}>
+		Array<{ id: number; qr_code: string; address: string; registerDay: string }>
 	>([]);
 
-	// const getOrders = async () => {
-	// 	const response = await api.get('orders');
-	// 	setOrders(response.data);
-	// };
 
 	const getOrders = async () => {
-		const today = new Date();
-		const formattedDate = format(today, 'yyyy-MM-dd');
-		const response = await api.get(`/orders/report?start=${formattedDate}&end=${formattedDate}`);
+		const response = await api.get('orders');
 		setOrders(response.data);
-		//const teste =(response.data).length
 	};
-
-
 	useEffect(() => {
 		getOrders();
 	}, []);
@@ -62,7 +30,7 @@ export default function Dashboard() {
 						<div className="card-body">
 							<div className="float-start">
 								<p className="card-title">Ordens de Serviço</p>
-								<h3 className="fw-bold"><span className="card-text"> Hoje</span></h3>
+								<h3 className="fw-bold">55<span className="card-text"> Hoje</span></h3>
 							</div>
 							<div className="icons"><BsClipboardDataFill /></div>
 						</div>
@@ -128,11 +96,11 @@ export default function Dashboard() {
 							{orders.map((order) => (
 								<>
 									<ListItemOrdersDash
-										key={order.order.id}
-										qrcode={order.order.qr_code}
-										register={order.order.registerDay}
-										id={order.order.id}
-										address={order.order.address}
+										key={order.id}
+										qrcode={order.qr_code}
+										register={order.registerDay}
+										id={order.id}
+										address={order.address}
 									/>
 									<hr />
 								</>
