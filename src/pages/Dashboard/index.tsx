@@ -1,21 +1,41 @@
 import {BsClipboardDataFill, BsPersonBadgeFill, BsTools} from "react-icons/bs";
-// import ListItemUsersLog from "../../components/ListItem/UsersLog";
-
-import { useEffect, useState } from 'react';
-import { api } from '../../api';
 import ListItemOrdersDash from "../../components/ListItem/OrdersDash";
+import { useEffect, useState } from 'react';
+import {format} from "date-fns";
+import { api } from '../../api';
 
 export default function Dashboard() {
-
 	const [orders, setOrders] = useState<
-		Array<{ id: number; qr_code: string; address: string; registerDay: string }>
+		Array<{
+			order: {
+				active: boolean;
+				address: string;
+				city: string;
+				id: number;
+				lat: string;
+				long: string;
+				neighborhood: string;
+				observations: string;
+				qr_code: string;
+				registerDay: string;
+				state: string;
+			};
+			ordersKits: {
+				kit_id: number;
+				quantity: string;
+				kit: { description: string };
+			}[];
+		}>
 	>([]);
 
-
 	const getOrders = async () => {
-		const response = await api.get('orders');
+		const today = new Date();
+		const formattedDate = format(today, 'yyyy-MM-dd');
+		const response = await api.get(`/orders/report?start=${formattedDate}&end=${formattedDate}`);
 		setOrders(response.data);
+		//const teste =(response.data).length
 	};
+
 	useEffect(() => {
 		getOrders();
 	}, []);
@@ -78,14 +98,14 @@ export default function Dashboard() {
 					</div>
 				</div>
 				<div className="col-12 col-md-4 mt-4  d-none d-md-block">
-						<div className="card">
-							<div className="card-body bg-info">
-								<p className="card-title mb-5">Aviso Importante</p>
-								<h4 className="fw-bold">Sistema em desenvolvimento</h4>
-								<h4 className="fw-bold mb-5">Aguarde lançamento</h4>
+					<div className="card">
+						<div className="card-body bg-info">
+							<p className="card-title mb-5">Aviso Importante</p>
+							<h4 className="fw-bold">Sistema em desenvolvimento</h4>
+							<h4 className="fw-bold mb-5">Aguarde lançamento</h4>
 
-								<a className="mt-5 text-white" href="/version">Saiba Mais</a>
-							</div>
+							<a className="mt-5 text-white" href="/version">Saiba Mais</a>
+						</div>
 					</div>
 				</div>
 
@@ -96,11 +116,11 @@ export default function Dashboard() {
 							{orders.map((order) => (
 								<>
 									<ListItemOrdersDash
-										key={order.id}
-										qrcode={order.qr_code}
-										register={order.registerDay}
-										id={order.id}
-										address={order.address}
+										key={order.order.id}
+										qrcode={order.order.qr_code}
+										register={order.order.registerDay}
+										id={order.order.id}
+										address={order.order.address}
 									/>
 									<hr />
 								</>
