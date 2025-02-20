@@ -22,6 +22,15 @@ p, h1, h2,h3,h4, h5, span{
 label.form-label{
   margin: 0;
   padding: 0;
+  font-size: 0.75rem;
+  line-height: 1.25;
+  letter-spacing: 0.03333em;
+  opacity: 1;
+  text-transform: capitalize;
+  vertical-align: unset;
+  text-decoration: none;
+  color: rgb(52, 71, 103);
+  font-weight: 700;
 }
 
 button.btn, a.btn{
@@ -44,16 +53,28 @@ button.btn:hover, a.btn:hover{
   font-size: 11px;
   color: #838383;
 }
-input.form-control, select.form-control{
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.43;
-  border-width: 1px;
-  border-image: initial;
-  border-style: solid;
-  border-color: rgb(244, 247, 254);
-  padding: 10px 20px;
+input.form-control, select.form-select{
+  margin-top: 8px;
+  letter-spacing: 0.00938em;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  -webkit-box-align: center;
+  padding: 0.5rem 0.75rem;
+  border: 0.0625rem solid rgb(210, 214, 218);
+  border-radius: 0.5rem;
+  pointer-events: auto;
+  display: grid !important;
+  width: 100% !important;
+  height: auto !important;
+  font-size: 0.875rem !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  color: rgb(73, 80, 87) !important;
+  background-color: rgb(255, 255, 255) !important;
+  background-clip: padding-box !important;
+  appearance: none !important;
+  transition: box-shadow 150ms, border-color 150ms, padding 150ms !important;
 }
 
 .search{

@@ -5,7 +5,13 @@ import { api } from '../../api';
 import { useEffect, useState } from 'react';
 
 export default function Users() {
-	const [users, setUsers] = useState<Array<{ name: string; id: string }>>([]);
+	const [users, setUsers] = useState<Array<{
+		name: string;
+		id: string;
+		login: string;
+		access_level: number;
+		email: string;
+	}>>([]);
 
 	const getUsers = async () => {
 		try {
@@ -44,7 +50,14 @@ export default function Users() {
 					<tbody>
 					{users.map((item, index) => (
 						<>
-							<ListItemUsers key={index} title={item.name} id={item.id}  />
+							<ListItemUsers
+								key={index}
+								title={item.name}
+								id={item.id}
+								login={item.login}
+								email={item.email}
+								access_level={item.access_level}
+							/>
 							{users.length - 1 !== index && <hr />}
 						</>
 					))}

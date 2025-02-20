@@ -25,7 +25,7 @@ export default function Materials() {
 						<BsFillPlusSquareFill /> Novo
 					</NavLink>
 				</div>
-				<div className="card list-height overflow-y-auto pb-0 mb-5">
+				<div className="card overflow-y-auto pb-0 mb-5">
 					<div className="card-header">
 						<p className="card-title">Lista de Materiais</p>
 					</div>
