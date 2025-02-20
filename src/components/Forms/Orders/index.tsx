@@ -344,18 +344,6 @@ export default function OrdersForm() {
 									</option>
 								))}
 							</select>
-							{/* <input
-								type="text"
-								className="form-control"
-								id="state"
-								value={formData.state}
-								onChange={(e) =>
-									setFormData((prev) => ({
-										...prev,
-										[e.target.id]: e.target.value,
-									}))
-								}
-							/> */}
 						</div>
 						<div className="mb-3">
 							<label htmlFor="exampleInputEmail1" className="form-label">
