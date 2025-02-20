@@ -37,7 +37,7 @@ export default function Orders() {
 	}, [date]);
 	const getOrders = async () => {
 		const response = await api.get('orders');
-		setOrders(response.data);
+		setOrders(response.data.orders);
 	};
 
 	const toReportPage = () => {
@@ -113,39 +113,39 @@ export default function Orders() {
 					</div>
 					<table className="w-100">
 						<thead>
-						<tr>
-							<th className="text-start">Numero OS</th>
-							<th>Data</th>
-							<th>Hora</th>
-							<th className="text-start">Usuário</th>
-							<th className="text-start">Endereço</th>
-							<th className="text-start">Bairro</th>
-							<th className="text-start">Cidade/UF</th>
-							<th>Status</th>
-							<th>Ações</th>
-						</tr>
+							<tr>
+								<th className="text-start">Numero OS</th>
+								<th>Data</th>
+								<th>Hora</th>
+								<th className="text-start">Usuário</th>
+								<th className="text-start">Endereço</th>
+								<th className="text-start">Bairro</th>
+								<th className="text-start">Cidade/UF</th>
+								<th>Status</th>
+								<th>Ações</th>
+							</tr>
 						</thead>
 						<tbody>
-						{orders.map((order) => (
-							<>
-								<ListItemOrders
-									key={order.id}
-									qrcode={order.qr_code}
-									id={order.id}
-									address={order.address}
-									city={order.city}
-									neighborhood={order.neighborhood}
-									state={order.state}
-									date={order.registerDay}
-									deleteListItem={() => {
-										setDeleteId(order.id);
-										openModal();
-									}}
-									duplicateItem={() => duplicateItem(order.id)}
-								/>
-								<hr />
-							</>
-						))}
+							{orders.map((order) => (
+								<>
+									<ListItemOrders
+										key={order.id}
+										qrcode={order.qr_code}
+										id={order.id}
+										address={order.address}
+										city={order.city}
+										neighborhood={order.neighborhood}
+										state={order.state}
+										date={order.registerDay}
+										deleteListItem={() => {
+											setDeleteId(order.id);
+											openModal();
+										}}
+										duplicateItem={() => duplicateItem(order.id)}
+									/>
+									<hr />
+								</>
+							))}
 						</tbody>
 					</table>
 				</div>
