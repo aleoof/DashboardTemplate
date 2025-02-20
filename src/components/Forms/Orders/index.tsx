@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import './styles.css';
 import Toast from '../../Toast';
+import { estadosBrasileiros } from './data';
 
 export default function OrdersForm() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
@@ -129,7 +130,7 @@ export default function OrdersForm() {
 			// lat,
 			// long,
 			qr_code,
-			protocol,
+			protocolNumber,
 		} = formData;
 
 		try {
@@ -144,7 +145,7 @@ export default function OrdersForm() {
 					long: `${userLocation?.longitude}`,
 					qr_code,
 					ordersKits: kitAndQuantity,
-					protocol,
+					protocolNumber,
 				});
 				setSuccess(true);
 				setOpenToast(true);
@@ -162,7 +163,7 @@ export default function OrdersForm() {
 					long: `${userLocation?.longitude}`,
 					qr_code,
 					ordersKits: kitAndQuantity,
-					protocol,
+					protocolNumber,
 				});
 				const orderId = response.data.id;
 				setSuccess(true);
@@ -224,7 +225,7 @@ export default function OrdersForm() {
 				)}
 				<form onSubmit={saveOrder}>
 					<div className="row">
-						<div className="mb-3 col-11">
+						<div className="mb-3 col-10 col-md-11">
 							<label htmlFor="exampleInputEmail1" className="form-label">
 								Número da OS
 							</label>
@@ -249,15 +250,15 @@ export default function OrdersForm() {
 						>
 							<BsQrCode />
 						</button>
-						<div className="mb-3 col-11">
+						<div className="mb-3 col-12 col-md-11">
 							<label htmlFor="exampleInputEmail1" className="form-label">
 								Número do Protocolo
 							</label>
 							<input
 								type="text"
 								className="form-control"
-								id="protocol"
-								value={formData.protocol}
+								id="protocolNumber"
+								value={formData.protocolNumber}
 								onChange={(e) =>
 									setFormData((prev) => ({
 										...prev,
@@ -283,7 +284,7 @@ export default function OrdersForm() {
 								}
 							/>
 						</div>
-						<div className="mb-3 col-5">
+						<div className="mb-3 col-6 col-md-5">
 							<label htmlFor="exampleInputEmail1" className="form-label">
 								Bairro
 							</label>
@@ -301,7 +302,7 @@ export default function OrdersForm() {
 							/>
 						</div>
 
-						<div className="mb-3 col-5">
+						<div className="mb-3 col-6 col-md-5">
 							<label htmlFor="exampleInputEmail1" className="form-label">
 								Município
 							</label>
@@ -319,11 +320,31 @@ export default function OrdersForm() {
 							/>
 						</div>
 
-						<div className="mb-3 col-2">
+						<div className="mb-3 col-12 col-md-2">
 							<label htmlFor="exampleInputEmail1" className="form-label">
 								UF
 							</label>
-							<input
+							<select
+								className="form-control"
+								id="state"
+								value={formData.state}
+								onChange={(e) =>
+									setFormData((prev) => ({
+										...prev,
+										[e.target.id]: e.target.value,
+									}))
+								}
+							>
+								<option value={''} selected disabled>
+									Selecione uma UF
+								</option>
+								{estadosBrasileiros.map((state, index) => (
+									<option key={index} value={state.acronym}>
+										{state.state}
+									</option>
+								))}
+							</select>
+							{/* <input
 								type="text"
 								className="form-control"
 								id="state"
@@ -334,7 +355,7 @@ export default function OrdersForm() {
 										[e.target.id]: e.target.value,
 									}))
 								}
-							/>
+							/> */}
 						</div>
 						<div className="mb-3">
 							<label htmlFor="exampleInputEmail1" className="form-label">
