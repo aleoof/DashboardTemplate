@@ -1,26 +1,46 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../../api';
 import { useNavigate, useSearchParams } from 'react-router';
+import Toast from '../../Toast';
 
 export default function MaterialsForm() {
-	const [formData, setFormData] = useState<{ [field: string]: string }>({
+	const [formData, setFormData] = useState<{
+		[field: string]: string;
+	}>({
 		description: '',
 		group: '',
 		active: 'true',
 	});
 	const route = useNavigate();
 	const [searchParams] = useSearchParams();
+	const [success, setSuccess] = useState(true);
+	const [openToast, setOpenToast] = useState(false);
 	const id = searchParams.get('id');
 
 	const saveMaterial = async (e: any) => {
 		e.preventDefault();
-		if (id) {
-			await api.put(`material/${id}`, formData);
-		} else {
-			console.log(formData);
-			await api.post('material', formData);
+		try {
+			if (id) {
+				await api.put(`material/${id}`, formData);
+				setOpenToast(true);
+				setTimeout(() => {
+					setOpenToast(false);
+				}, 1300);
+			} else {
+				const response = await api.post('material', formData);
+				const { id } = response.data;
+				setOpenToast(true);
+				setTimeout(() => {
+					setOpenToast(false);
+				}, 1300);
+				route(`/materials/form?id=${id}`);
+			}
+			setSuccess(true);
+		} catch (error) {
+			console.error(error);
+			setOpenToast(true);
+			setSuccess(false);
 		}
-		route('/materials');
 	};
 
 	const getMaterial = async () => {
@@ -31,11 +51,14 @@ export default function MaterialsForm() {
 	};
 
 	useEffect(() => {
-		getMaterial();
+		if (id) {
+			getMaterial();
+		}
 	}, []);
 
 	return (
 		<div className="row">
+			{openToast && <Toast success={success} />}
 			<div className="col-md-3">
 				<div className="card list-height overflow-y-auto pb-0 mb-5">
 					<div className="card-header">
@@ -101,8 +124,7 @@ export default function MaterialsForm() {
 									</label>
 									<select
 										id="active"
-										defaultValue="true"
-										value={formData.active && 'true'}
+										value={`${formData.active}`}
 										className="form-control mt-2"
 										onChange={(e) =>
 											setFormData((prev) => ({
@@ -111,7 +133,9 @@ export default function MaterialsForm() {
 											}))
 										}
 									>
-										<option value="true">Ativo</option>
+										<option selected value="true">
+											Ativo
+										</option>
 										<option value="false">Inativo</option>
 									</select>
 								</div>

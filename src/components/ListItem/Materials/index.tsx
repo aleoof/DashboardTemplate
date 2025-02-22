@@ -6,10 +6,12 @@ import useAccessLevelStore from '../../../stores/accessLevelStore.ts';
 export default function ListItemOrders({
 	title,
 	id,
+	group,
 	deleteItem,
 }: {
 	title?: string;
 	id?: number;
+	group?: string;
 	deleteItem: () => void;
 }) {
 	const { accessLevel } = useAccessLevelStore();
@@ -28,7 +30,7 @@ export default function ListItemOrders({
 					</div>
 				</div>
 			</td>
-			<td className="align-content-center">type</td>
+			<td className="align-content-center">{group}</td>
 			<td className="align-content-center">
 				<i className="status active"></i>Ativo
 			</td>

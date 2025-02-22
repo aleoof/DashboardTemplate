@@ -9,7 +9,7 @@ import Modal from '../../components/Modal';
 
 export default function Materials() {
 	const [materials, setMaterials] = useState<
-		Array<{ id: number; description: string }>
+		Array<{ id: number; description: string; group: string }>
 	>([]);
 	const [deleteId, setDeleteId] = useState<number | null>(null);
 	const { openModal, closeModal } = useModalStore((state) => state);
@@ -52,6 +52,7 @@ export default function Materials() {
 							{materials.map((material) => (
 								<>
 									<ListItem
+										group={material.group}
 										id={material.id}
 										title={material.description}
 										deleteItem={() => {
