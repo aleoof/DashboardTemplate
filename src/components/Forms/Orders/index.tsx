@@ -126,6 +126,7 @@ export default function OrdersForm() {
 			neighborhood,
 			city,
 			state,
+			status,
 			observations,
 			// lat,
 			// long,
@@ -140,6 +141,7 @@ export default function OrdersForm() {
 					neighborhood,
 					city,
 					state,
+					status,
 					observations,
 					lat: `${userLocation?.latitude}`,
 					long: `${userLocation?.longitude}`,
@@ -158,6 +160,7 @@ export default function OrdersForm() {
 					neighborhood,
 					city,
 					state,
+					status,
 					observations,
 					lat: `${userLocation?.latitude}`,
 					long: `${userLocation?.longitude}`,
@@ -250,7 +253,7 @@ export default function OrdersForm() {
 						>
 							<BsQrCode />
 						</button>
-						<div className="mb-3 col-12 col-md-11">
+						<div className="mb-3 col-6 col-md-6">
 							<label htmlFor="exampleInputEmail1" className="form-label">
 								Número do Protocolo
 							</label>
@@ -266,6 +269,28 @@ export default function OrdersForm() {
 									}))
 								}
 							/>
+						</div>
+						<div className="mb-3 col-6">
+							<label htmlFor="exampleInputEmail1" className="form-label">
+								Status
+							</label>
+							<select
+								id="status"
+								value={`${formData.status}`}
+								className="form-control mt-2"
+								onChange={(e) =>
+									setFormData((prev) => ({
+										...prev,
+										[e.target.id]: e.target.value,
+									}))
+								}
+							>
+								<option selected value="0">
+									Aberto
+								</option>
+								<option value="1">Em trabalho</option>
+								<option value="2">Finalizado</option>
+							</select>
 						</div>
 						<div className="mb-3">
 							<label htmlFor="exampleInputEmail1" className="form-label">
@@ -409,8 +434,8 @@ export default function OrdersForm() {
 														value={
 															kitAndQuantity.some((kq) => kq.kit_id === kit.id)
 																? kitAndQuantity.filter(
-																		(k) => k.kit_id === kit.id
-																  )[0].quantity
+																	(k) => k.kit_id === kit.id
+																)[0].quantity
 																: ''
 														}
 														type="text"

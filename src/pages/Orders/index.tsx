@@ -21,6 +21,7 @@ export default function Orders() {
 			city: string;
 			neighborhood: string;
 			state: string;
+			status: number;
 			registerDay: Date;
 		}>
 	>([]);
@@ -136,6 +137,7 @@ export default function Orders() {
 										city={order.city}
 										neighborhood={order.neighborhood}
 										state={order.state}
+										status={order.status}
 										date={order.registerDay}
 										deleteListItem={() => {
 											setDeleteId(order.id);

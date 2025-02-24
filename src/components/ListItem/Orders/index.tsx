@@ -9,6 +9,8 @@ import useAccessLevelStore from '../../../stores/accessLevelStore';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
+import Status from '../../StatusOS/';
+
 export default function ListItemOrders({
 	id,
 	qrcode,
@@ -16,6 +18,7 @@ export default function ListItemOrders({
 	neighborhood,
 	city,
 	state,
+	status,
 	date,
 	deleteListItem,
 	duplicateItem,
@@ -25,6 +28,7 @@ export default function ListItemOrders({
 	neighborhood?: string;
 	city?: string;
 	state?: string;
+	status: number;
 	id?: string | number;
 	date: Date;
 	deleteListItem?: () => void;
@@ -54,7 +58,7 @@ export default function ListItemOrders({
 			<td className="align-content-center text-start">{neighborhood}</td>
 			<td className="align-content-center text-start">{city}/{state}</td>
 			<td className="align-content-center">
-				<i className="status active"></i>Ativo
+				<Status statusOS={status} />
 			</td>
 			<td className="align-content-center">
 

@@ -12,6 +12,7 @@ export default function Dashboard() {
 	const [orders, setOrders] = useState<
 		Array<{
 			order: {
+				status: number;
 				active: boolean;
 				address: string;
 				city: string;
@@ -22,7 +23,7 @@ export default function Dashboard() {
 				observations: string;
 				qr_code: string;
 				registerDay: string;
-				state: string;
+				state: number;
 			};
 			ordersKits: {
 				kit_id: number;
@@ -186,6 +187,7 @@ export default function Dashboard() {
 												qrcode={order.order.qr_code}
 												register={order.order.registerDay}
 												id={order.order.id}
+												status={order.order.status}
 												address={order.order.address}
 												neighborhood={order.order.neighborhood}
 												city={order.order.city}

@@ -5,22 +5,25 @@ import { Link } from 'react-router';
 import {format} from "date-fns";
 import useAccessLevelStore from '../../../stores/accessLevelStore';
 import {ptBR} from "date-fns/locale";
+import Status from "../../StatusOS";
 
 export default function ListItemOrders({
-   address,
-   id,
-   qrcode,
-   neighborhood,
-   city,
-   register,
-}: {
-	qrcode?: string;
-	address?: string;
-	neighborhood?: string;
-	city?: string;
-	register?: string;
-	state?: string;
-	id?: string | number;
+	   address,
+	   id,
+	   qrcode,
+	   neighborhood,
+	   city,
+	   register,
+	   status
+   }: {
+	qrcode?: string,
+	address?: string,
+	neighborhood?: string,
+	city?: string,
+	register?: string,
+	state?: string,
+	id?: string | number,
+	status?: number
 }) {
 	const { accessLevel } = useAccessLevelStore();
 	const date  = register ? format(register, "hh:mm", {locale:ptBR} ): '';
@@ -39,7 +42,7 @@ export default function ListItemOrders({
 			<td className="align-content-center text-start">{neighborhood}</td>
 			<td className="align-content-center text-start">{city}</td>
 			<td className="align-content-center text-start">
-				<i className="status active"></i>Ativo
+				<Status statusOS={status} />
 			</td>
 			<td className="align-content-center">
 
