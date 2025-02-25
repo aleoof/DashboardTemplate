@@ -108,7 +108,7 @@ export default function Orders() {
 						<BsFillPlusSquareFill /> Novo
 					</NavLink>
 				</div>
-				<div className="card list-height overflow-y-auto pb-0 mb-5">
+				<div className="card pb-0 mb-5">
 					<div className="card-header">
 						<p className="card-title">Lista de OS</p>
 					</div>
@@ -150,6 +150,21 @@ export default function Orders() {
 							))}
 						</tbody>
 					</table>
+					<div className="card-footer">
+						<div className="d-flex justify-content-between align-items-center gap-3">
+							<div className="d-flex "><p
+								className="">Mostrando 1 a 7 de 15 registros</p>
+							</div>
+							<div className="pagination">
+								<ul className="">
+									<li className="active">1</li>
+									<li>2</li>
+									<li>3</li>
+									<li>4</li>
+								</ul>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 

@@ -5,7 +5,7 @@
   background: #f2f5fc;
   color:#0f0f0f;
   display: block;
-  font-family: "DM Sans", sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.43;
@@ -14,7 +14,7 @@ p, h1, h2,h3,h4, h5, span{
   margin: 0 !important;
   padding: 0 !important;
   color:#0f0f0f;
-  font-family: "DM Sans", sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.43;
@@ -36,7 +36,7 @@ label.form-label{
 button.btn, a.btn{
   background: #1837fd;
   background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
-  font-family: "DM Sans", sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.43;
@@ -49,12 +49,29 @@ button.btn:hover, a.btn:hover{
   color:#ffffff;
 }
 
+button.btn, a.btn{
+  background: #1837fd;
+  background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+  color: white;
+  border: 0px;
+}
+
+button.btn:hover, a.btn:hover{
+  background: linear-gradient(290deg, rgb(33, 82, 255), rgb(33, 212, 253));
+  color:#ffffff;
+}
+
+
 .company{
   font-size: 11px;
   color: #838383;
 }
-input.form-control, select.form-select{
-  margin-top: 8px;
+input.form-control, select.form-control{
+  margin-top: 5px;
   letter-spacing: 0.00938em;
   box-sizing: border-box;
   position: relative;
@@ -67,7 +84,7 @@ input.form-control, select.form-select{
   display: grid !important;
   width: 100% !important;
   height: auto !important;
-  font-size: 0.875rem !important;
+  font-size: 0.775rem !important;
   font-weight: 400 !important;
   line-height: 1.4 !important;
   color: rgb(73, 80, 87) !important;
@@ -84,7 +101,7 @@ input.form-control, select.form-select{
   align-items: center;
 }
 input.nav{
-  font-family: "DM Sans", sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.43;
@@ -130,6 +147,26 @@ input[type='checkbox']{
 .card.header{
   background: none;
   padding: 10px 0;
+}
+.card .card-footer{
+  background: none;
+  padding: 20px 20px;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  border: 0px;
+  color: #2c2c2c;
+}
+.card .card-footer p{
+  margin: 0px;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.25;
+  letter-spacing: 0.03333em;
+  opacity: 1;
+  text-transform: none;
+  vertical-align: unset;
+  text-decoration: none;
+  color: rgb(103, 116, 142);
+  font-weight: 500;
 }
 
 .icons{
@@ -190,14 +227,15 @@ input[type='checkbox']{
   border: 0;
 }
 
-.card .card-header .card-title{
+.card .card-title{
   margin: 0px;
-  font-size: 1rem;
-  line-height: 1.375;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.5;
   font-family: Roboto, Helvetica, Arial, sans-serif;
   letter-spacing: 0em;
   opacity: 1;
-  color: rgb(52, 71, 103);
+  color: rgb(103, 116, 142);
   font-weight: 700;
 }
 
@@ -210,7 +248,7 @@ input[type='checkbox']{
   cursor: pointer;
   line-height: 0;
   margin: 7px;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .card svg:hover{
@@ -340,4 +378,58 @@ td, th{
   background-image: -webkit-linear-gradient(140deg, #c3c3c3, #2c2c2c);
   background-image: linear-gradient(140deg, #c3c3c3, #2c2c2c);
   color: #344767;
+}
+
+.pagination ul{
+  margin-bottom:0;
+  padding: 0;
+}
+
+.pagination ul li{
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  outline: 0px;
+  cursor: pointer;
+  vertical-align: middle;
+  appearance: none;
+  text-decoration: none;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  letter-spacing: 0.02857em;
+  border: 1px solid rgb(222, 226, 230);
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  line-height: 1.4;
+  text-align: center;
+  text-transform: uppercase;
+  user-select: none;
+  transition: 150msease-in;
+  background-image: initial;
+  background-position-y: initial;
+  background-repeat: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: transparent;
+  color: rgb(131, 146, 171);
+  border-radius: 10rem;
+  padding: 0.6875rem 0.6875rem 0.625rem;
+  margin: 0px 0.125rem;
+  pointer-events: auto;
+  font-weight: 400;
+  font-size: 0.875rem;
+  width: 2.25rem;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  min-height: 2.25rem;
+  background-size: 150% !important;
+  background-position-x: 25% !important;
+}
+ul li.active{
+    border: 0px rgb(222, 226, 230);
+    background-image: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
+    color: rgb(255, 255, 255);
 }

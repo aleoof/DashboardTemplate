@@ -57,10 +57,10 @@ export default function ListItemOrders({
 			<td className="align-content-center text-start">{address}</td>
 			<td className="align-content-center text-start">{neighborhood}</td>
 			<td className="align-content-center text-start">{city}/{state}</td>
-			<td className="align-content-center">
+			<td className="align-content-center text-start">
 				<Status statusOS={status} />
 			</td>
-			<td className="align-content-center">
+			<td className="align-content-center ">
 
 				{accessLevel === 2 ||
 					(accessLevel === 0 && (

@@ -217,7 +217,7 @@ export default function OrdersForm() {
 	};
 
 	return (
-		<div className="card list-height form-container p-3 pb-3 mb-5">
+		<div className="card form-container p-3 pb-3 mb-5">
 			{openToast && <Toast success={success} />}
 			<div className="card-body row">
 				{openQR && (
@@ -277,7 +277,7 @@ export default function OrdersForm() {
 							<select
 								id="status"
 								value={`${formData.status}`}
-								className="form-control mt-2"
+								className="form-control"
 								onChange={(e) =>
 									setFormData((prev) => ({
 										...prev,
@@ -455,11 +455,11 @@ export default function OrdersForm() {
 											</div>
 										</div>
 										<div className="flex-fill">
-											{kit?.materials?.map((material) => (
-												<div className="ms-3 my-2">
-													{material.material.description}
-												</div>
-											))}
+											{/*{kit?.materials?.map((material) => (*/}
+											{/*	<div className="ms-3 my-2">*/}
+											{/*		{material.material.description}*/}
+											{/*	</div>*/}
+											{/*))}*/}
 										</div>
 									</div>
 								))}

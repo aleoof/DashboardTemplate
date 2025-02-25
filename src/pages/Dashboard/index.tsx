@@ -166,7 +166,7 @@ export default function Dashboard() {
 						<div className="card-header pb-0">
 							<p className="card-title">OS do dia</p>
 						</div>
-						<div className="card-body">
+
 							<table className="w-100">
 								<thead>
 									<tr>
@@ -197,7 +197,6 @@ export default function Dashboard() {
 									))}
 								</tbody>
 							</table>
-						</div>
 					</div>
 				</div>
 			</div>
