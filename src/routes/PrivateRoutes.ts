@@ -64,13 +64,13 @@ export const privateRoutes = [
 		path: '/materials',
 		icon: 'materials',
 		component: Materials,
-		access: [0, 1, 2],
+		access: [0],
 		children: [
 			{
 				name: 'Novo Material',
 				path: '/materials/form',
 				component: Form,
-				access: [0, 1, 2],
+				access: [0],
 			},
 		],
 	},
@@ -79,7 +79,7 @@ export const privateRoutes = [
 		path: '/tags',
 		icon: 'tag',
 		component: Tags,
-		access: [0, 1, 2],
+		access: [0],
 		children: [
 			{
 				name: 'Novo QR code',
