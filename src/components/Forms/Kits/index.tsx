@@ -28,15 +28,20 @@ export default function KitsForm() {
 
 	const getKit = async () => {
 		const response = await api.get(`/kit/${id}`);
-		response.data.materials.map(
+		const materialsList = response.data.materials.map(
 			(km: { material_id: number; quantity: string }) => {
 				const materialInfo = materials.filter(
 					(material) => material.id === km.material_id
 				);
 				setListOfMaterials((prev) => [...prev, materialInfo[0]]);
+				return {
+					id: km.material_id,
+					quantity: km.quantity,
+				};
 			}
 		);
-		setMaterialAndQuantity(response.data.materials);
+
+		setMaterialAndQuantity(materialsList);
 		setFormData(response.data);
 	};
 
