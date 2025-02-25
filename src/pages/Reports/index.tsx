@@ -1,13 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 import { api } from '../../api';
 import { useSearchParams } from 'react-router';
-import { format } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
+import {format, parseISO} from 'date-fns';
+// import { ptBR } from 'date-fns/locale';
 import './styles.css';
 import { useReactToPrint } from 'react-to-print';
 import { BsFileEarmarkPdf } from 'react-icons/bs';
 
 export default function Report() {
+	const formattedDate = (date: Date) => {
+		const newDate = format(date, `dd/MM/yyyy`);
+		return newDate;
+	};
+
+	const formattedURl = (date: string | null) => {
+		const newDate = format(parseISO(date), `dd/MM/yyyy`);
+
+		return newDate;
+	};
+
 	const [searchParams] = useSearchParams();
 	const start = searchParams.get('start');
 	const end = searchParams.get('end');
@@ -37,18 +48,6 @@ export default function Report() {
 	const contentRef = useRef<HTMLDivElement>(null);
 	const reactToPrintFn = useReactToPrint({ contentRef });
 
-	const formatDate = (date: string | Date, hasTime?: boolean) => {
-		// const date = parse(`${date}`, 'yyyy-MM-dd', new Date(), {
-		// 	locale: ptBR,
-		// });
-		console.log(format(date, 'dd/MM/yyyy', { locale: ptBR }));
-		const newDate = format(date, 'dd/MM/yyyy', { locale: ptBR });
-		if (!hasTime) {
-			return newDate;
-		}
-		return newDate;
-	};
-
 	const getOrders = async () => {
 		const response = await api.get(`/orders/report?start=${start}&end=${end}`);
 		setOrders(response.data);
@@ -68,72 +67,59 @@ export default function Report() {
 					<BsFileEarmarkPdf /> Baixar PDF
 				</button>
 			</div>
-			<div className="card ">
-				<div ref={contentRef} className="p-5">
+			<div className="card">
+				<div ref={contentRef} className="report">
 					<div className="d-flex gap-4 mb-4">
 						<img
 							alt="logo da prefeitura"
+							className="m-4"
 							src="/src/assets/prefeitura_logo.png"
 							height={70}
 							width={50}
 						/>
 						<span className="flex-fill text-center">
-							<h2 className="mb-3 fw-bolder">Serviços Realizados</h2>
-							{/* <p>
-								Data de: {formatDate(start || '')} Data Até:{' '}
-								{formatDate(end || '')}
-							</p> */}
+							<h2 className="m-3 mt-5 fw-bolder">Serviços Realizados</h2>
+							{ <p>
+								Data de: {formattedURl(start)} Data Até: {formattedURl(end)}
+							</p> }
 						</span>
-						<p>{`${formatDate(currentDate, true)}`}</p>
+						<p className="m-4">{formattedDate(currentDate, true)}</p>
 					</div>
-					<div>
-						<table className="table table-striped">
-							<tr>
-								<th scope="col">ID</th>
-								<th scope="col">Nº da OS</th>
-								<th scope="col">Latitude</th>
-								<th scope="col">Longitude</th>
-								<th scope="col">Endereço</th>
-								<th scope="col">Bairro</th>
-								<th scope="col">Cidade</th>
-								<th scope="col">Estado</th>
-							</tr>
-							{orders.map((order) => (
-								<>
-									<tr className="row-os">
-										<td>{order.order.id}</td>
-										<td>{order.order.qr_code}</td>
-										<td>{order.order.lat}</td>
-										<td>{order.order.long}</td>
-										<td>{order.order.address}</td>
-										<td>{order.order.neighborhood}</td>
-										<td>{order.order.city}</td>
-										<td>{order.order.state}</td>
-									</tr>
-									{order.ordersKits.length > 0 && (
-										<tr>
-											<td className="kit-table" colSpan={4}>
-												<table className="table kit-table w-100 row-kits">
-													<tr>
-														<th>Kits</th>
-														<th>Quantidade</th>
-														<th>Descrição</th>
-													</tr>
-													{order.ordersKits.map((kit) => (
-														<tr>
-															<td>-</td>
-															<td>{kit.quantity}</td>
-															<td>{kit.kit.description}</td>
-														</tr>
-													))}
-												</table>
-											</td>
-										</tr>
-									)}
-								</>
-							))}
-						</table>
-					</div>
+
+					<table className="table table-striped">
+						<tr>
+							<th>Nº da OS</th>
+							<th>Kist(s)</th>
+							<th>Latitude</th>
+							<th>Longitude</th>
+							<th>Endereço</th>
+							<th>Bairro</th>
+							<th>Cidade/UF</th>
+						</tr>
+						{orders.map((order) => (
+							<>
+								<tr className="row-os">
+									<td>{order.order.qr_code}</td>
+									<td>
+										{order.ordersKits.length > 0 && (
+											<>
+												{order.ordersKits.map((kit) => (
+													<>
+														{kit.kit.description}
+													</>
+												))}
+											</>
+										)}
+									</td>
+									<td>{order.order.lat}</td>
+									<td>{order.order.long}</td>
+									<td>{order.order.address}</td>
+									<td>{order.order.neighborhood}</td>
+									<td>{order.order.city}/{order.order.state}</td>
+								</tr>
+							</>
+						))}
+					</table>
 				</div>
 			</div>
 		</>

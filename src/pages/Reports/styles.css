@@ -1,31 +1,19 @@
-table {
+.report table {
   border: none;
+  padding: 20px !important;
 }
 
-td,
-th {
-  /* width: 10%; */
-  padding: 10px;
-  text-align: center !important;
-}
-
-.row-os {
-  background-color: rgb(222, 222, 222);
+.report table tr.row-os {
   border-top: 1px solid black;
 }
-
-
-.row-os td {
-  border: none
+.report td,
+.report th {
+  font-size: 12px;
+  width: auto;
+  padding: 15px 5px !important;
 }
 
-.row-kits tr:nth-child(2n) {
-  background-color: rgb(222, 222, 222);
-}
-
-
-.kit-table {
-  padding: 0;
-  padding-left: 2em;
-  padding-top: 5px
+.report .row-os {
+  border-top: 1px solid black;
+  padding: 20px !important;
 }
