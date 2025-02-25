@@ -48,12 +48,12 @@ export default function ListItemOrders({
 
 				{accessLevel === 2 ||
 					(accessLevel === 0 && (
-						<Link to={`view?id=${id}`}>
+						<Link to={`orders/view?id=${id}`}>
 							<BsEyeFill />
 						</Link>
 					))}
 				{accessLevel === 0 && (
-					<Link to={`form?id=${id}`}>
+					<Link to={`orders/form?id=${id}`}>
 						<BsFillPencilFill />
 					</Link>
 				)}
