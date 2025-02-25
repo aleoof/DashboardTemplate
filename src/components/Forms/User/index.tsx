@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../../api';
 import { useSearchParams } from 'react-router';
+import InputMask from 'react-input-mask';
 
 export default function UserForm() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
@@ -53,9 +54,7 @@ export default function UserForm() {
 					<div className="card-header">
 						<p className="card-title">Usuários</p>
 					</div>
-					<div className="card-body p-3">
-
-					</div>
+					<div className="card-body p-3"></div>
 				</div>
 			</div>
 			<div className="col-md-9">
@@ -67,11 +66,10 @@ export default function UserForm() {
 								src="https://themewagon.github.io/soft-ui-dashboard-react/static/media/team-2.e725aef8c892cb21f262.jpg"
 								className="img-fluid img-thumbnail"
 							/>
-							<div className="align-content-center" >
+							<div className="align-content-center">
 								<p className="card-title">{formData.name}</p>
 								<p className="title">Administrador</p>
 							</div>
-
 						</div>
 
 						<button type="submit" className="btn btn-primary">
@@ -124,11 +122,12 @@ export default function UserForm() {
 								<label htmlFor="email" className="form-label">
 									Telefone
 								</label>
-								<input
-									type="text"
+								<InputMask
+									mask="(99) 99999-9999"
+									placeholder="(00) 00000-0000"
 									className="form-control"
-									id="email"
-									value=""
+									place
+									value={formData.phone}
 									onChange={(e) =>
 										setFormData((prev) => ({
 											...prev,
@@ -137,7 +136,6 @@ export default function UserForm() {
 									}
 								/>
 							</div>
-
 
 							<div className="mb-3 col-md-6">
 								<label htmlFor="access_level" className="form-label">
@@ -224,7 +222,6 @@ export default function UserForm() {
 										/>
 									</div>
 									<div className="mb-3 col-md-2">
-
 										<label htmlFor="password" className="form-label">
 											Confirmar Senha
 										</label>
