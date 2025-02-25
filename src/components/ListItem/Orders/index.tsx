@@ -39,7 +39,7 @@ export default function ListItemOrders({
 		? format(date, 'dd/MM/yy', { locale: ptBR })
 		: '';
 	const formattedTime = date
-		? format(date, 'hh:mm', { locale: ptBR })
+		? format(date, 'HH:mm', { locale: ptBR })
 		: '';
 	return (
 		<tr>

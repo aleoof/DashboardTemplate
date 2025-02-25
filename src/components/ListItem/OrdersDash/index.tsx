@@ -26,7 +26,7 @@ export default function ListItemOrders({
 	status?: number
 }) {
 	const { accessLevel } = useAccessLevelStore();
-	const date  = register ? format(register, "hh:mm", {locale:ptBR} ): '';
+	const date  = register ? format(register, "HH:mm:ss", {locale:ptBR} ): '';
 
 	return (
 		<tr>
