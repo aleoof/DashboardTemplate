@@ -133,7 +133,7 @@ export default function OrdersForm() {
 			qr_code,
 			protocolNumber,
 		} = formData;
-
+		const osStatus = status || 1;
 		try {
 			if (id) {
 				await api.put(`order/${id}`, {
@@ -143,8 +143,6 @@ export default function OrdersForm() {
 					state,
 					status,
 					observations,
-					lat: `${userLocation?.latitude}`,
-					long: `${userLocation?.longitude}`,
 					qr_code,
 					ordersKits: kitAndQuantity,
 					protocolNumber,
@@ -160,7 +158,7 @@ export default function OrdersForm() {
 					neighborhood,
 					city,
 					state,
-					status,
+					status: osStatus,
 					observations,
 					lat: `${userLocation?.latitude}`,
 					long: `${userLocation?.longitude}`,
@@ -434,8 +432,8 @@ export default function OrdersForm() {
 														value={
 															kitAndQuantity.some((kq) => kq.kit_id === kit.id)
 																? kitAndQuantity.filter(
-																	(k) => k.kit_id === kit.id
-																)[0].quantity
+																		(k) => k.kit_id === kit.id
+																  )[0].quantity
 																: ''
 														}
 														type="text"
