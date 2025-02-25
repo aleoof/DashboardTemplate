@@ -12,8 +12,15 @@ export default function UserForm() {
 	const handleUser = async (e: any) => {
 		setPasswordError(false);
 		e.preventDefault();
-		const { access_level, confirmPassword, email, login, name, password } =
-			formData;
+		const {
+			access_level,
+			confirmPassword,
+			email,
+			login,
+			name,
+			password,
+			phone,
+		} = formData;
 		if (confirmPassword !== password) {
 			setPasswordError(true);
 			return;
@@ -26,9 +33,17 @@ export default function UserForm() {
 					login,
 					password,
 					name,
+					phone,
 				});
 			} else {
-				await api.post('/user', { access_level, email, login, password, name });
+				await api.post('/user', {
+					access_level,
+					email,
+					login,
+					password,
+					name,
+					phone,
+				});
 			}
 		} catch (error) {
 			console.error(error);
@@ -46,6 +61,10 @@ export default function UserForm() {
 			getUser();
 		}
 	}, []);
+
+	useEffect(() => {
+		console.log(formData);
+	}, [formData]);
 
 	return (
 		<div className="row">
@@ -126,12 +145,13 @@ export default function UserForm() {
 									mask="(99) 99999-9999"
 									placeholder="(00) 00000-0000"
 									className="form-control"
+									id="phone"
 									place
 									value={formData.phone}
 									onChange={(e) =>
 										setFormData((prev) => ({
 											...prev,
-											[e.target.id]: e.target.value,
+											phone: e.target.value,
 										}))
 									}
 								/>
