@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { api } from '../../../api';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { useNavigate, useSearchParams } from 'react-router';
+import Toast from '../../Toast';
 
 export default function KitsForm() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
@@ -17,6 +18,8 @@ export default function KitsForm() {
 	const [materialAndQuantity, setMaterialAndQuantity] = useState<
 		Array<{ id: number; quantity: string }>
 	>([]);
+	const [openToast, setOpenToast] = useState(false);
+	const [success, setSuccess] = useState(false);
 
 	const [searchParams] = useSearchParams();
 	const id = searchParams.get('id');
@@ -59,40 +62,41 @@ export default function KitsForm() {
 		const filteredMaterial = materials.filter(
 			(material) => material.id === parseInt(selectedMaterial)
 		);
-		console.log(
-			materials.every((material) => material.id !== parseInt(selectedMaterial))
-		);
+
 		if (
 			selectedMaterial &&
 			listOfMaterials.every(
 				(material) => material.id !== parseInt(selectedMaterial)
 			)
 		) {
-			console.log(filteredMaterial[0]);
 			setListOfMaterials((prev) => [...prev, filteredMaterial[0]]);
 			setSelectedMaterial('');
 		}
 	}
 
 	const saveKit = async () => {
-		console.log(materialAndQuantity);
+		setOpenToast(true);
 		const kit = {
 			description: formData.description,
 			materials: materialAndQuantity,
 		};
-		console.log(kit);
 		try {
 			if (id) {
 				await api.put(`kit/${id}`, kit);
-			} else {
-				const response = await api.post(`kit`, kit);
-				const orderId = response.data.id;
+				setSuccess(true);
 				setTimeout(() => {
-					// setOpenToast(false);
-					route(`?id=${orderId}`);
+					setOpenToast(false);
+				}, 1300);
+			} else {
+				await api.post(`kit`, kit);
+				setSuccess(true);
+				setTimeout(() => {
+					setOpenToast(false);
+					route(`/kits`);
 				}, 1300);
 			}
 		} catch (error) {
+			setSuccess(false);
 			console.error(error);
 		}
 	};
@@ -120,6 +124,7 @@ export default function KitsForm() {
 
 	return (
 		<div className="row">
+			{openToast && <Toast success={success} />}
 			<div className="col-md-3">
 				<div className="card list-height overflow-y-auto pb-0 mb-5">
 					<div className="card-header">
