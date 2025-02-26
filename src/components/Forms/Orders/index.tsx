@@ -10,6 +10,8 @@ import Toast from '../../Toast';
 import { estadosBrasileiros } from './data';
 
 export default function OrdersForm() {
+	const [searchParams] = useSearchParams();
+	const id = searchParams.get('id');
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
 	const [selectedKit, setSelectedKit] = useState('');
 	const [listOfKits, setListOfKits] = useState<
@@ -26,12 +28,10 @@ export default function OrdersForm() {
 	const [kitAndQuantity, setKitAndQuantity] = useState<
 		Array<{ kit_id: number; quantity: string }>
 	>([]);
-	const [openQR, setOpenQR] = useState(false);
+	const [openQR, setOpenQR] = useState(id ? false : true);
 	const [success, setSuccess] = useState(true);
 	const [openToast, setOpenToast] = useState(false);
 	const [isSaving, setSaving] = useState(false);
-	const [searchParams] = useSearchParams();
-	const id = searchParams.get('id');
 
 	const [userLocation, setUserLocation] = useState<{
 		latitude: number;
@@ -178,7 +178,7 @@ export default function OrdersForm() {
 				setOpenToast(true);
 				setTimeout(() => {
 					setOpenToast(false);
-					route(`?id=${orderId}`);
+					route(`/orders`);
 					setSaving(false);
 				}, 1300);
 			}
@@ -191,6 +191,10 @@ export default function OrdersForm() {
 	};
 
 	const deleteKitOrder = async (kitId: number, orderId: number) => {
+		kitAndQuantity.splice(
+			kitAndQuantity.findIndex((kit) => kit.kit_id === kitId),
+			1
+		);
 		listOfKits.splice(
 			listOfKits.findIndex((kit) => kit.id === kitId),
 			1
