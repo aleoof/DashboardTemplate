@@ -266,7 +266,7 @@ export default function UserForm() {
 						</form>
 					</div>
 				</div>
-				<div className="card p-3 pb-3 mb-3">
+				{/* <div className="card p-3 pb-3 mb-3">
 					<div className="card-header">
 						<h3 className="card-title">Trocar Senha</h3>
 					</div>
@@ -314,7 +314,7 @@ export default function UserForm() {
 						<p>One number (2 are recommended)</p>
 						<p>Change it often</p>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

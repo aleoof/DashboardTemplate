@@ -29,6 +29,7 @@ export default function OrdersForm() {
 	const [openQR, setOpenQR] = useState(false);
 	const [success, setSuccess] = useState(true);
 	const [openToast, setOpenToast] = useState(false);
+	const [isSaving, setSaving] = useState(false);
 	const [searchParams] = useSearchParams();
 	const id = searchParams.get('id');
 
@@ -66,7 +67,6 @@ export default function OrdersForm() {
 	const getKits = async () => {
 		const response = await api.get('kits');
 		setKits(response.data);
-		console.log(response.data);
 	};
 
 	const getOrder = async () => {
@@ -91,13 +91,18 @@ export default function OrdersForm() {
 
 	function handleKitList() {
 		const filteredKit = kits.filter((kit) => kit.id === parseInt(selectedKit));
-		console.log(filteredKit);
 		if (
 			selectedKit &&
 			listOfKits.every((kit) => kit.id !== parseInt(selectedKit))
 		) {
 			setListOfKits((prev) => [...prev, filteredKit[0]]);
 			setSelectedKit('');
+		}
+		if (!kitAndQuantity.some((item) => item.kit_id === parseInt(selectedKit))) {
+			setKitAndQuantity((prev) => [
+				...prev,
+				{ kit_id: parseInt(selectedKit), quantity: '1' },
+			]);
 		}
 	}
 
@@ -120,6 +125,7 @@ export default function OrdersForm() {
 	};
 
 	const saveOrder = async (e: any) => {
+		setSaving(true);
 		e.preventDefault();
 		const {
 			address,
@@ -151,6 +157,7 @@ export default function OrdersForm() {
 				setOpenToast(true);
 				setTimeout(() => {
 					setOpenToast(false);
+					setSaving(false);
 				}, 1300);
 			} else {
 				const response = await api.post('order', {
@@ -172,6 +179,7 @@ export default function OrdersForm() {
 				setTimeout(() => {
 					setOpenToast(false);
 					route(`?id=${orderId}`);
+					setSaving(false);
 				}, 1300);
 			}
 		} catch (e) {
@@ -463,8 +471,12 @@ export default function OrdersForm() {
 								))}
 							</>
 						)}
-						<button type="submit" className="btn btn-primary">
-							Salvar
+						<button
+							disabled={isSaving}
+							type="submit"
+							className="btn btn-primary"
+						>
+							{isSaving ? 'Salvando' : 'Salvar'}
 						</button>
 					</div>
 				</form>
