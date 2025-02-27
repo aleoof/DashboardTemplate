@@ -20,6 +20,8 @@ export default function KitsForm() {
 	>([]);
 	const [openToast, setOpenToast] = useState(false);
 	const [success, setSuccess] = useState(false);
+	const [successMsg, setSuccessMsg] = useState('');
+	const [errorMsg, setErrorMsg] = useState('');
 
 	const [searchParams] = useSearchParams();
 	const id = searchParams.get('id');
@@ -72,6 +74,17 @@ export default function KitsForm() {
 			setListOfMaterials((prev) => [...prev, filteredMaterial[0]]);
 			setSelectedMaterial('');
 		}
+
+		if (
+			!materialAndQuantity.some(
+				(item) => item.id === parseInt(selectedMaterial)
+			)
+		) {
+			setMaterialAndQuantity((prev) => [
+				...prev,
+				{ id: parseInt(selectedMaterial), quantity: '1' },
+			]);
+		}
 	}
 
 	const saveKit = async () => {
@@ -109,7 +122,7 @@ export default function KitsForm() {
 		if (!materialAndQuantity.some((item) => item.id === parseInt(id))) {
 			setMaterialAndQuantity((prev) => [
 				...prev,
-				{ id: parseInt(id), quantity: value },
+				{ id: parseInt(id), quantity: '1' },
 			]);
 		} else {
 			setMaterialAndQuantity((prev) =>
@@ -122,9 +135,40 @@ export default function KitsForm() {
 		}
 	};
 
+	const deleteKitMaterial = async (kitId: number, materialId: number) => {
+		try {
+			await api.delete(`/kit-material/${materialId}/${kitId} `);
+			setOpenToast(true);
+			materialAndQuantity.splice(
+				materialAndQuantity.findIndex((material) => material.id === materialId),
+				1
+			);
+			listOfMaterials.splice(
+				listOfMaterials.findIndex((material) => material.id === materialId),
+				1
+			);
+
+			setListOfMaterials([...listOfMaterials]);
+
+			setSuccessMsg('Material removido');
+		} catch (error) {
+			console.error(error);
+			setOpenToast(true);
+			setErrorMsg('Nào foi possível Remover o material ');
+		}
+
+		setTimeout(() => {
+			setSuccessMsg('');
+			setErrorMsg('');
+			setOpenToast(false);
+		}, 1300);
+	};
+
 	return (
 		<div className="row">
-			{openToast && <Toast success={success} />}
+			{openToast && (
+				<Toast success={success} msgSuccess={successMsg} msgError={errorMsg} />
+			)}
 			<div className="col-md-3">
 				<div className="card list-height overflow-y-auto pb-0 mb-5">
 					<div className="card-header">
@@ -249,8 +293,14 @@ export default function KitsForm() {
 																/>
 															</span>
 															<button
+																type="button"
 																className="btn btn-primary"
-																onClick={() => {}}
+																onClick={() =>
+																	deleteKitMaterial(
+																		parseInt(id || ''),
+																		material.id
+																	)
+																}
 															>
 																<BsFillTrashFill />
 															</button>
