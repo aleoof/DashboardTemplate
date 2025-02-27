@@ -146,9 +146,8 @@ export default function UserForm() {
 									placeholder="(00) 00000-0000"
 									className="form-control"
 									id="phone"
-									place
 									value={formData.phone}
-									onChange={(e) =>
+									onChange={(e: any) =>
 										setFormData((prev) => ({
 											...prev,
 											phone: e.target.value,

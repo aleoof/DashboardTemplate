@@ -160,7 +160,7 @@ export default function OrdersForm() {
 					setSaving(false);
 				}, 1300);
 			} else {
-				const response = await api.post('order', {
+				await api.post('order', {
 					address,
 					neighborhood,
 					city,
@@ -173,7 +173,6 @@ export default function OrdersForm() {
 					ordersKits: kitAndQuantity,
 					protocolNumber,
 				});
-				const orderId = response.data.id;
 				setSuccess(true);
 				setOpenToast(true);
 				setTimeout(() => {
