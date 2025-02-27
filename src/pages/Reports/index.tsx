@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { api } from '../../api';
-import { useSearchParams } from 'react-router';
+import {useSearchParams} from 'react-router';
 import {format, parseISO} from 'date-fns';
 // import { ptBR } from 'date-fns/locale';
 import './styles.css';
@@ -8,21 +8,18 @@ import { useReactToPrint } from 'react-to-print';
 import { BsFileEarmarkPdf } from 'react-icons/bs';
 
 export default function Report() {
-	const formattedDate = (date: Date) => {
-		const newDate = format(date, `dd/MM/yyyy`);
-		return newDate;
-	};
-
 	const formattedURl = (date: string | null) => {
-		const newDate = format(parseISO(date), `dd/MM/yyyy`);
+		if (date != null) {
+			const newDate = format(parseISO(date), `dd/MM/yyyy`);
+			return newDate;
+		}
 
-		return newDate;
 	};
-
+	const todays = format(new Date(), 'dd/MM/yyyy');
 	const [searchParams] = useSearchParams();
 	const start = searchParams.get('start');
 	const end = searchParams.get('end');
-	const [currentDate, setCurrentDate] = useState(new Date());
+	// const [currentDate, setCurrentDate] = useState(new Date());
 	const [orders, setOrders] = useState<
 		Array<{
 			order: {
@@ -55,8 +52,6 @@ export default function Report() {
 	};
 
 	useEffect(() => {
-		const date = new Date();
-		setCurrentDate(date);
 		getOrders();
 	}, []);
 
@@ -83,7 +78,7 @@ export default function Report() {
 								Data de: {formattedURl(start)} Data Até: {formattedURl(end)}
 							</p> }
 						</span>
-						<p className="m-4">{formattedDate(currentDate, true)}</p>
+						<p className="m-4">{todays}</p>
 					</div>
 
 					<table className="table table-striped">
