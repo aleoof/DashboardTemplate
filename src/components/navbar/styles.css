@@ -1,0 +1,25 @@
+.navbar-top{
+  border-bottom: 1px solid #e1dfdf;
+  padding:10px 20px;
+}
+.navbar-top h4{
+ color: #233542;
+}
+.search{
+  min-width: 200px;
+}
+.search input{
+  border-radius: 50px;
+  background: #e1dfdf;
+}
+.user{
+  margin-left: 20px;
+  padding: 4px;
+}
+
+.user p, .user a{
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+

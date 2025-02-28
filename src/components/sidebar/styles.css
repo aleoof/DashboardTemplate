@@ -1,56 +1,73 @@
-.sidebar {
-  height: 100vh !important;
+.sidebar{
+  border-right: 1px solid #e9ecf6
+}
+.navbar-light .container{
+  display: block;
 }
 
-
-.nav .nav-item {
-  padding: 5px;
-  float: none;
-  width: 100%;
+.company{
+  border-radius: 0.5rem;
+  border: 1px solid #e1dfdf;
+  padding:0.8rem 1rem;
+  color: #5e6875;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+.company h5{
+  font-size: 15px;
+  font-weight: bold;
+}
+.company p{
+  font-size: 11px;
+  color: #5e6875;
 }
 
-.nav .nav-item a.nav-link {
-  color: #0f0f0f;
-  font-weight: 500;
+.navbar-nav {
+  display: block;
 }
 
-.nav-item a.nav-link.active {
-  background: #217cfd;
-  color: white;
-}
-
-.nav-item nav-link.active {
-  background: #217cfd;
-  color: white;
-}
-
-.nav-item .nav-link.active span {
-  color: white;
-}
-
-
-.nav .nav-item button.nav-link {
-  color: #0f0f0f;
-  font-weight: 500;
+.navbar-brand{
+  padding: 10px 0;
+  font-size: 30px;
+  font-weight: bold;
+  color: #2160fa;
+  display: block;
 }
 
 @media (max-width: 767px) {
-
-
-  .nav .nav-item span {
-    display: none;
+  .navbar-nav {
+    display: inline;
   }
-
-  .nav .nav-item {
-    float: left;
-    width: auto;
+  .navbar-light .container{
+    display: flex;
   }
+}
 
-  .nav li.nav-item a.nav-link {
-    padding: 9px 13px 10px 13px !important;
-  }
+.nav-link {
+  align-content: center !important;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+.nav-link span{
+  align-content: center !important;
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: #34404f;
+}
+.nav-link .iconSide{
+  float: left;
+  margin:0 10px 0 5px;
+  font-size: 17px;
+}
 
-  .sidebar {
-    height: auto !important;
-  }
+.nav-link.active{
+  background: #e5ecf9;
+  border-radius: 0.4rem;
+}
+.nav-link.active span{
+  color: #2160fc;
+}
+.nav-link.active .iconSide{
+  color: #1837fd;
 }

@@ -1,9 +1,7 @@
-import {
-	BsPersonFillGear,
-	BsHouseFill,
-	BsBoxArrowInRight
-} from 'react-icons/bs';
+import { IoIosArrowDown } from "react-icons/io";
+
 import { useLocation, useNavigate } from 'react-router';
+import './styles.css';
 
 export default function Navbar() {
 	const { pathname } = useLocation();
@@ -44,29 +42,37 @@ export default function Navbar() {
 	}
 
 	return (
-		<div className="header d-flex justify-content-between mb-md-4 ">
-			<div className="float-start">
-				<p>
-					<BsHouseFill /> {pathname}
-				</p>
+		<div className="navbar-top d-flex justify-content-between align-content-center mb-md-4 ">
+			<div className="align-content-center">
 				<h4>
-					<strong>{paths(pathname)}</strong>
+					{paths(pathname)}
 				</h4>
 			</div>
-			<div className="float-end d-flex search ">
-				<input
-					type="text"
-					className="form-control nav d-none d-md-block"
-					id="name"
-					placeholder="Pesquisar"
-					value=""
-				/>
-				<a className="icons_nav">
-					<BsPersonFillGear />
-				</a>
-				<a className="icons_nav" onClick={() => exit()}>
-					<BsBoxArrowInRight />
-				</a>
+			<div className="d-flex">
+				<div className="search">
+					<input
+						type="text"
+						className="form-control nav d-none d-md-block"
+						id="name"
+						placeholder="Pesquisar"
+						value=""
+					/>
+				</div>
+				<div className="user align-content-center d-flex">
+					<img alt="John Michael"
+						 src="https://themewagon.github.io/soft-ui-dashboard-react/static/media/team-2.e725aef8c892cb21f262.jpg"
+						 className="img-circle-small"/>
+				<div className="text-start">
+					<p>
+						Edson Rodrigues
+					</p>
+					<a onClick={() => exit()}>
+						Sair
+					</a>
+				</div>
+				<div className="align-content-centerm m-2">
+					<IoIosArrowDown /></div>
+				</div>
 			</div>
 		</div>
 	);

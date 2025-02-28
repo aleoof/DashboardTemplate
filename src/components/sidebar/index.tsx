@@ -1,69 +1,81 @@
-import {
-	BsBook,
-	BsTools,
-	BsFillPersonLinesFill,
-	BsQrCode,
-	BsQrCodeScan,
-	BsReverseListColumnsReverse,
-	BsBox2,
-} from 'react-icons/bs';
 import { NavLink } from 'react-router';
 import { privateRoutes } from '../../routes/PrivateRoutes';
 import './styles.css';
 import useAccessLevelStore from '../../stores/accessLevelStore';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import {
+	MdOutlineLocationCity,
+	MdDashboard,
+	MdSupervisorAccount,
+	MdSubject,
+	MdOutlineQrCode2,
+	MdOutlineHandyman,
+	MdHardware,
+	MdDocumentScanner
+
+} from "react-icons/md";
 
 export default function Sidebar() {
 	const { accessLevel } = useAccessLevelStore();
 	function icons(icon: string) {
 		switch (icon) {
 			case 'dashboard':
-				return <BsBook />;
+				return <MdDashboard />;
 			case 'order':
-				return <BsQrCodeScan />;
+				return <MdDocumentScanner/>;
 			case 'kits':
-				return <BsTools />;
+				return <MdOutlineHandyman />;
 			case 'tag':
-				return <BsQrCode />;
+				return <MdOutlineQrCode2 />;
 			case 'materials':
-				return <BsBox2 />;
+				return <MdHardware />;
 			case 'users':
-				return <BsFillPersonLinesFill />;
+				return <MdSupervisorAccount />;
 			case 'version':
-				return <BsReverseListColumnsReverse />;
+				return <MdSubject />;
 			default:
-				return <BsBook />;
+				return <MdSubject />;
 		}
 	}
 
 	return (
-		<div className="d-flex flex-column flex-shrink-0 p-3 bg-light h-100">
-			<a
-				href="/"
-				className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
-			>
-				<h2>
-					<b>HUB</b>OS
-				</h2>
-			</a>
+		<Navbar expand="lg bg-gray">
+			<Container>
+				<Navbar.Brand href="#" ><MdDocumentScanner style={{fontSize:"30px", marginTop: "-5px", marginRight: "5px", color: "#000000"}}/>HUBOS</Navbar.Brand>
+				<Navbar.Toggle aria-controls="navbarScroll" />
+				<Navbar.Collapse id="navbarScroll">
+					<Nav
+						className="w-100"
+						navbarScroll
+					>
+						<div className="company d-flex">
+							<MdOutlineLocationCity style={{fontSize:"30px", marginRight: "10px"}}/>
+							<div>
+								<h5>Almirante Tamandaré</h5>
+								<p>Prefeitura da cidade</p>
+							</div>
 
-			<hr />
-			<ul className="nav nav-pills mb-auto">
-				{privateRoutes.map((route) => (
-					<>
-						{route?.access?.some((ac) => ac === accessLevel) && (
-							<li className="nav-item">
-								<NavLink
-									className="nav-link d-flex gap-2"
-									aria-current="page"
-									to={route.path}
-								>
-									<div>{icons(route.icon)}</div> <span>{route.name}</span>
-								</NavLink>
-							</li>
-						)}
-					</>
-				))}
-			</ul>
-		</div>
+						</div>
+					{privateRoutes.map((route) => (
+						<>
+							{route?.access?.some((ac) => ac === accessLevel) && (
+
+									<NavLink
+										className="nav-link"
+										aria-current="page"
+										to={route.path}
+									>
+										<div className="iconSide">{icons(route.icon)}</div> <span>{route.name}</span>
+									</NavLink>
+							)}
+						</>
+					))}
+					</Nav>
+				</Navbar.Collapse>
+			</Container>
+		</Navbar>
+
 	);
 }

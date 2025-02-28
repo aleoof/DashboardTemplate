@@ -69,7 +69,7 @@ export default function UserForm() {
 	return (
 		<div className="row">
 			<div className="col-md-3">
-				<div className="card list-height overflow-y-auto pb-0 mb-5">
+				<div className="card list-height overflow-y-auto pb-0 mb-5 bg_gray">
 					<div className="card-header">
 						<p className="card-title">Usuários</p>
 					</div>

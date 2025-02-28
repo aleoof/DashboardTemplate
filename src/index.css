@@ -2,19 +2,22 @@
   font: inherit;
   margin:0;
   padding:0;
-  background: #f2f5fc;
+  background: #ffffff;
   color:#0f0f0f;
   display: block;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Sora", "Sora Placeholder", sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.43;
 }
+.bg_gray{
+  background: #f9fbfc;
+}
+
 p, h1, h2,h3,h4, h5, span{
   margin: 0 !important;
   padding: 0 !important;
   color:#0f0f0f;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.43;
@@ -36,7 +39,6 @@ label.form-label{
 button.btn, a.btn{
   background: #1837fd;
   background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
-  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.43;
@@ -52,7 +54,6 @@ button.btn:hover, a.btn:hover{
 button.btn, a.btn{
   background: #1837fd;
   background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
-  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.43;
@@ -94,25 +95,6 @@ input.form-control, select.form-control{
   transition: box-shadow 150ms, border-color 150ms, padding 150ms !important;
 }
 
-.search{
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-}
-input.nav{
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.43;
-  border-width: 1px;
-  border-image: initial;
-  border-style: solid;
-  border-color: rgb(244, 247, 254);
-  padding: 5px 20px;
-  height: 40px;
-}
-
 input.form-control:focus {
   box-shadow: none;
   outline: 0px;
@@ -143,7 +125,11 @@ input[type='checkbox']{
 .logo b{
   font-weight: bolder;
 }
-
+.row .card{
+  border-radius: 0!important;
+  border-left: 1px solid #f3f3f3!important;
+  box-shadow: none!important;
+}
 .card.header{
   background: none;
   padding: 10px 0;
@@ -151,13 +137,11 @@ input[type='checkbox']{
 .card .card-footer{
   background: none;
   padding: 20px 20px;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
   border: 0px;
   color: #2c2c2c;
 }
 .card .card-footer p{
   margin: 0px;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 0.75rem;
   line-height: 1.25;
   letter-spacing: 0.03333em;
@@ -232,7 +216,6 @@ input[type='checkbox']{
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 1.5;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
   letter-spacing: 0em;
   opacity: 1;
   color: rgb(103, 116, 142);
@@ -304,16 +287,27 @@ input[type='checkbox']{
 }
 
 .thumbnail{
-  /*width: 50px;*/
-  /*height: 50px;*/
   font-size: 20px;
   background-color: var(--bs-body-bg);
   border: var(--bs-border-width) solid var(--bs-border-color);
   border-radius: var(--bs-border-radius);
-  text-align: center;
-  color: #217bfb;
   padding: 0px 5px 3px 6px;
+}
 
+.img-circle{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  padding: 0px 5px 3px 6px;
+}
+
+.img-circle-small{
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  padding: 1px;
 }
 
 table thead tr th {
@@ -334,7 +328,6 @@ border-bottom: 1px solid #eef0f3;
 }
 td, th{
     margin: 0px;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
     font-size: 0.75rem;
     line-height: 1.25;
     letter-spacing: 0.03333em;
@@ -394,7 +387,6 @@ td, th{
   vertical-align: middle;
   appearance: none;
   text-decoration: none;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
   letter-spacing: 0.02857em;
   border: 1px solid rgb(222, 226, 230);
   display: inline-flex;
