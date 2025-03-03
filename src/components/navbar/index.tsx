@@ -42,13 +42,9 @@ export default function Navbar() {
 	}
 
 	return (
+		<>
 		<div className="navbar-top d-flex justify-content-between align-content-center mb-md-4 ">
-			<div className="align-content-center">
-				<h4>
-					{paths(pathname)}
-				</h4>
-			</div>
-			<div className="d-flex">
+
 				<div className="search">
 					<input
 						type="text"
@@ -73,7 +69,14 @@ export default function Navbar() {
 				<div className="align-content-centerm m-2">
 					<IoIosArrowDown /></div>
 				</div>
-			</div>
 		</div>
+		<div className="align-content-center m-4">
+
+			{paths(pathname)}
+			<h4>
+				{paths(pathname)}
+			</h4>
+		</div>
+		</>
 	);
 }

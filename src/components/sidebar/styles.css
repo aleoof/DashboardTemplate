@@ -60,6 +60,7 @@
   font-size: 14px;
   font-weight: 400;
   color: #34404f;
+  margin-top: 4px !important;
 }
 .nav-link .iconSide{
   float: left;

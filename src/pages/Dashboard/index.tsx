@@ -74,8 +74,8 @@ export default function Dashboard() {
 
 	return (
 		<div>
-			<div className="row pt-3">
-				<div className="col-12 col-md-3 mt-4">
+			<div className="row pt-0">
+				<div className="col-12 col-md-3 ">
 					<div className="card">
 						<div className="card-body">
 							<div className="float-start">
@@ -91,7 +91,7 @@ export default function Dashboard() {
 						</div>
 					</div>
 				</div>
-				<div className="col-12 col-md-3 mt-4 d-none d-md-block">
+				<div className="col-12 col-md-3 d-none d-md-block">
 					<div className="card">
 						<div className="card-body">
 							<div className="float-start">
@@ -107,7 +107,7 @@ export default function Dashboard() {
 						</div>
 					</div>
 				</div>
-				<div className="col-12 col-md-3 mt-4  d-none d-md-block">
+				<div className="col-12 col-md-3  d-none d-md-block">
 					<div className="card">
 						<div className="card-body">
 							<div className="float-start">
@@ -123,7 +123,7 @@ export default function Dashboard() {
 						</div>
 					</div>
 				</div>
-				<div className="col-12 col-md-3 mt-4 d-none d-md-block">
+				<div className="col-12 col-md-3 d-none d-md-block">
 					<div className="card">
 						<div className="card-body">
 							<div className="float-start">
