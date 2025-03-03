@@ -1,5 +1,5 @@
 .sidebar{
-  border-right: 1px solid #e9ecf6
+  background: white;
 }
 .navbar-light .container{
   display: block;
@@ -32,6 +32,12 @@
   font-weight: bold;
   color: #2160fa;
   display: block;
+}
+.navbar-brand .icon-brand{
+  font-size:30px;
+  margin-top:-5px;
+  margin-right: 5px;
+  color: #000000
 }
 
 @media (max-width: 767px) {
@@ -70,4 +76,24 @@
 }
 .nav-link.active .iconSide{
   color: #1837fd;
+}
+
+@media (max-width: 900px) {
+  .navbar-brand .icon-brand{
+    display: none;
+  }
+  .nav-link {
+    align-content: center !important;
+    text-align: center;
+  }
+  .nav-link span{
+    display: none;
+  }
+  .nav-link .iconSide{
+    margin: auto;
+    font-size:25px ;
+  }
+  .company{
+    display: none !important;
+  }
 }

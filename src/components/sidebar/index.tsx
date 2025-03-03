@@ -41,9 +41,9 @@ export default function Sidebar() {
 	}
 
 	return (
-		<Navbar expand="lg bg-gray">
+		<Navbar expand="md">
 			<Container>
-				<Navbar.Brand href="#" ><MdDocumentScanner style={{fontSize:"30px", marginTop: "-5px", marginRight: "5px", color: "#000000"}}/>HUBOS</Navbar.Brand>
+				<Navbar.Brand href="#" ><MdDocumentScanner className="icon-brand"/>HUBOS</Navbar.Brand>
 				<Navbar.Toggle aria-controls="navbarScroll" />
 				<Navbar.Collapse id="navbarScroll">
 					<Nav

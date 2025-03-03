@@ -41,27 +41,27 @@ export default function Materials() {
 					</div>
 					<table className="w-100">
 						<thead>
-							<tr>
-								<th className="text-start">Material</th>
-								<th>Tipo</th>
-								<th>Status</th>
-								<th>Ações</th>
-							</tr>
+						<tr>
+							<th className="text-start">Material</th>
+							<th>Tipo</th>
+							<th>Status</th>
+							<th>Ações</th>
+						</tr>
 						</thead>
 						<tbody>
-							{materials.map((material) => (
-								<>
-									<ListItem
-										group={material.group}
-										id={material.id}
-										title={material.description}
-										deleteItem={() => {
-											setDeleteId(material.id);
-											openModal();
-										}}
-									/>
-								</>
-							))}
+						{materials.map((material) => (
+							<>
+								<ListItem
+									group={material.group}
+									id={material.id}
+									title={material.description}
+									deleteItem={() => {
+										setDeleteId(material.id);
+										openModal();
+									}}
+								/>
+							</>
+						))}
 						</tbody>
 					</table>
 				</div>

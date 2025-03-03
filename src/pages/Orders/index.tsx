@@ -1,6 +1,8 @@
-import { BsFillPlusSquareFill, BsPencilSquare } from 'react-icons/bs';
+import { MdOutlineSearch } from "react-icons/md";
+import { MdAdd } from "react-icons/md";
 import ListItemOrders from '../../components/ListItem/Orders';
 import './styles.css';
+
 
 import { NavLink, useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
@@ -66,52 +68,68 @@ export default function Orders() {
 	return (
 		<>
 			<div>
-				<div className="d-flex p-2 pt-0 justify-content-end align-items-end gap-3">
-					<div className=" d-flex flex-column ">
-						<label className="form-label">Inicio do período</label>
-						<DatePicker
-							className="form-control"
-							locale="pt-BR"
-							dateFormat="dd/MM/yyyy"
-							selected={date.start}
-							onSelect={(value) =>
-								setDate((prev) => ({
-									...prev,
-									start: value ? value : new Date(),
-								}))
-							} //when day is clicked
-						/>
-					</div>
-					<div className="d-flex flex-column ">
-						<label className="form-label">Fim do período</label>
-						<DatePicker
-							className="form-control"
-							selected={date.end}
-							dateFormat="dd/MM/yyyy"
-							onSelect={(value) =>
-								setDate((prev) => ({
-									...prev,
-									end: value ? value : new Date(),
-								}))
-							} //when day is clicked
-						/>
+				<NavLink to="form" className="btn-blue" style={{ height: 'fit-content' }}>
+					<MdAdd />
+				</NavLink>
+				<div className="card pb-0 mb-2">
+					<div className="card-header">
+						<p className="card-title">Filtrar</p>
 					</div>
 
-					<a
-						onClick={toReportPage}
-						className="btn"
-						style={{ height: 'fit-content' }}
-					>
-						<BsPencilSquare /> Relatório
-					</a>
-					<NavLink to="form" className="btn" style={{ height: 'fit-content' }}>
-						<BsFillPlusSquareFill /> Novo
-					</NavLink>
+					<div className="card-body">
+					<div className="d-flex justify-content-end align-items-end gap-3">
+						<div className="d-flex flex-column ">
+							<input
+								className="form-control"
+								placeholder="Numero da OS"
+							/>
+						</div>
+						<div className="d-flex flex-column ">
+							<input
+								className="form-control"
+								placeholder="Bairro"
+							/>
+						</div>
+						<div className=" d-flex flex-column ">
+							<DatePicker
+								className="form-control"
+								locale="pt-BR"
+								dateFormat="dd/MM/yyyy"
+								selected={date.start}
+								onSelect={(value) =>
+									setDate((prev) => ({
+										...prev,
+										start: value ? value : new Date(),
+									}))
+								} //when day is clicked
+							/>
+						</div>
+						<div className="d-flex flex-column ">
+							<DatePicker
+								className="form-control"
+								selected={date.end}
+								dateFormat="dd/MM/yyyy"
+								onSelect={(value) =>
+									setDate((prev) => ({
+										...prev,
+										end: value ? value : new Date(),
+									}))
+								} //when day is clicked
+							/>
+						</div>
+
+						<a
+							onClick={toReportPage}
+							className="btn"
+							style={{ height: 'fit-content' }}
+						>
+							<MdOutlineSearch /> Pesquisar
+						</a>
+
+					</div>
+					</div>
 				</div>
 				<div className="card pb-0 mb-5">
-					<div className="card-header">
-						<p className="card-title">Lista de OS</p>
-					</div>
 					<table className="w-100">
 						<thead>
 							<tr>

@@ -25,14 +25,14 @@ export default function Layout() {
 		<>
 			{token && (
 				<div className="min-vh-100">
-					<div className="row m-0">
-						<div className="col-md-2 p-0 sidebar bg_gray">
+					<div className="row m-0 min-vh-100">
+						<div className="col-12 col-sm-12 col-md-2 p-0 sidebar bg_gray">
 							<Sidebar />
 						</div>
 
-						<div className="col-md-10 p-0">
+						<div className="col-sm-12 col-md-10 p-0">
 							<Navbar />
-							<div className="container-fluid">
+							<div className="container-fluid p-4">
 								<Outlet />
 							</div>
 						</div>

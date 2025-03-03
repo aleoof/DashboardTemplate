@@ -4,11 +4,11 @@ import './index.css';
 import useAccessLevelStore from '../../../stores/accessLevelStore.ts';
 
 export default function ListItemOrders({
-	title,
-	id,
-	group,
-	deleteItem,
-}: {
+										   title,
+										   id,
+										   group,
+										   deleteItem,
+									   }: {
 	title?: string;
 	id?: number;
 	group?: string;
