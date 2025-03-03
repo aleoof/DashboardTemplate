@@ -1,9 +1,9 @@
-import { useEffect,useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { api } from '../../../api';
 import { useSearchParams } from 'react-router';
-import {format} from "date-fns";
-import {ptBR} from "date-fns/locale";
-import {BsFileEarmarkPdf} from "react-icons/bs";
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
+import { BsFileEarmarkPdf } from 'react-icons/bs';
 import { useReactToPrint } from 'react-to-print';
 
 export default function OrdersView() {
@@ -11,10 +11,9 @@ export default function OrdersView() {
 	const [listOfKits, setListOfKits] = useState<
 		Array<{
 			id: number;
-			quantity:
-				string;
+			quantity: string;
 			description: string;
-			materials?: { material: { description: string;  quantity: string;} }[];
+			materials?: { material: { description: string }; quantity: string }[];
 		}>
 	>([]);
 	const [kits, setKits] = useState<
@@ -28,7 +27,9 @@ export default function OrdersView() {
 
 	const getKits = async () => {
 		const response = await api.get('kits');
+		console.log('kits');
 		setKits(response.data);
+		console.log(response.data);
 	};
 
 	const getOrder = async () => {
@@ -39,9 +40,8 @@ export default function OrdersView() {
 		});
 		setKitAndQuantity(response.data.ordersKits);
 		setFormData(response.data);
+		console.log(response.data);
 	};
-
-
 
 	useEffect(() => {
 		if (kits.length === 0) {
@@ -56,8 +56,12 @@ export default function OrdersView() {
 		console.log(formData);
 	}, [formData]);
 
-	const registerDay  = formData.registerDay ? format(formData.registerDay, "dd/MM/yyyy", {locale:ptBR} ): '';
-	const registerTime  = formData.registerDay ? format(formData.registerDay, "hh:mm", {locale:ptBR} ): '';
+	const registerDay = formData.registerDay
+		? format(formData.registerDay, 'dd/MM/yyyy', { locale: ptBR })
+		: '';
+	const registerTime = formData.registerDay
+		? format(formData.registerDay, 'hh:mm', { locale: ptBR })
+		: '';
 
 	const contentRef = useRef<HTMLDivElement>(null);
 	const reactToPrintFn = useReactToPrint({ contentRef });
@@ -69,15 +73,18 @@ export default function OrdersView() {
 					<BsFileEarmarkPdf /> Baixar PDF
 				</button>
 			</div>
-			<div className="card list-height overflow-y-auto p-3 pb-3 mb-5"  ref={contentRef}>
-
+			<div
+				className="card list-height overflow-y-auto p-3 pb-3 mb-5"
+				ref={contentRef}
+			>
 				<div className="card-body">
 					<div className="m-3 row">
 						<h1 className="mb-3">Ordem de Serviço #{formData.qr_code}</h1>
 						<h4 className="mt-5">Informações Gerais</h4>
-						<hr/>
+						<hr />
 						<div className="col-md-12 mt-2">
-							<strong>Empresa:</strong> Prefeitura da cidade de Almirante Tamandaré{formData.data}
+							<strong>Empresa:</strong> Prefeitura da cidade de Almirante
+							Tamandaré{formData.data}
 						</div>
 						<div className="col-md-4 mt-2">
 							<strong>Data:</strong> {registerDay}
@@ -87,7 +94,7 @@ export default function OrdersView() {
 						</div>
 
 						<h4 className="mt-5">Endereço</h4>
-						<hr/>
+						<hr />
 						<div className="col-md-6 mt-2">
 							<strong>Rua:</strong> {formData.address}
 						</div>
@@ -108,14 +115,12 @@ export default function OrdersView() {
 							<strong>Longitude:</strong> {formData.long}
 						</div>
 
-						<h4  className="mt-5">Obs</h4>
-						<hr/>
-						<div className="mb-3">
-							{formData.observations}
-						</div>
+						<h4 className="mt-5">Obs</h4>
+						<hr />
+						<div className="mb-3">{formData.observations}</div>
 
 						<h4 className="mt-5">Kit(s)</h4>
-						<hr/>
+						<hr />
 						<table className="mt-2">
 							<tr>
 								<th>Descrição</th>
@@ -131,17 +136,17 @@ export default function OrdersView() {
 											<td>
 												{kit?.materials?.map((material) => (
 													<div className="ms-3 my-2">
-														({material.material.quantity}) {material.material.description}
+														({material.quantity}x){' '}
+														{material.material.description}
 													</div>
 												))}
 											</td>
-											<td className="text-center">{
-												kitAndQuantity.some((kq) => kq.kit_id === kit.id)
-													? kitAndQuantity.filter(
-														(k) => k.kit_id === kit.id
-													)[0].quantity
-													: ''
-											}</td>
+											<td className="text-center">
+												{kitAndQuantity.some((kq) => kq.kit_id === kit.id)
+													? kitAndQuantity.filter((k) => k.kit_id === kit.id)[0]
+															.quantity
+													: ''}
+											</td>
 										</tr>
 									))}
 								</>
