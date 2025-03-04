@@ -82,7 +82,7 @@
   color: #1837fd;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1120px) {
   .navbar-brand .icon-brand{
     display: none;
   }
@@ -99,5 +99,13 @@
   }
   .company{
     display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav-link span{
+    display: block;
+    text-align: start;
+    margin-left:10px;
   }
 }
