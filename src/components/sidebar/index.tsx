@@ -54,11 +54,6 @@ export default function Sidebar() {
 							aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
 							placement="end"
 						>
-							<Offcanvas.Header closeButton>
-								<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-									Offcanvas
-								</Offcanvas.Title>
-							</Offcanvas.Header>
 							<Offcanvas.Body>
 
 								<Nav className="justify-content-end flex-grow-1 pe-3">

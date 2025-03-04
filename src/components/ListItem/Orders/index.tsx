@@ -45,7 +45,6 @@ export default function ListItemOrders({
 		<tr>
 			<td className="text-start align-content-center">
 				<div className="d-flex gap-3 ">
-
 					<div className="align-content-center" >
 						<p className="title">#{qrcode}</p>
 					</div>
