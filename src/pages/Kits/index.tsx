@@ -28,17 +28,15 @@ export default function Kits() {
 		getKits();
 	}, []);
 	return (
-		<>
-			<div>
-				<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
-					<NavLink to="form" className="btn">
-						<BsFillPlusSquareFill /> Novo
-					</NavLink>
-				</div>
+		<div className="row">
+			<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
+				<NavLink to="form" className="btn">
+					<BsFillPlusSquareFill /> Novo
+				</NavLink>
+			</div>
+			<div className="col-md-8">
+
 				<div className="card pb-0 mb-5">
-					<div className="card-header">
-						<p className="card-title">Lista de Kits</p>
-					</div>
 					<table className="w-100">
 						<thead>
 							<tr>
@@ -65,6 +63,13 @@ export default function Kits() {
 					</table>
 				</div>
 			</div>
+			<div className="col-md-4">
+				<div className="card">
+					<div className="card-body">
+						Grafico de uso de cada kit ultimo Mês
+					</div>
+				</div>
+			</div>
 			<div>
 				<Modal
 					cancelCopy="Cancelar"
@@ -74,6 +79,6 @@ export default function Kits() {
 					toggleSave={() => deleteItem(deleteId)}
 				/>
 			</div>
-		</>
+		</div>
 	);
 }

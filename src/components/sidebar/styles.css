@@ -1,6 +1,9 @@
 .sidebar{
+  /*background: #f2f5fc;*/
   background: white;
+  z-index: 999;
 }
+
 .navbar-light .container{
   display: block;
 }

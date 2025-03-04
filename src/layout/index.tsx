@@ -32,7 +32,7 @@ export default function Layout() {
 
 						<div className="col-sm-12 col-md-10 p-0">
 							<Navbar />
-							<div className="container-fluid p-4">
+							<div className="container-fluid p-5">
 								<Outlet />
 							</div>
 						</div>

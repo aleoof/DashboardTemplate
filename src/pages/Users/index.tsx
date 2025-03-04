@@ -3,6 +3,7 @@ import ListItemUsers from '../../components/ListItem/Users';
 import { NavLink } from 'react-router';
 import { api } from '../../api';
 import { useEffect, useState } from 'react';
+import './index.css';
 
 export default function Users() {
 	const [users, setUsers] = useState<Array<{
@@ -27,18 +28,17 @@ export default function Users() {
 	}, []);
 	return (
 		<div>
-			<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
-				<NavLink to="form" className="btn">
+			<div className="d-flex pt-0 justify-content-end align-items-center">
+				<NavLink to="form" className="btn-blue">
 					<BsFillPlusSquareFill /> Novo
 				</NavLink>
 			</div>
+
 			<div className="card list-height overflow-y-auto pb-0 mb-5">
-				<div className="card-header">
-					<p className="card-title">Lista de usuários</p>
-				</div>
+
 				<table className="w-100">
-					<thead>
-					<tr>
+					<thead >
+					<tr className="table-header">
 						<th className="text-start">Usuário</th>
 						<th className="align-content-center text-start">User</th>
 						<th>Tipo</th>

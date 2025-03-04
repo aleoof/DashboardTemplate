@@ -83,7 +83,7 @@ function Login() {
 						</form>
 					</div>
 				</div>
-				<p className="text-end p-2 company">
+				<p className="text-end shartech">
 					Desenvolvido por <strong>Shartech</strong>
 				</p>
 			</div>

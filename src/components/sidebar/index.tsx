@@ -41,7 +41,7 @@ export default function Sidebar() {
 	}
 
 	return (
-		<Navbar expand="md">
+		<Navbar expand="md" className="m-3">
 			<Container>
 				<Navbar.Brand href="#" ><MdDocumentScanner className="icon-brand"/>HUBOS</Navbar.Brand>
 				<Navbar.Toggle aria-controls="navbarScroll" />

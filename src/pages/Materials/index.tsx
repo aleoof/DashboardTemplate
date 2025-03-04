@@ -31,14 +31,11 @@ export default function Materials() {
 		<>
 			<div>
 				<div className="d-flex p-2 pt-0 justify-content-end align-items-center">
-					<NavLink to="form" className="btn">
+					<NavLink to="form" className="btn-blue">
 						<BsFillPlusSquareFill /> Novo
 					</NavLink>
 				</div>
 				<div className="card overflow-y-auto pb-0 mb-5">
-					<div className="card-header">
-						<p className="card-title">Lista de Materiais</p>
-					</div>
 					<table className="w-100">
 						<thead>
 						<tr>

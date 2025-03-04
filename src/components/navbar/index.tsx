@@ -1,4 +1,5 @@
 import { IoIosArrowDown } from "react-icons/io";
+import { MdHome } from "react-icons/md";
 
 import { useLocation, useNavigate } from 'react-router';
 import './styles.css';
@@ -70,12 +71,12 @@ export default function Navbar() {
 					<IoIosArrowDown /></div>
 				</div>
 		</div>
-		<div className="align-content-center m-4">
+		<div className="align-content-center mx-5 mt-5">
 
-			{paths(pathname)}
-			<h4>
-				{paths(pathname)}
-			</h4>
+			<p><MdHome />/{paths(pathname)}</p>
+			<h3>
+				<strong>{paths(pathname)}</strong>
+			</h3>
 		</div>
 		</>
 	);
