@@ -1,8 +1,7 @@
-import { MdOutlineSearch } from "react-icons/md";
-import { MdAdd } from "react-icons/md";
+import { MdOutlineSearch } from 'react-icons/md';
+import { MdAdd } from 'react-icons/md';
 import ListItemOrders from '../../components/ListItem/Orders';
 import './styles.css';
-
 
 import { NavLink, useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
@@ -32,6 +31,8 @@ export default function Orders() {
 		start: new Date(),
 		end: new Date(),
 	});
+
+	const [openReportsDropdown, setOpenReportsDropdown] = useState(false);
 	const route = useNavigate();
 
 	useEffect(() => {
@@ -46,6 +47,14 @@ export default function Orders() {
 	const toReportPage = () => {
 		route(
 			`report?start=${format(date.start, 'yyyy-MM-dd', {
+				locale: ptBR,
+			})}&end=${format(date.end, 'yyyy-MM-dd', { locale: ptBR })}`
+		);
+	};
+
+	const toReportMaterialPage = () => {
+		route(
+			`report-materials?start=${format(date.start, 'yyyy-MM-dd', {
 				locale: ptBR,
 			})}&end=${format(date.end, 'yyyy-MM-dd', { locale: ptBR })}`
 		);
@@ -68,7 +77,11 @@ export default function Orders() {
 	return (
 		<>
 			<div>
-				<NavLink to="form" className="btn-blue" style={{ height: 'fit-content' }}>
+				<NavLink
+					to="form"
+					className="btn-blue"
+					style={{ height: 'fit-content' }}
+				>
 					<MdAdd />
 				</NavLink>
 				<div className="card pb-0 mb-2">
@@ -77,56 +90,78 @@ export default function Orders() {
 					</div>
 
 					<div className="card-body">
-					<div className="d-flex justify-content-end align-items-end gap-3">
-						<div className="d-flex flex-column ">
-							<input
-								className="form-control"
-								placeholder="Numero da OS"
-							/>
+						<div className="d-flex justify-content-end align-items-end gap-3">
+							<div className="d-flex flex-column ">
+								<input className="form-control" placeholder="Numero da OS" />
+							</div>
+							<div className="d-flex flex-column ">
+								<input className="form-control" placeholder="Bairro" />
+							</div>
+							<div className=" d-flex flex-column ">
+								<DatePicker
+									className="form-control"
+									locale="pt-BR"
+									dateFormat="dd/MM/yyyy"
+									selected={date.start}
+									onSelect={(value) =>
+										setDate((prev) => ({
+											...prev,
+											start: value ? value : new Date(),
+										}))
+									}
+								/>
+							</div>
+							<div className="d-flex flex-column ">
+								<DatePicker
+									className="form-control"
+									selected={date.end}
+									dateFormat="dd/MM/yyyy"
+									onSelect={(value) =>
+										setDate((prev) => ({
+											...prev,
+											end: value ? value : new Date(),
+										}))
+									}
+								/>
+							</div>
+							<a
+								onClick={toReportPage}
+								className="btn"
+								style={{ height: 'fit-content' }}
+							>
+								<MdOutlineSearch /> Pesquisar
+							</a>
+							<div className="d-flex flex-column position-relative">
+								<div className="dropdown">
+									<button
+										className="btn btn-secondary dropdown-toggle"
+										type="button"
+										onClick={() => setOpenReportsDropdown(!openReportsDropdown)}
+									>
+										Tipo de Relatório
+									</button>
+									<ul
+										className={`dropdown-menu ${
+											openReportsDropdown ? 'show' : ''
+										}`}
+									>
+										<li>
+											<a className="dropdown-item" onClick={toReportPage}>
+												Ordens
+											</a>
+										</li>
+										<li>
+											<a
+												className="dropdown-item"
+												onClick={toReportMaterialPage}
+											>
+												Materiais utilizados
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
 						</div>
-						<div className="d-flex flex-column ">
-							<input
-								className="form-control"
-								placeholder="Bairro"
-							/>
-						</div>
-						<div className=" d-flex flex-column ">
-							<DatePicker
-								className="form-control"
-								locale="pt-BR"
-								dateFormat="dd/MM/yyyy"
-								selected={date.start}
-								onSelect={(value) =>
-									setDate((prev) => ({
-										...prev,
-										start: value ? value : new Date(),
-									}))
-								} //when day is clicked
-							/>
-						</div>
-						<div className="d-flex flex-column ">
-							<DatePicker
-								className="form-control"
-								selected={date.end}
-								dateFormat="dd/MM/yyyy"
-								onSelect={(value) =>
-									setDate((prev) => ({
-										...prev,
-										end: value ? value : new Date(),
-									}))
-								} //when day is clicked
-							/>
-						</div>
-
-						<a
-							onClick={toReportPage}
-							className="btn"
-							style={{ height: 'fit-content' }}
-						>
-							<MdOutlineSearch /> Pesquisar
-						</a>
-
-					</div>
 					</div>
 				</div>
 				<div className="card pb-0 mb-5">
@@ -170,8 +205,8 @@ export default function Orders() {
 					</table>
 					<div className="card-footer">
 						<div className="d-flex justify-content-between align-items-center gap-3">
-							<div className="d-flex "><p
-								className="">Mostrando 1 a 7 de 15 registros</p>
+							<div className="d-flex ">
+								<p className="">Mostrando 1 a 7 de 15 registros</p>
 							</div>
 							<div className="pagination">
 								<ul className="">
