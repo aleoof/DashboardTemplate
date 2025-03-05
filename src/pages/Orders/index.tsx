@@ -77,19 +77,7 @@ export default function Orders() {
 	return (
 		<>
 			<div>
-				<NavLink
-					to="form"
-					className="btn-blue"
-					style={{ height: 'fit-content' }}
-				>
-					<MdAdd />
-				</NavLink>
-				<div className="card pb-0 mb-2">
-					<div className="card-header">
-						<p className="card-title">Filtrar</p>
-					</div>
-
-					<div className="card-body">
+				<div className=" pb-0 mb-2">
 						<div className="d-flex justify-content-end align-items-end gap-3">
 							<div className="d-flex flex-column ">
 								<input className="form-control" placeholder="Numero da OS" />
@@ -159,15 +147,16 @@ export default function Orders() {
 											</a>
 										</li>
 									</ul>
-									<br></br>
-									<br></br>
-									<br></br>
-									<br></br>
-									<br></br>
 								</div>
 							</div>
+							<NavLink
+								to="form"
+								className="btn-blue"
+								style={{ height: 'fit-content' }}
+							>
+								<MdAdd />
+							</NavLink>
 						</div>
-					</div>
 				</div>
 				<div className="card pb-0 mb-5">
 					<table className="w-100">

@@ -1,4 +1,4 @@
-import { BsFillPencilFill, BsFillTrashFill, BsCopy } from 'react-icons/bs';
+import { BsFillPencilFill, BsFillTrashFill} from 'react-icons/bs';
 import { Link } from 'react-router';
 import './index.css';
 import useAccessLevelStore from '../../../stores/accessLevelStore.ts';
@@ -41,11 +41,6 @@ export default function ListItemOrders({
 				{accessLevel === 0 && (
 					<a className="" onClick={deleteListItem}>
 						<BsFillTrashFill />
-					</a>
-				)}
-				{accessLevel === 0 && (
-					<a className="">
-						<BsCopy />
 					</a>
 				)}
 			</td>
