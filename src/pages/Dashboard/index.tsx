@@ -10,10 +10,11 @@ import { api } from '../../api';
 import {
 	GoogleMap,
 	Marker,
-	MarkerF,
+	// MarkerF,
 	useJsApiLoader,
 } from '@react-google-maps/api';
 import axios from 'axios';
+import './styles.css';
 
 const containerStyle = {
 	width: '100%',
@@ -94,10 +95,8 @@ export default function Dashboard() {
 
 	const onLoad = useCallback(
 		(map) => {
-			if (pins.length > 0) {
-				map.setZoom(12);
-				setMap(map);
-			}
+			map.setZoom(12);
+			setMap(map);
 		},
 		[pins]
 	);
@@ -214,15 +213,20 @@ export default function Dashboard() {
 					<div className="card">
 						<div className="card-body">
 							<p className="card-title">Atendimentos realizado hoje</p>
-							{isLoaded && pins.length > 0 && (
+							{isLoaded && (
 								<GoogleMap
 									mapContainerStyle={containerStyle}
 									center={center}
 									onLoad={onLoad}
 									onUnmount={onUnmount}
+									options={{ gestureHandling: 'greedy' }}
 								>
-									{pins.map((pin) => (
-										<MarkerF position={pin.geo} label={`${pin.os}`} />
+									{pins.map((pin, index) => (
+										<Marker
+											position={pin.geo}
+											label={{ text: `${pin.os}`, className: 'pin-label' }}
+											animation={google.maps.Animation.DROP}
+										></Marker>
 									))}
 								</GoogleMap>
 							)}
