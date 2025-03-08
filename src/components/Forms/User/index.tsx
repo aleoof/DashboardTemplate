@@ -5,6 +5,11 @@ import InputMask from 'react-input-mask';
 
 export default function UserForm() {
 	const [formData, setFormData] = useState<{ [key: string]: any }>({});
+	const [passwordData, setPasswordData] = useState<{
+		oldPassword: string;
+		newPassword: string;
+		confirmPassword: string;
+	}>({ oldPassword: '', newPassword: '', confirmPassword: '' });
 	const [passwordError, setPasswordError] = useState(false);
 	const [searchParams] = useSearchParams();
 	const id = searchParams.get('id');
@@ -65,6 +70,36 @@ export default function UserForm() {
 	useEffect(() => {
 		console.log(formData);
 	}, [formData]);
+
+	const setNewPassword = async () => {
+		setPasswordError(false);
+		const regex = new RegExp(
+			'^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{6,}$'
+		);
+		console.log(passwordData);
+		console.log(regex.test(passwordData.newPassword));
+		if (
+			(passwordData.newPassword !== passwordData.confirmPassword &&
+				!regex.test(passwordData.newPassword)) ||
+			passwordData.oldPassword === '' ||
+			passwordData.newPassword === ''
+		) {
+			setPasswordError(true);
+			return;
+		}
+
+		console.log('passou');
+		try {
+			await api.put('reset-password', {
+				userId: id,
+				oldPassword: passwordData.oldPassword,
+				newPassword: passwordData.newPassword,
+			});
+		} catch (error) {
+			console.log(error);
+			setPasswordError(true);
+		}
+	};
 
 	return (
 		<div className="row">
@@ -265,56 +300,90 @@ export default function UserForm() {
 						</form>
 					</div>
 				</div>
-				{/* <div className="card p-3 pb-3 mb-3">
-					<div className="card-header">
-						<h3 className="card-title">Trocar Senha</h3>
-					</div>
-					<div className="card-body">
-						<div className="mb-3 col-md-12">
-							<label htmlFor="login" className="form-label">
-								Senha
-							</label>
-							<input
-								type="text"
-								className="form-control"
-								id="login"
-								value={formData.login}
-								onChange={(e) =>
-									setFormData((prev) => ({
-										...prev,
-										[e.target.id]: e.target.value,
-									}))
-								}
-							/>
-						</div>
+				{id && (
+					<div className="card p-3 pb-3 mb-3 row">
+						<div className="card-header">
+							<h3 className="card-title">Trocar Senha</h3>
 
-						<div className="mb-3 col-md-12">
-							<label htmlFor="login" className="form-label">
-								Confiração de Senha
-							</label>
-							<input
-								type="text"
-								className="form-control"
-								id="login"
-								value={formData.login}
-								onChange={(e) =>
-									setFormData((prev) => ({
-										...prev,
-										[e.target.id]: e.target.value,
-									}))
-								}
-							/>
+							<div className="text-end">
+								<p className="fw-bolder">Guia para criação de senha forte</p>
+								<p>Um caractere especial (!@#$%^&*(),./)</p>
+								<p>Uma letra maiúscula</p>
+								<p>Uma letra minuscula</p>
+								<p>Mínimo 6 caracteres</p>
+								<p>Um número (2 são recomendados)</p>
+								<p>Mude com frequencia</p>
+							</div>
 						</div>
-						<p className="card-title">Password requirements</p>
-						<p>Please follow this guide for a strong password</p>
+						<div className="card-body">
+							<div className="mb-3 col-md-12">
+								<label htmlFor="login" className="form-label">
+									Antiga Senha
+								</label>
+								<input
+									type="password"
+									className="form-control"
+									id="oldPassword"
+									onChange={(e) =>
+										setPasswordData((prev) => ({
+											...prev,
+											[e.target.id]: e.target.value,
+										}))
+									}
+								/>
+							</div>
+							<div className="mb-3 col-md-12">
+								<label htmlFor="login" className="form-label">
+									Nova Senha
+								</label>
+								<input
+									type="password"
+									className="form-control"
+									id="newPassword"
+									onChange={(e) =>
+										setPasswordData((prev) => ({
+											...prev,
+											[e.target.id]: e.target.value,
+										}))
+									}
+								/>
+							</div>
 
-						<p>One special characters</p>
-						<p>Min 6 characters</p>
-						<p>One number (2 are recommended)</p>
-						<p>Change it often</p>
+							<div className="mb-3 col-md-12">
+								<label htmlFor="login" className="form-label">
+									Confirmação de Senha
+								</label>
+								<input
+									type="password"
+									className="form-control"
+									id="confirmPassword"
+									onChange={(e) =>
+										setPasswordData((prev) => ({
+											...prev,
+											[e.target.id]: e.target.value,
+										}))
+									}
+								/>
+								{passwordError && (
+									<p className="text-danger">
+										Senha não corresponde ou não contempla as regras{' '}
+									</p>
+								)}
+							</div>
+							<button
+								type="button"
+								className="btn btn-primary"
+								id="password"
+								onClick={setNewPassword}
+							>
+								Salvar
+							</button>
+						</div>
 					</div>
-				</div> */}
+				)}
 			</div>
 		</div>
 	);
 }
+
+// uS3r@1
