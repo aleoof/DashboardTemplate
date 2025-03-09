@@ -7,6 +7,7 @@ import ListItemOrdersDash from '../../components/ListItem/OrdersDash';
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import { api } from '../../api';
+import useAccessLevelStore from '../../stores/accessLevelStore';
 
 export default function Dashboard() {
 	const [orders, setOrders] = useState<
@@ -44,6 +45,8 @@ export default function Dashboard() {
 		user: 0,
 		kit: 0,
 	});
+
+	const { accessLevel } = useAccessLevelStore();
 
 	const getOrders = async () => {
 		const today = new Date();
@@ -167,36 +170,41 @@ export default function Dashboard() {
 							<p className="card-title">OS do dia</p>
 						</div>
 
-							<table className="w-100">
-								<thead>
-									<tr>
-										<th className="text-start">Numero OS</th>
+						<table className="w-100">
+							<thead>
+								<tr>
+									<th className="text-start">Numero OS</th>
+									{accessLevel === 0 ? (
 										<th className="text-center">Hora</th>
-										<th className="text-start">Endereço</th>
-										<th className="text-start">Bairro</th>
-										<th className="text-start">Cidade</th>
-										<th className="text-start">Status</th>
-										<th>Ver</th>
-									</tr>
-								</thead>
-								<tbody>
-									{orders.map((order) => (
-										<>
-											<ListItemOrdersDash
-												key={order.order.id}
-												qrcode={order.order.qr_code}
-												register={order.order.registerDay}
-												id={order.order.id}
-												status={order.order.status}
-												address={order.order.address}
-												neighborhood={order.order.neighborhood}
-												city={order.order.city}
-											/>
-											<hr />
-										</>
-									))}
-								</tbody>
-							</table>
+									) : (
+										<th className="text-center">Kit</th>
+									)}
+									<th className="text-start">Endereço</th>
+									<th className="text-start">Bairro</th>
+									<th className="text-start">Cidade</th>
+									<th className="text-start">Status</th>
+									<th>Ver</th>
+								</tr>
+							</thead>
+							<tbody>
+								{orders.map((order) => (
+									<>
+										<ListItemOrdersDash
+											key={order.order.id}
+											qrcode={order.order.qr_code}
+											register={order.order.registerDay}
+											id={order.order.id}
+											status={order.order.status}
+											address={order.order.address}
+											neighborhood={order.order.neighborhood}
+											city={order.order.city}
+											kit={order?.ordersKits[0]?.kit?.description || ''}
+										/>
+										<hr />
+									</>
+								))}
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
